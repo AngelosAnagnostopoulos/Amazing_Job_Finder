@@ -19,9 +19,9 @@ jobs:
         node-version: '16'
 
     - name: Start redis
-      uses: superchargejs/redis-github-action@1.1.0
+    - uses: zhulik/redis-action@1.1.0
       with:
-        redis-version: '7.0'
+        redis version: '5'
         
     - name: Install dependencies
       run: npm install

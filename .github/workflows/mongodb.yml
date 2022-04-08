@@ -4,10 +4,7 @@ on: [push]
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: APIs/__tests__
-    
+
     runs-on: ubuntu-latest
   
     steps:

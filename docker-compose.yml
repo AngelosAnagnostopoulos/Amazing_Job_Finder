@@ -51,7 +51,7 @@ services:
       - write
 
   cache_database:
-    image: redis:7.0-rc3-alpine3.15
+    image: redis:5.0
     container_name: rdb
     ports: 
       - 6379:6379
