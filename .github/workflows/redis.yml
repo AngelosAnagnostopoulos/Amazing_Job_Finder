@@ -17,7 +17,7 @@ jobs:
         node-version: '16'
 
     - name: Start redis
-    - uses: zhulik/redis-action@1.1.0
+      uses: zhulik/redis-action@1.1.0
       with:
         redis-version: '5'
         
