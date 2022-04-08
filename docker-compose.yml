@@ -51,7 +51,7 @@ services:
       - write
 
   cache_database:
-    image: redis:5.0
+    image: redis
     container_name: rdb
     ports: 
       - 6379:6379
