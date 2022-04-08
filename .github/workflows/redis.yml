@@ -6,11 +6,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['16']
-        redis-version: ['7.0']
-
+    defaults:
+      run:
+        working-directory: APIs/__tests__
     steps:
     - name: Git checkout
       uses: actions/checkout@v3

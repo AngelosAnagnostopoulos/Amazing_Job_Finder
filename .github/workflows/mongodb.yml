@@ -6,14 +6,10 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: APIs
+        working-directory: APIs/__tests__
     
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['16']
-        mongodb-version: ['5.0']
-
+  
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
