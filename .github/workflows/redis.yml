@@ -6,9 +6,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: APIs/__tests__
+    
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -21,7 +19,7 @@ jobs:
     - name: Start redis
     - uses: zhulik/redis-action@1.1.0
       with:
-        redis version: '5'
+        redis-version: '5'
         
     - name: Install dependencies
       run: npm install
