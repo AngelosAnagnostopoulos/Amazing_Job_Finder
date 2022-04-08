@@ -27,7 +27,7 @@ The PostgreSQL schema is shown below.
 ![PostgreSQL Schema.](./Design/DatabaseDesign/PostgreSQL.png "PostgreSQL Schema.")
 The Redis database essentially copies data from our PostgreSQL so the schemas are identical. Maikng the two work together is a bit tricky but no further database configuration is needed.
 The MongoDB "schema" is essentially a single collection with listings for a username and a password (hash).
-![MongoDB Schema.](./Design/DatabaseDesign/DatabaseDesign/AuthDB.png "MongoDB Schema.")
+![MongoDB Schema.](./Design/DatabaseDesign/AuthDB.png "MongoDB Schema.")
 
 ### CI/CD:
 Workflow files need updating as we go on with tests.
