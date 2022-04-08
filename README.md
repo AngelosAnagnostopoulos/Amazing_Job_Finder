@@ -36,7 +36,7 @@ Postgresql workflow missing.
 ### Todolist:
 - Design systems and databases. **Done**
 - Create project skeleton. **Done**
-    - Create the database containers and write the initialization scripts. **Done?** (Postgres script missing foreign key constraints!!!)
+    - Create the database containers and write the initialization scripts. **Done**
     - Spin up all necessary containers and put them in a docker-compose.yml file. **Done**
 - Set up first CI/CD draft. **Done**
 - Figure out testing details and update ci/cd workflows to use specific directories.

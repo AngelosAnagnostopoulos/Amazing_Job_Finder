@@ -18,7 +18,7 @@ services:
     restart: always
     container_name: node_1
     volumes:
-      - ./servers/indexa.html:/usr/share/nginx/html/index.html
+      - ./servers/frontend/indexa.html:/usr/share/nginx/html/index.html
     networks:
       - frontend
       - backend
@@ -28,7 +28,7 @@ services:
     restart: always
     container_name: node_2
     volumes:
-      - ./servers/indexb.html:/usr/share/nginx/html/index.html
+      - ./servers/frontend/indexb.html:/usr/share/nginx/html/index.html
     networks:
       - frontend
       - backend

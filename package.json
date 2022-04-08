@@ -12,6 +12,6 @@
     },
     "version": "0.0.1",
     "scripts": {
-        "test": "node test.js"
+        "test": "node ./APIs/__tests__/test.js"
     }
 }
