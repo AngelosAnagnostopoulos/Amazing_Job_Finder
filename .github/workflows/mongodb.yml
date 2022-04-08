@@ -1,0 +1,40 @@
+name: MongoDB tests
+
+on: [push]
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: APIs
+    
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['16']
+        mongodb-version: ['5.0']
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v3
+
+    - name: Use Node.js v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.6.0
+      with:
+        mongodb-version: '5.0'
+        mongodb-username: angelos
+        mongodb-password: example
+        mongodb-db: authDB
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+      env:
+        CI: true
