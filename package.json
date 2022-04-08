@@ -1,12 +1,17 @@
 {
-    "name" : "awesome_job_finder",
-    "description" : "A job finder web-app.",
-    "authors" : ["Angelos Anagnostopoulos", "Michalis Drosiadis"],
-    "contributors" : [],
-    "repository" : {"type": "git", "url": "https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder.git"},
-    "version" : "0.0.1",
+    "name": "awesome_job_finder",
+    "description": "A job finder web-app.",
+    "authors": [
+        "Angelos Anagnostopoulos",
+        "Michalis Drosiadis"
+    ],
+    "contributors": [],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder.git"
+    },
+    "version": "0.0.1",
     "scripts": {
         "test": "node test.js"
     }
-    
-  }
+}
