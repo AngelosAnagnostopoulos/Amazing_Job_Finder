@@ -12,9 +12,10 @@
   "devDependencies": {
     "mocha": "^9.2.2"
   },
+  
   "scripts": {
-    "test": "nyc --reporter=lcov mocha ./APIs/__tests__/*.js",
-    "report-coverage": "nyc report"
+    "test": "nyc mocha ./APIs/__tests__/*.js",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
