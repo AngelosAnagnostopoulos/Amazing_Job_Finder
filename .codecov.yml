@@ -3,7 +3,7 @@ coverage:
     patch: false
     changes: false
     project:
-      default: false
+      default: true
       readAPI:
         paths: "APIs/read/"
         target: 65%
