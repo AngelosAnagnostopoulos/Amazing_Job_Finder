@@ -1,6 +1,9 @@
 name: Redis tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - development
 
 jobs:
 
@@ -18,8 +21,6 @@ jobs:
 
     - name: Start redis
       uses: zhulik/redis-action@1.1.0
-      with:
-        redis-version: '6.2'
         
     - name: Install dependencies
       run: npm install

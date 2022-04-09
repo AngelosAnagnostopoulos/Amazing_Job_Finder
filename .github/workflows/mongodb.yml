@@ -1,6 +1,9 @@
 name: MongoDB tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - development
 
 jobs:
   build:
