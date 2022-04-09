@@ -2,7 +2,6 @@
   "name": "amazing_job_finder",
   "version": "0.0.1",
   "description": "A job finding web application",
-  "main": "index.js",
   "dependencies": {
     "codecov": "^3.8.3",
     "coverage": "^0.4.1",
