@@ -13,8 +13,8 @@
     "mocha": "^9.2.2"
   },
   "scripts": {
-    "test": "nyc mocha ./APIs/__tests__/*.js",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "test": "nyc --reporter=lcov mocha ./APIs/__tests__/*.js",
+    "report-coverage": "nyc report"
   },
   "repository": {
     "type": "git",
