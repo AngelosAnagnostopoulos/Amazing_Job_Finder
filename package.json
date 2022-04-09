@@ -15,12 +15,12 @@
         "test": "npx nyc mocha ./APIs/__tests__/*.js"
     },
     "devDependencies": {
-        "codecov": "^3.8.3"
+        "codecov": "^3.8.3",
+        "nyc": "^15.1.0"
     },
     "dependencies": {
         "coverage": "^0.4.1",
         "mocha": "^9.2.2",
-        "npx": "^10.2.2",
-        "nyc": "^15.1.0"
+        "npx": "^10.2.2"
     }
 }
