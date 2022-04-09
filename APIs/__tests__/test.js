@@ -1,8 +1,11 @@
-var assert = require('assert');
-describe('Array', function () {
-    describe('#indexOf()', function () {
-        it('should return -1 when the value is not present', function () {
-            assert.equal([1, 2, 3].indexOf(4), -1);
-        });
-    });
+var simple = require('../read/main');
+var expect = require('expect.js');
+
+describe("simple", function(){
+  it("should return true", function(){
+    expect(simple.math(1)).to.equal(true);
+  });
+  it("should return false", function(){
+    expect(simple.math(0)).to.equal(false);
+  });
 });
