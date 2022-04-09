@@ -38,12 +38,12 @@ $ sudo docker exec -it mdb -u angelos -p        #use authDB. db.users.find();
 ```
 
 ### Technologies used:
-> Frontend: HTML5, CSS3, Bootstrap, SASS, Handlebars
-> APIs: NodeJS, Javascript
-> Servers/LoadBalancing: Nginx
-> Backend: Redis, PostgreSQL, MongoDB
-> Utils: Git/Github, Github Actions,Codecov ,Docker/Docker-compose
-> NodeJS:  Mocha, Istanbul (nyc)
+- Frontend: HTML5, CSS3, Bootstrap, SASS, Handlebars
+- APIs: NodeJS, Javascript
+- Servers/LoadBalancing: Nginx
+- Backend: Redis, PostgreSQL, MongoDB
+- Utils: Git/Github, Github Actions,Codecov ,Docker/Docker-compose
+- NodeJS:  Mocha, Istanbul (nyc)
 
 ### Systems Design:
 The key idea in mind while creating the systems design was scalability and reliability. We did not get so far as to implement a CDN or multiple backend database nodes because that would be overkill even for our standards, but most of the systems found inside a modern web application are here! 
