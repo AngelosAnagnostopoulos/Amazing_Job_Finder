@@ -56,6 +56,7 @@ A PostgreSQL database is the main source of truth in the web-app, but it is quer
 Microservices have been designed to handle all major functionality inside the website. They are loosely attached to the APIs responsible for each proccess.
 
 Below is a diagram showcasing our design in detail, as well as providing some usecases that our application handles.
+
 ![Systems Design Diagram.](./Design/SystemsDesign/Systems.png "Systems Design Diagram.")
 
 
