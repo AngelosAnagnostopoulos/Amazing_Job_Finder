@@ -12,4 +12,9 @@ function math(a){
     }
 }
 
+var x = 5;
+console.log(x);
+console.log("a");
+console.log("b");
+
 exports.math = math;
