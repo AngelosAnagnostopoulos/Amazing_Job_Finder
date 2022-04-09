@@ -12,6 +12,9 @@
     },
     "version": "0.0.1",
     "scripts": {
-        "test": "node ./APIs/__tests__/test.js"
+        "test": "istanbul cover ./APIs/__tests__/*.js test"
+    },
+    "devDependencies": {
+        "codecov": "^3.8.3"
     }
 }

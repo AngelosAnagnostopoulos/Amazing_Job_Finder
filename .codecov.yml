@@ -1,0 +1,18 @@
+coverage:
+  status:
+    patch: false
+    changes: false
+    project:
+      default: false
+      readAPI:
+        paths: "APIs/read/"
+        target: 65%
+      authAPI:
+        paths: "APIs/auth/"
+        target: 75%
+      writeAPI:
+        paths: "APIs/write/"
+        target: 65%
+      tests:
+        paths: "APIs/__tests__"
+        target: 85%
