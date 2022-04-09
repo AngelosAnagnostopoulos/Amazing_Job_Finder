@@ -1,4 +1,5 @@
 # Amazing_Job_Finder
+[![codecov](https://codecov.io/gh/AngelosAnagnostopoulos/Amazing_Job_Finder/branch/development/graph/badge.svg?token=euKpr6gTQy)](https://codecov.io/gh/AngelosAnagnostopoulos/Amazing_Job_Finder)
 ## Authors: Angelos Anagnostopoulos, Michalis Drosiadis
 
 This is a VERY overengineered attempt at creating a website for the the lesson "Network programming" of the 8th semester of 2022 in the [ECE department of UoP](http://www.ece.upatras.gr/index.php/en/).
@@ -8,7 +9,8 @@ Frontend: HTML5, CSS3, Bootstrap, SASS, Handlebars
 APIs: NodeJS, Javascript
 Servers/LoadBalancing: Nginx
 Backend: Redis, PostgreSQL, MongoDB
-Utils: Git/Github, Github Actions, <Probably a testing service for Node?>, docker
+Utils: Git/Github, Github Actions,Codecov ,Docker/Docker-compose
+NodeJS:  Mocha, Istanbul (nyc)
 
 ### Systems Design:
 The key idea in mind while creating the systems design was scalability and reliability. We did not get so far as to implement a CDN or multiple backend database nodes because that would be overkill even for our standards, but most of the systems found inside a modern web application are here! 
@@ -27,10 +29,11 @@ The PostgreSQL schema is shown below.
 ![PostgreSQL Schema.](./Design/DatabaseDesign/PostgreSQL.png "PostgreSQL Schema.")
 The Redis database essentially copies data from our PostgreSQL so the schemas are identical. Maikng the two work together is a bit tricky but no further database configuration is needed.
 The MongoDB "schema" is essentially a single collection with listings for a username and a password (hash).
-![MongoDB Schema.](./Design/DatabaseDesign/AuthDB.png "MongoDB Schema.")
+![MongoDB Schema.](./Design/DatabaseDesign/DatabaseDesign/AuthDB.png "MongoDB Schema.")
 
 ### CI/CD:
-Workflow files need updating as we go on with tests.
+Updated workflows and package.json.
+Added codecov integration for testing details.
 Postgresql workflow missing.
 
 ### Todolist:
@@ -39,11 +42,10 @@ Postgresql workflow missing.
     - Create the database containers and write the initialization scripts. **Done**
     - Spin up all necessary containers and put them in a docker-compose.yml file. **Done**
 - Set up first CI/CD draft. **Done**
-- Figure out testing details and update ci/cd workflows to use specific directories.
-- Create a frontend template (first conceptualy, then in html/css).
-- Write basic APIs to test databases and interconnectivity.
-- Write basic API tests to test the tests of databases and interconnectivity.
-- Extend API functionality. (See below)
+- Figure out testing details and update ci/cd workflows to use specific directories. **Done**
+- Create a frontend template (first conceptualy, then in html/css). **Done (needs to be made in code)**
+- Write basic APIs to test databases and interconnectivity (Simple 200 OK responses will do).
+- Extend API functionality.
 
 ##### ReadAPI
 1) Query the redis database to ask for cached information.
@@ -57,8 +59,7 @@ Postgresql workflow missing.
 4) Accept a pending job listing and make it permanent.
 
 Notes: 
-Should a user just be able to create the listings on his own and have some limit to how many he can make? The absence of limits is a big attack vector!
-The whole application/approval model seems kind of messy. Preferably, each user will authenticate with either a personal or business account. Personal accounts can view job listings and ask to get hired, while business ones create the listings directly (limit to amount N, potential for payment plans etc.).
+Add limit on job_post creation on the poster role to prevent attacks.
 
 ##### AuthAPI
 1) Query the mongo database for user credentials and check against onces received from WriteAPI
