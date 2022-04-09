@@ -1,26 +1,33 @@
 {
-    "name": "awesome_job_finder",
-    "description": "A job finder web-app.",
-    "authors": [
-        "Angelos Anagnostopoulos",
-        "Michalis Drosiadis"
-    ],
-    "contributors": [],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder.git"
-    },
-    "version": "0.0.1",
-    "scripts": {
-        "test": "npx nyc mocha ./APIs/__tests__/*.js"
-    },
-    "devDependencies": {
-        "codecov": "^3.8.3",
-        "nyc": "^15.1.0"
-    },
-    "dependencies": {
-        "coverage": "^0.4.1",
-        "mocha": "^9.2.2",
-        "npx": "^10.2.2"
-    }
+  "name": "amazing_job_finder",
+  "version": "0.0.1",
+  "description": "A job finding web application",
+  "main": "index.js",
+  "dependencies": {
+    "codecov": "^3.8.3",
+    "coverage": "^0.4.1",
+    "npx": "^10.2.2",
+    "nyc": "^15.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.2.2"
+  },
+  "scripts": {
+    "test": "npx nyc mocha ./APIs/__tests__/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder.git"
+  },
+  "keywords": [
+    "job",
+    "job_finder",
+    "webdev"
+  ],
+  "author": "Angelos Anagnostopoulos Michalis Drosiadis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder/issues"
+  },
+  "homepage": "https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder#readme"
 }
