@@ -12,13 +12,21 @@ CREATE TABLE IF NOT EXISTS searcher (
 
 CREATE TABLE IF NOT EXISTS poster (
   poster_id     SERIAL PRIMARY KEY,
-  FOREIGN KEY (poster_id) REFERENCES person(person_id)
+  FOREIGN KEY (poster_id) REFERENCES person(
+    title       varchar(255),person_id)
 );
+
 CREATE TABLE IF NOT EXISTS job_position (
     position_id SERIAL PRIMARY KEY,
     title       varchar(255),
     role_desc   TEXT,
     avg_salary  bigint
+);
+
+CREATE TABLE IF NOT EXISTS image (
+  image_id    SERIAL PRIMARY KEY,
+  image_name  varchar(255),
+  image_dat   bytea
 );
 
 CREATE TABLE IF NOT EXISTS company (
@@ -27,7 +35,9 @@ CREATE TABLE IF NOT EXISTS company (
     ctype       varchar(255),
     clink       varchar(255),
     c_desc      TEXT,
-    rating      smallint
+    rating      smallint,
+    image_id 	  INT,
+    FOREIGN KEY (image_id) REFERENCES image(image_id)
 );
 
 CREATE TABLE IF NOT EXISTS job_listing (
@@ -48,4 +58,4 @@ CREATE TABLE IF NOT EXISTS job_listing (
 );
 
 INSERT INTO company VALUES 
-(1,'CosmoteTELECOM','Communications and Networking','https://www.cosmote.gr/hub/','This is a test description for CosmoteTELECOM',10);
+(1,'CosmoteTELECOM','Communications and Networking','https://www.cosmote.gr/hub/','This is a test description for CosmoteTELECOM',10, NULL);

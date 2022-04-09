@@ -33,12 +33,23 @@ services:
       - frontend
       - backend
 
-  postgresql_database:
+  postgresql_master:
     image: postgres:14.2-alpine
     restart: always
-    container_name: pdb
-    ports:
-      - 5432:5432
+    container_name: master_db
+    volumes:
+      - ./databases/postgres:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=angelos
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_DB=app
+    networks:
+      - postgres
+  
+  postgresql_job_listings:
+    image: postgres:14.2-alpine
+    restart: always
+    container_name: jobs_db
     volumes:
       - ./databases/postgres:/docker-entrypoint-initdb.d
     environment:
@@ -49,6 +60,39 @@ services:
       - auth
       - read
       - write
+      - postgres
+
+  postgresql_customers_A-M:
+      image: postgres:14.2-alpine
+      restart: always
+      container_name: customers_db_M
+      volumes:
+        - ./databases/postgres:/docker-entrypoint-initdb.d
+      environment:
+        - POSTGRES_USER=angelos
+        - POSTGRES_PASSWORD=example
+        - POSTGRES_DB=app
+      networks:
+        - auth
+        - read
+        - write
+        - postgres
+
+  postgresql_customers_N-Z:
+      image: postgres:14.2-alpine
+      restart: always
+      container_name: customers_db_Z
+      volumes:
+        - ./databases/postgres:/docker-entrypoint-initdb.d
+      environment:
+        - POSTGRES_USER=angelos
+        - POSTGRES_PASSWORD=example
+        - POSTGRES_DB=app
+      networks:
+        - auth
+        - read
+        - write
+        - postgres
 
   cache_database:
     image: redis
@@ -97,13 +141,11 @@ services:
     networks:
       - auth
       - backend
-      
-#Add volume mapping for the databases to the host machine once testing is over.
 
-#This networking idea needs more looking into.
 networks:
   read:
   write:
   auth:
+  postgres:
   backend:
   frontend:
