@@ -43,6 +43,8 @@ services:
       - POSTGRES_USER=angelos
       - POSTGRES_PASSWORD=example
       - POSTGRES_DB=app
+    ports:
+      - 54321:5432
     networks:
       - postgres
   
@@ -56,6 +58,8 @@ services:
       - POSTGRES_USER=angelos
       - POSTGRES_PASSWORD=example
       - POSTGRES_DB=app
+    ports:
+      - 54322:5432
     networks:
       - auth
       - read
@@ -63,36 +67,40 @@ services:
       - postgres
 
   postgresql_customers_A-M:
-      image: postgres:14.2-alpine
-      restart: always
-      container_name: customers_db_M
-      volumes:
-        - ./databases/postgres:/docker-entrypoint-initdb.d
-      environment:
-        - POSTGRES_USER=angelos
-        - POSTGRES_PASSWORD=example
-        - POSTGRES_DB=app
-      networks:
-        - auth
-        - read
-        - write
-        - postgres
+    image: postgres:14.2-alpine
+    restart: always
+    container_name: customers_db_M
+    volumes:
+      - ./databases/postgres:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=angelos
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_DB=app
+    ports:
+    - 54323:5432
+    networks:
+      - auth
+      - read
+      - write
+      - postgres
 
   postgresql_customers_N-Z:
-      image: postgres:14.2-alpine
-      restart: always
-      container_name: customers_db_Z
-      volumes:
-        - ./databases/postgres:/docker-entrypoint-initdb.d
-      environment:
-        - POSTGRES_USER=angelos
-        - POSTGRES_PASSWORD=example
-        - POSTGRES_DB=app
-      networks:
-        - auth
-        - read
-        - write
-        - postgres
+    image: postgres:14.2-alpine
+    restart: always
+    container_name: customers_db_Z
+    volumes:
+      - ./databases/postgres:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=angelos
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_DB=app
+    ports:
+    - 54324:5432
+    networks:
+      - auth
+      - read
+      - write
+      - postgres
 
   cache_database:
     image: redis

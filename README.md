@@ -66,7 +66,7 @@ Each one of the read replicas holds table information regarding a specific range
 ![PostgreSQL ERD.](./Design/DatabaseDesign/PostgreSQL.png "PostgreSQL ERD.")
 The Redis database essentially copies data from our PostgreSQL so the schemas are identical. Maikng the two work together is a bit tricky but no further database configuration is needed.
 The MongoDB "schema" is essentially a single collection with listings for a username and a password (hash).
-![MongoDB ERD.](./Design/DatabaseDesign/DatabaseDesign/AuthDB.png "MongoDB ERD.")
+![MongoDB ERD.](./Design/DatabaseDesign/AuthDB.png "MongoDB ERD.")
 
 ### CI/CD:
 Updated workflows and package.json.
@@ -80,7 +80,8 @@ Added codecov integration for testing details.
 - Set up first CI/CD draft. **Done**
 - Figure out testing details and update ci/cd workflows to use specific directories. **Done**
 - Create a frontend template (first conceptualy, then in html/css/). **Done (needs to be made in code)**
-- Get database read-replicas up and running.
+- Get database read-replicas up and running. **Done**
+- Add functionality to handle zip codes and cities.
 - Write basic APIs to test databases and interconnectivity (Simple 200 OK responses will do).
 - Make webpage responsive by adding javascript.
 - Extend API functionality and implement microservices.
