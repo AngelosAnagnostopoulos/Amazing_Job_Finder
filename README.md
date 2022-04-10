@@ -1,5 +1,6 @@
 # Amazing_Job_Finder
 [![codecov](https://codecov.io/gh/AngelosAnagnostopoulos/Amazing_Job_Finder/branch/development/graph/badge.svg?token=euKpr6gTQy)](https://codecov.io/gh/AngelosAnagnostopoulos/Amazing_Job_Finder)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAngelosAnagnostopoulos%2FAmazing_Job_Finder.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAngelosAnagnostopoulos%2FAmazing_Job_Finder?ref=badge_shield)
 ## Authors: Angelos Anagnostopoulos, Michalis Drosiadis
 
 This is a VERY overengineered attempt at creating a website for the the lesson "Network programming" of the 8th semester of 2022 in the [ECE department of UoP](http://www.ece.upatras.gr/index.php/en/).
@@ -113,3 +114,7 @@ Added codecov integration for testing details.
 > Notes: 
 > Add limit on job_post creation on the poster role to prevent attacks.
 > There are MAJOR security flaws detected on our NodeJS packages, which we 'll pretend don't exist.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAngelosAnagnostopoulos%2FAmazing_Job_Finder.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAngelosAnagnostopoulos%2FAmazing_Job_Finder?ref=badge_large)
