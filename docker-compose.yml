@@ -47,11 +47,12 @@ services:
       - 54321:5432
     networks:
       - postgres
-  
-  postgresql_job_listings:
+      - write
+
+  postgresql_slave:
     image: postgres:14.2-alpine
     restart: always
-    container_name: jobs_db
+    container_name: slave_db
     volumes:
       - ./databases/postgres:/docker-entrypoint-initdb.d
     environment:
@@ -61,47 +62,10 @@ services:
     ports:
       - 54322:5432
     networks:
-      - auth
+      - postgres
       - read
       - write
-      - postgres
-
-  postgresql_customers_A-M:
-    image: postgres:14.2-alpine
-    restart: always
-    container_name: customers_db_M
-    volumes:
-      - ./databases/postgres:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=angelos
-      - POSTGRES_PASSWORD=example
-      - POSTGRES_DB=app
-    ports:
-    - 54323:5432
-    networks:
-      - auth
-      - read
-      - write
-      - postgres
-
-  postgresql_customers_N-Z:
-    image: postgres:14.2-alpine
-    restart: always
-    container_name: customers_db_Z
-    volumes:
-      - ./databases/postgres:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=angelos
-      - POSTGRES_PASSWORD=example
-      - POSTGRES_DB=app
-    ports:
-    - 54324:5432
-    networks:
-      - auth
-      - read
-      - write
-      - postgres
-
+  
   cache_database:
     image: redis
     container_name: rdb
@@ -130,8 +94,16 @@ services:
 
   # These are here just for testing, we shall make our own images for the APIs and push them to dockerhub.
   read_API:
-    image: node:16-alpine
-    container_name: read_API
+    # image: node:16-alpine
+    # build this image from Dockerfile
+    build:
+      context: ./APIs/read
+    image: readapi
+    container_name: read_api
+    depends_on:
+      - "postgresql_slave"
+    ports:
+      - "5000:5000"
     networks:
       - read
       - backend
