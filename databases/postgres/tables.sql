@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS searcher (
 
 CREATE TABLE IF NOT EXISTS poster (
   poster_id     SERIAL PRIMARY KEY,
-  FOREIGN KEY (poster_id) REFERENCES person(
-    title       varchar(255),person_id)
+  title       varchar(255),
+  FOREIGN KEY (poster_id) REFERENCES person(person_id)
 );
 
 CREATE TABLE IF NOT EXISTS job_position (
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS job_position (
     avg_salary  bigint
 );
 
-CREATE TABLE IF NOT EXISTS image (
+CREATE TABLE IF NOT EXISTS images (
   image_id    SERIAL PRIMARY KEY,
   image_name  varchar(255),
   image_dat   bytea
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS company (
     c_desc      TEXT,
     rating      smallint,
     image_id 	  INT,
-    FOREIGN KEY (image_id) REFERENCES image(image_id)
+    FOREIGN KEY (image_id) REFERENCES images(image_id)
 );
 
 CREATE TABLE IF NOT EXISTS job_listing (
