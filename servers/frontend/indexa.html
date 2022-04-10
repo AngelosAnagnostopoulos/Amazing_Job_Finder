@@ -1,12 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server1</title>
-</head>
-<body>
-    Test from server 1
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Awesome_Job_Finder</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <h1>It works, and so will you!</h1>
+                <img src="" alt="Amazing logo" />
+                <img src="" alt="User Profile" />
+                <span class="signup">
+                    <p>Sign up</p>
+                    <p>Log in</p>
+                </span>
+            </nav>
+
+            <!-- Hidden visibility at first, then swap at user login w/ signup -->
+            <span class="logout">
+                <p>Log out</p>
+            </span>
+
+            <div class="headerbox">
+                <div class="searchjobs">
+                    <!-- The blue stuff -->
+                    <div class="highlighted_area">
+                        <!-- The search tag (only) -->
+                        <div class="tag" , id="search">
+                            <span>
+                                <p>Search</p>
+                            </span>
+                            <form action="/searchjobs" , method="get">
+                                <input
+                                    type="text"
+                                    name="searchbox"
+                                    size="20"
+                                    maxlength="20"
+                                    placeholder="Enter job title"
+                                />
+                                <input
+                                    type="text"
+                                    name="zips"
+                                    size="5"
+                                    maxlength="10"
+                                    placeholder="Zip Code"
+                                />
+                                <button
+                                    type="button"
+                                    onclick="location.href='joblist.html'"
+                                >
+                                    Search jobs
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- The buttons at the bottom + white area -->
+                    <div class="queryboxes">
+                        <button class="querybox" , onclick="">Latest</button>
+                        <button class="querybox" , onclick="">
+                            Most Popular
+                        </button>
+                        <button class="querybox" , onclick="">For You</button>
+                    </div>
+                </div>
+
+                <div class="postjobs">
+                    <div class="highlighted_area">
+                        <div class="tag" , id="post">
+                            <span>
+                                <p>Post</p>
+                            </span>
+                        </div>
+
+                        <form action="/postpopup" method="post">
+                            <input
+                                type="text"
+                                name="title"
+                                size="20"
+                                maxlength="20"
+                                placeholder="Listing title"
+                            />
+                            <!-- This will go after we add route handling to our app but for now buttons with links it is. -->
+                            <button
+                                type="button"
+                                onclick="location.href='postpopup.html'"
+                            >
+                                Post Job
+                            </button>
+                            <!-- Likely to make this into a text input and infer one of the available job types (Can also make dynamic sugestions) -->
+                            <br />
+                            <select name="category" id="category">
+                                <option value="webdev" selected>
+                                    Web developer
+                                </option>
+                                <option value="softwereng">
+                                    Software engineer
+                                </option>
+                                <option value="devops">DevOps engineer</option>
+                                <option value="secops">
+                                    Cybersecurity engineer
+                                </option>
+                                <option value="sysadmin">
+                                    System Administrator
+                                </option>
+                            </select>
+                            <select name="flexible" id="flexible">
+                                <option value="onsite" selected>On-site</option>
+                                <option value="hybrid">Hybrid</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                            <select name="hours" id="hours">
+                                <option value="fulltime" selected>
+                                    Full time
+                                </option>
+                                <option value="parttime">Part time</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <br />
+
+        <main>
+            <div>
+                <p>Recents</p>
+                <!-- Either a popup menu or a dropdown checkbox list with filters list -->
+                <button type="button" onclick="">filters</button>
+            </div>
+
+            <article>
+                <div class="articles">
+                    <!-- These should be fetched from the database and redirect to a route like /joblist/<id> but this works for now-->
+                    <button
+                        class="listing"
+                        onclick="location.href='joblist.html'"
+                    >
+                        Placeholder listing</button
+                    ><br />
+                    <button
+                        class="listing"
+                        onclick="location.href='joblist.html'"
+                    >
+                        Placeholder listing</button
+                    ><br />
+                    <button
+                        class="listing"
+                        onclick="location.href='joblist.html'"
+                    >
+                        Placeholder listing
+                    </button>
+                </div>
+            </article>
+
+            <!-- https://stackoverflow.com/questions/27313480/scroll-div-content-horizontally-using-left-and-right-arrow-in-jquery -->
+            <div class="companieslider">
+                <div id="rightArrow">
+                    <a href="#"><img src="../images/right.png" width="30" /></a>
+                </div>
+                <div id="viewContainer">
+                    <div id="tslshow">
+                        <div class="bktibx">Stack overflow</div>
+                        <div class="bktibx">Cosmote</div>
+                        <div class="bktibx">Vodafone</div>
+                        <div class="bktibx">Wind-Hellas</div>
+                        <div class="bktibx">Pizza Hut</div>
+                        <div class="bktibx">Samsung</div>
+                        <div class="bktibx">Univ. of Patras</div>
+                        <div class="bktibx">Discord</div>
+                        <div class="bktibx">Google</div>
+                        <div class="bktibx">Platinum Records</div>
+                    </div>
+                </div>
+                <div id="leftArrow">
+                    <a href="#"><img src="../images/left.png" width="30" /></a>
+                </div>
+            </div>
+        </main>
+
+        <br />
+
+        <footer>
+            <div class="mainarea">
+                <div class="firstcol">
+                    <a href="">About</a>
+                    <a href="">Help Center</a>
+                    <a href="">Support</a>
+                    <a href="">Contact</a>
+                </div>
+                <div class="secondcol">
+                    <a href="">We 're hiring!</a>
+                    <a href="">Blog</a>
+                </div>
+
+                <!-- Add social media images w/ links to some profiles -->
+                <div class="socials">
+                    <a href="">
+                        <img
+                            alt="Qries"
+                            src="https://www.qries.com/images/banner_logo.png"
+                            width="30"
+                            height="30"
+                        />
+                    </a>
+                    <a href="">
+                        <img
+                            alt="Qries"
+                            src="https://www.qries.com/images/banner_logo.png"
+                            width="30"
+                            height="30"
+                        />
+                    </a>
+                    <a href="">
+                        <img
+                            alt="Qries"
+                            src="https://www.qries.com/images/banner_logo.png"
+                            width="30"
+                            height="30"
+                        />
+                    </a>
+                    <a href="">
+                        <img
+                            alt="Qries"
+                            src="https://www.qries.com/images/banner_logo.png"
+                            width="30"
+                            height="30"
+                        />
+                    </a>
+                </div>
+            </div>
+
+            <div class="legalstuff"></div>
+        </footer>
+    </body>
 </html>

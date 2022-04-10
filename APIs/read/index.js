@@ -21,8 +21,7 @@ console.log("Now connecting!");
 let state = false;
 
 app.get("/start", (req, res) => {
-	if(state)
-	{
+	if (state) {
 		res.send("Already running!");
 		return;
 	}
@@ -31,16 +30,15 @@ app.get("/start", (req, res) => {
 		.then(() => {
 			state = true;
 			console.log("Connected to database");
-			}
+		}
 		)
 		.catch(err => console.log("error connecting to database", err));
-	
+
 	res.send("Conected xd!");
 });
 
 app.get("/", (req, res) => {
-	if(!state)
-	{
+	if (!state) {
 		res.send("Not active yet!");
 		return;
 	}
