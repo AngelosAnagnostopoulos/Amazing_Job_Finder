@@ -1,5 +1,7 @@
 # Amazing_Job_Finder
 [![codecov](https://codecov.io/gh/AngelosAnagnostopoulos/Amazing_Job_Finder/branch/development/graph/badge.svg?token=euKpr6gTQy)](https://codecov.io/gh/AngelosAnagnostopoulos/Amazing_Job_Finder)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAngelosAnagnostopoulos%2FAmazing_Job_Finder.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAngelosAnagnostopoulos%2FAmazing_Job_Finder?ref=badge_shield)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9fa86edfad0e4f15aeb74e62398eeeec)](https://www.codacy.com/gh/AngelosAnagnostopoulos/Amazing_Job_Finder/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AngelosAnagnostopoulos/Amazing_Job_Finder&amp;utm_campaign=Badge_Grade)
 ## Authors: Angelos Anagnostopoulos, Michalis Drosiadis
 
 This is a VERY overengineered attempt at creating a website for the the lesson "Network programming" of the 8th semester of 2022 in the [ECE department of UoP](http://www.ece.upatras.gr/index.php/en/).
