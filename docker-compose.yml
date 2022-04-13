@@ -13,22 +13,20 @@ services:
     networks:
       - frontend
     
-  web_server_1:
-    image: nginx:1.21.6-alpine
+  server_1:
+    build: 
+      context: ./servers/frontend
     restart: always
     container_name: node_1
-    volumes:
-      - ./servers/frontend/indexa.html:/usr/share/nginx/html/index.html
     networks:
       - frontend
       - backend
 
-  web_server_2:
-    image: nginx:1.21.6-alpine
+  server_2:
+    build: 
+      context: ./servers/frontend
     restart: always
     container_name: node_2
-    volumes:
-      - ./servers/frontend/indexb.html:/usr/share/nginx/html/index.html
     networks:
       - frontend
       - backend
