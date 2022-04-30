@@ -2,7 +2,10 @@ name: ReadAPI CI
 
 on:
   push:
-  
+    branches:
+      - development
+      - apis
+      
 jobs:  
   build:
 

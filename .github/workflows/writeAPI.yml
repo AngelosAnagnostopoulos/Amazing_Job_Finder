@@ -2,7 +2,10 @@ name: WriteAPI CI
 
 on:
   push:
-  
+    branches:
+      - development
+      - apis
+      
 jobs:
 
   build:
