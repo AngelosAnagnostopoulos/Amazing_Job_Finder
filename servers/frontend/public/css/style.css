@@ -1,15 +1,51 @@
-a {
-    text-decoration: none;
-    cursor:initial;
-    color: inherit;
-}
-
 body {
     position: relative;
     background: #ffffff;
     height: fit-content;
     width: auto;
     max-width: 1920px;
+    min-width: 700px;
+}
+
+/* Can be used to dynamically alter behaviour. Maybe will add later???*/
+@media screen and (max-width: 700px) {
+    header h1 {
+        display: none;
+    }
+}
+
+a {
+    text-decoration: none;
+    cursor: inherit;
+    color: inherit;
+}
+
+input {
+    position: relative;
+    height: 31px;
+    background: #f3eff5;
+    border-radius: 7.5px;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+    border: none;
+    
+}
+
+/* This should probably be done another way */
+input:focus::-webkit-input-placeholder{
+    color: #F3EFF5;
+}
+
+button {
+    position: relative;
+    width: 160px;
+    height: 52px;
+    background: #f3eff5;
+    border-radius: 7.5px;
+    border: none;
 }
 
 header {
@@ -17,6 +53,7 @@ header {
     top: 0px;
     left: 0px;
     height: 400px;
+    min-width: auto;
     background-image: url("../images/banner.svg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -82,42 +119,125 @@ header nav .logout {
     display: none;
 }
 
+header .headerwrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 header .headerbox {
-    display: block;
     width: 600px;
     height: 182px;
-    border: 2px solid black;
+    border: 3px solid black;
     filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
 }
 
 header .highlighted_area {
-    display: flex;
-    flex-direction: column; 
-
+    margin-top: 2px;
+    background-color: #4ebfff;
 }
 
-header .tags {
+header .tagswrapper {
+    position: relative;
     display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
     justify-content: center;
-}
-
-header .inputform {
-    display: flex;
-    text-align: center;
     align-items: center;
-    justify-content: center;
 }
 
-header .queryboxes {
-    display: flex;
+header .tags span {
+    padding: 2px 130px 5px 130px;
+}
+
+header .tags .active {
+    background: #4ebfff;
+    border-radius: 10px 10px 0px 0px;
+}
+
+header .tags .inactive {
+    background: #F3EFF5;
+    border-radius: 10px 10px 0px 0px;
+}
+
+header #search {
     text-align: center;
-    align-items: center;
-    justify-content: center;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #ffffff;
 }
 
+header #post {
+    text-align: center;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #0f0f0f;
+}
+
+header .inputwrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    top: 30px;
+}
+
+header .inputform input {
+    margin-left: 25px;
+}
+
+header .inputform input:last-child {
+    margin-left: 15px;
+}
+
+header #searchbox {
+    width: 250px;
+}
+
+header #zips {
+    width: 100px;
+}
+
+header #submit {
+    width: 125px;
+    height: 35px;
+    background: #e86c4a;
+    border-radius: 10px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #ffffff;
+}
+
+header .queryboxeswrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    top: 50px;
+    background-color: #4ebfff;
+    padding-top: 25px;
+}
+
+header .queryboxes .querybox {
+    bottom: 15px;
+}
+
+header .queryboxes button {
+    margin-left: 25px;
+}
+
+/* This is to be selected if a user clicks on Post. */
 header .postjobs {
     filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.25));
     display: none;
@@ -129,31 +249,22 @@ main {
 
 footer {
     background: #4ebfff;
-
 }
+
 footer .mainarea ul {
     list-style: none;
 }
 
-footer .mainarea{
+footer .mainarea {
     display: flex;
     flex-direction: row;
-    width: ;
+    padding: 0%;
+    margin: 0%;
 }
 
-footer .firstcol li {
-    display: flex;
-    flex-direction: column;
-}
-
-footer .secondcol li {
-    display: flex;
-    flex-direction: column;
-}
-
-footer .socials{
-    display: flex;
-    flex-direction: column;
+footer .socials {
+    margin-top: 20px;
+    margin-left: 1400px;
 }
 
 footer .socials ul {
@@ -161,28 +272,41 @@ footer .socials ul {
     flex-direction: row;
 }
 
-footer .mainarea li a{
-    font-family: 'Inter';
+footer .socialtext {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+}
+
+footer .socials img {
+    width: 30px;
+}
+
+footer .mainarea li a {
+    font-family: "Inter";
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 29px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 footer .legalstuff {
-    background: #C4C4C4;
+    background: #c4c4c4;
 }
 
 footer .legalstuff ul {
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0%;
+    margin: 0%;
 }
 
-footer .legalstuff li{
-    display: inline;
-    padding: 20px;
-}
-
-footer .legalstuff p{
+footer .legalstuff p {
     display: inline;
 }

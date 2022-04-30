@@ -5,16 +5,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Awesome_Job_Finder</title>
 </head>
 
 <body>
     <header>
         <nav>
-            <span class="login">
-                Log in
-            </span>
+            <!-- Εδω θελει αλλαγμα? -->
+            <a href="./login.html">
+                <span class="login">
+                    Log in
+                </span>
+            </a>
             <span class="signupbox">
                 Sign up
             </span>
@@ -25,36 +28,47 @@
 
         <h1>If you can dream it, you can do it.</h1>
 
-        <div class="headerbox">
-            <div class="searchjobs">
-                <div class="highlighted_area">
-                    
-                    <div class="tags">
-                        <span id="search">
-                            <a href="">Search</a> 
-                        </span>
-                        <span id="post">
-                            <a href="">Post</a> 
-                        </span>
+        <div class="headerwrapper">
+            <div class="headerbox">
+                <div class="searchjobs">    
+                    <div class="tagswrapper">
+                        <div class="tags">
+                            <span class="active" id="search">
+                                <a href="">Search</a> 
+                            </span>
+                            <span class="inactive" id="post">
+                                <a href="">Post</a> 
+                            </span>
+                        </div>
                     </div>
-                    <div class="inputform">
-                        <form action="/searchjobs" , method="get">
-                            <input type="text" name="searchbox" size="20" maxlength="20"
-                                placeholder="Enter job title" />
-                            <input type="text" name="zips" size="5" maxlength="10" placeholder="City/Zip Code" />
-                            <input type="submit" value="Search Jobs" />
-                        </form>
-                    </div>            
-                
-                    <div class="queryboxes">
-                        <button class="querybox" , onclick="">Latest</button>
-                        <button class="querybox" , onclick="">
-                            Most Popular
-                        </button>
-                        <button class="querybox" , onclick="">For You</button>
-                    </div>
-                </div>    
-            </div>
+
+                    <div class="highlighted_area">
+                        
+                        <div class="inputwrapper">
+                            <div class="inputform">
+                                <form action="/searchjobs" , method="get">
+                                    <input type="text" id="searchbox" name="searchbox" size="20" maxlength="20"
+                                        placeholder="Enter job title" />
+                                    <input type="text" id="zips" name="zips" size="5" maxlength="10" placeholder="City/Zip Code" />
+                                    <input type="submit" id="submit" value="Search Jobs" />
+                                </form>
+                            </div>            
+                        </div>                
+
+                        <div class="queryboxeswrapper">
+                            <div class="queryboxes">
+                                <button class="querybox" , onclick="">Latest</button>
+                                <button class="querybox" , onclick="">
+                                    Most Popular
+                                </button>
+                                <button class="querybox" , onclick="">For You</button>
+                            </div>    
+                        </div>
+
+                    </div>    
+                </div>
+        </div>
+
 
             <div class="postjobs">
                 <div class="highlighted_area">

@@ -14,8 +14,7 @@ services:
       - frontend
     
   server_1:
-    build: 
-      context: ./servers/frontend
+    build: ./servers/frontend
     restart: always
     container_name: node_1
     networks:
@@ -23,8 +22,7 @@ services:
       - backend
 
   server_2:
-    build: 
-      context: ./servers/frontend
+    build: ./servers/frontend
     restart: always
     container_name: node_2
     networks:

@@ -1,15 +1,13 @@
-name: Redis tests
+name: AuthAPI CI
 
 on:
   push:
-    branches:
-      - development
 
 jobs:
-
   build:
+
     runs-on: ubuntu-latest
-    
+  
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -19,14 +17,19 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Start redis
-      uses: zhulik/redis-action@1.1.0
-        
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.6.0
+      with:
+        mongodb-version: '5.0'
+        mongodb-username: angelos
+        mongodb-password: example
+        mongodb-db: authDB
+
     - name: Install dependencies
       run: npm install
 
     - name: Run tests
-      run: npm run test
+      run: npm run test_auth
       env:
         CI: true
 
