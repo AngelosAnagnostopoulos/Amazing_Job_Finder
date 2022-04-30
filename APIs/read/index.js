@@ -50,5 +50,3 @@ app.get("/", (req, res) => {
 
 // run dev server
 app.listen(SERVE_PORT, () => console.log("Read api listening"));
-
-
