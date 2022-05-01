@@ -47,6 +47,23 @@ app.get("/", (req, res) => {
 	// res.send("Ok!");
 });
 
+app.get("/listings/:listingID", (req, res) => {
+	console.log(req.params);
+	client.query(`SELECT * FROM job_listing WHERE listing_id = ${req.params.listingID};`)
+		.then(data => {
+			if(data.rowCount == 0){
+				res.status(404).send("No data!");
+				return;
+			}
+			
+			res.send(data);
+		});
+});
+
+// 404
+app.get("*", (req, res) => {
+	res.status(404).send("Not found!");
+});
 
 // run dev server
 app.listen(SERVE_PORT, () => console.log("Read api listening"));
