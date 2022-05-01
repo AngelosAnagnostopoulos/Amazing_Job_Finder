@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Awesome_Job_Finder</title>
+    <title>Amazing_Job_Finder</title>
 </head>
 
 <body>
@@ -18,9 +18,11 @@
                     Log in
                 </span>
             </a>
-            <span class="signupbox">
-                Sign up
-            </span>
+            <div class="whitetext">
+                <span class="signupbox">
+                    Sign up
+                </span>    
+            </div>
             <span class="logout">
                 Log out
             </span>
@@ -33,12 +35,12 @@
                 <div class="searchjobs">    
                     <div class="tagswrapper">
                         <div class="tags">
-                            <span class="active" id="search">
+                            <div class="active" id="search">
                                 <a href="">Search</a> 
-                            </span>
-                            <span class="inactive" id="post">
+                            </div>
+                            <div class="inactive" id="post">
                                 <a href="">Post</a> 
-                            </span>
+                            </div>
                         </div>
                     </div>
 
@@ -122,56 +124,37 @@
     <br />
 
     <main>
-        <div>
-            <p>Recents</p>
+        <div class="mainwrapper">
+            <div class="dummy"></div>
+            <div class="recents"><p>Recents</p></div>
+            <div class="dummy_two"></div>
             <!-- Either a popup menu or a dropdown checkbox list with filters list -->
-            <button type="button" onclick="">filters</button>
+            <div class="filters"><button class="whitetext" type="button" onclick="">filters</button></div>
+            <div class="dummy_three"></div>
+
         </div>
 
         <article>
             <div class="articles">
-                <!-- These should be fetched from the database and redirect to a route like /joblist/<id> but this works for now-->
-                <div class="listing" style="border: 1px; width: 400px">
-                    <h3 class="title">Πωλητής-Πωλήτρια</h3>
-                    <p class="companyname">ATALLAS CERAMICA</p>
-                    <p class="location">Πάτρα</p>
-                    <p class="content">
-                        Ζητείται πωλητης-πωλήτρια σε κατάστημα
-                        πλακιδίων-ειδών υγιεινής στην Πάτρα (ATALLAS
-                        CERAMICA ). Απαραίτητη προϋπηρεσία στην πώληση.
-                        Πλήρης απασχόλ...
-                    </p>
-                    <p class="postedat">Αναρτήθηκε: Πριν 2 μέρες</p>
-                    <span class="logo"></span>
+                {{#each data }}
+                <div class="listing">
+                    <div class="wrapper">
+                        <div class="info">
+                            <h3 class="title">{{this.title}}</h3>
+                            <h5 class="workhours">{{this.workhours}}</h5>
+                        </div>
+                        <div class="totheleft">
+                            <div class="logo"></div>
+                            <div class="companyname"><p>{{this.company}}</p></div>
+                            <div class="location"><p >{{this.location}}</p></div>
+                        </div>
+                        <p class="content">
+                            {{this.description}}
+                        </p>
+                        <p class="postedat">{{this.postdate}}</p>
+                    </div>
                 </div>
-                <div class="listing" style="border: 1px; width: 400px">
-                    <h3 class="title">Πωλητής-Πωλήτρια</h3>
-                    <p class="companyname">ATALLAS CERAMICA</p>
-                    <p class="location">Πάτρα</p>
-                    <p class="content">
-                        Ζητείται πωλητης-πωλήτρια σε κατάστημα
-                        πλακιδίων-ειδών υγιεινής στην Πάτρα (ATALLAS
-                        CERAMICA ). Απαραίτητη προϋπηρεσία στην πώληση.
-                        Πλήρης απασχόλ...
-                    </p>
-                    <p class="postedat">Αναρτήθηκε: Πριν 2 μέρες</p>
-                    <span class="logo"></span>
-                </div>
-                <div class="listing" style="border: 1px; width: 400px">
-                    <h3 class="title">Πωλητής-Πωλήτρια</h3>
-                    <p class="companyname">ATALLAS CERAMICA</p>
-                    <p class="location">Πάτρα</p>
-                    <p class="content">
-                        Ζητείται πωλητης-πωλήτρια σε κατάστημα
-                        πλακιδίων-ειδών υγιεινής στην Πάτρα (ATALLAS
-                        CERAMICA ). Απαραίτητη προϋπηρεσία στην πώληση.
-                        Πλήρης απασχόλ...
-                    </p>
-                    <p class="postedat">Αναρτήθηκε: Πριν 2 μέρες</p>
-                    <span class="logo"></span>
-                </div>
-
-            </div>
+                {{/each}}
             </div>
         </article>
 
@@ -206,21 +189,24 @@
         <div class="mainarea">
             <div class="firstcol">
                 <ul>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Help Center</a></li>
-                    <li><a href="">Support</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a class="whitetext" href="">About</a></li>
+                    <li><a class="whitetext" href="">Help Center</a></li>
+                    <li><a class="whitetext" href="">Support</a></li>
+                    <li><a class="whitetext" href="">Contact</a></li>
                 </ul>
             </div>
             <div class="secondcol">
                 <ul>
-                    <li><a href="">We 're hiring!</a></li>
-                    <li><a href="">Blog</a></li>
+                    <li><a class="whitetext" href="">We 're hiring!</a></li>
+                    <li><a class="whitetext" href="">Blog</a></li>
                 </ul>                
+            </div>
+            <div class="thirdcol">
+
             </div>
             <!-- Add social media images w/ links to some profiles -->
             <div class="socials">
-                <span class="socialtext">Find us on social media!</span>
+                <span class="whitetext">Find us on social media!</span>
                 <ul>
                     <li><a href="">
                         <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30" height="30" />

@@ -1,0 +1,112 @@
+article .listing {
+    position: relative;
+    background-color: white;
+    filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
+    left: 20%;
+    top: 50%;
+    width: 700px;
+    height: 180px;
+    max-width: 700px;
+    max-height: 180px;
+}
+
+article .title {
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: #000000;
+}
+
+article .wrapper {
+    margin-left: 32px;
+}
+
+article .companyname {
+    width: 110px;
+    height: 18px;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    color: #629677;
+}
+
+article .info {
+    position: relative;
+    top: 23px;
+}
+
+article .workhours {
+    position: relative;
+    font-family: "Times";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #7b7a7a;
+    bottom: 20px;
+}
+
+article .totheleft {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    width: 150px;
+    bottom: 40px;
+    right: 40px;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+article .location {
+    width: 50px;
+    height: 18px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    color: #7b7a7a;
+}
+
+article .logo {
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+article .content {
+    position: relative;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    width: 450px;
+    bottom: 5px;
+    color: #616060;
+}
+
+article .postedat {
+    position: relative;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    bottom: 5px;
+    color: #000000;
+}

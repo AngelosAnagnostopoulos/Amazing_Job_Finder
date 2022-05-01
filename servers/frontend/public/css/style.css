@@ -31,12 +31,11 @@ input {
 input:focus {
     outline: none;
     border: none;
-    
 }
 
 /* This should probably be done another way */
-input:focus::-webkit-input-placeholder{
-    color: #F3EFF5;
+input:focus::-webkit-input-placeholder {
+    color: #f3eff5;
 }
 
 button {
@@ -47,6 +46,58 @@ button {
     border-radius: 7.5px;
     border: none;
 }
+
+body .whitetext, .login {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+header .tags .active, #submit {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    background: #4ebfff;
+    border-radius: 10px 10px 0px 0px;
+}
+
+header .tags .inactive {
+    background: #f3eff5;
+    border-radius: 10px 10px 0px 0px;
+}
+header .tags .inactive a {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #050609;
+}
+
+.querybox {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #050609;
+}
+
+/* ================================= */
 
 header {
     position: relative;
@@ -78,34 +129,16 @@ header nav .signupbox {
     margin-right: 10px;
     padding-inline-start: 5px;
     padding-inline-end: 5px;
-
-    font-family: "Arial";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 19px;
-    line-height: 40px;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
 }
 
 header nav .login {
     display: block;
     float: right;
-
-    height: 40px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 19px;
-    line-height: 40px;
-    align-items: center;
-    text-align: center;
     color: #e86c4a;
 }
 
 header h1 {
-    font-family: "Inter";
+    font-family: "Arial";
     font-style: normal;
     font-weight: 900;
     font-size: 30px;
@@ -126,60 +159,31 @@ header .headerwrapper {
 }
 
 header .headerbox {
-    width: 600px;
+    width: 580px;
     height: 182px;
-    border: 3px solid black;
     filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
 }
 
 header .highlighted_area {
-    margin-top: 2px;
+    margin-top: -10px;
     background-color: #4ebfff;
 }
 
-header .tagswrapper {
-    position: relative;
+header .tags {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
 }
 
-header .tags span {
-    padding: 2px 130px 5px 130px;
-}
-
-header .tags .active {
-    background: #4ebfff;
-    border-radius: 10px 10px 0px 0px;
-}
-
-header .tags .inactive {
-    background: #F3EFF5;
-    border-radius: 10px 10px 0px 0px;
-}
-
-header #search {
+#post {
     text-align: center;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-
-    color: #ffffff;
 }
 
-header #post {
-    text-align: center;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-
-    color: #0f0f0f;
+header .tags div {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
 }
 
 header .inputwrapper {
@@ -201,23 +205,25 @@ header #searchbox {
     width: 250px;
 }
 
+header #searchbox::placeholder {
+    padding-left: 10px;
+}
+
 header #zips {
+    text-align: center;
     width: 100px;
 }
 
 header #submit {
     width: 125px;
-    height: 35px;
+    line-height: 50%;
+    top: 1px;
+    left: 20px;
+    height: 33px;
     background: #e86c4a;
     border-radius: 10px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-
-    color: #ffffff;
+    margin: 0%;
+    padding: 0%;
 }
 
 header .queryboxeswrapper {
@@ -243,9 +249,176 @@ header .postjobs {
     display: none;
 }
 
+/* ================================= */
+
 main {
     background: #ffffff;
 }
+
+main .mainwrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+/* Minor resizing problem here */
+main .recents {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 10%;
+}
+main .filters {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 10%;
+}
+
+main .dummy {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 32%;
+}
+
+main .dummy_two {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 18%;
+}
+
+main .dummy_three {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 30%;
+}
+
+main .filters button {
+    width: 160px;
+    height: 30px;
+    background: #E86C4A;
+    border-radius: 7.5px;
+    line-height: 50%;
+}
+
+.articles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.articles .listing {
+    background-color: white;
+    filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
+    width: 700px;
+    height: 180px;
+    max-width: 700px;
+    max-height: 180px;
+    margin-bottom: 15px;
+}
+
+.articles .title {
+    display: block;
+    margin-top: 10px;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    color: #000000;
+}
+
+.articles .wrapper {
+    margin-left: 32px;
+}
+
+.articles .companyname {
+    width: 110px;
+    height: 18px;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    color: #629677;
+}
+
+.articles .info {
+    position: relative;
+    top: 13px;
+}
+
+.articles .workhours {
+    position: relative;
+    font-family: "Times";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #7b7a7a;
+    bottom: 20px;
+}
+
+.articles .totheleft {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    width: 150px;
+    bottom: 40px;
+    right: 40px;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.articles .location {
+    width: 50px;
+    height: 18px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    color: #7b7a7a;
+}
+
+.articles .logo {
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.articles .content {
+    position: relative;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    width: 450px;
+    bottom: 15px;
+    color: #616060;
+}
+
+.articles .postedat {
+    position: relative;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    bottom: 15px;
+    color: #000000;
+}
+
+/* ================================= */
 
 footer {
     background: #4ebfff;
@@ -262,36 +435,34 @@ footer .mainarea {
     margin: 0%;
 }
 
-footer .socials {
-    margin-top: 20px;
-    margin-left: 1400px;
-}
-
 footer .socials ul {
     display: flex;
     flex-direction: row;
 }
 
-footer .socialtext {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    color: #ffffff;
+footer .socials {
+    margin-top: 15px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 20%;
 }
 
-footer .socials img {
-    width: 30px;
+footer .firstcol {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 20%;
 }
 
-footer .mainarea li a {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 29px;
-    color: #ffffff;
+footer .secondcol {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 20%;
+}
+
+footer .thirdcol {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 40%;
 }
 
 footer .legalstuff {
