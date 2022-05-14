@@ -1,5 +1,4 @@
 const express = require("express");
-var hbs = require('hbs');
 const bodyParser = require("body-parser");
 const route = require("./route");
 
@@ -16,22 +15,9 @@ app.listen(port, function (err) {
     }
 });
 
-app.use(express.static("frontend"));
 app.use(express.static("public"));
 app.use(express.static("views"));
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', route);
-
-// Use the readAPI to fetch from db. This works in testing!
-var data = {
-    description : "Ζητείται πωλητης-πωλήτρια σε κατάστημα πλακιδίων-ειδών υγιεινής στην Πάτρα (ATALLAS CERAMICA ). Απαραίτητη προϋπηρεσία στην πώληση. Πλήρης απασχόλ...",
-
-    location : "Patras",
-    
-    company : "ATALLAS CERAMICA",
-    
-    title : "Retailer",
-    
-    postdate : "Posted at: 2 days ago"
-};

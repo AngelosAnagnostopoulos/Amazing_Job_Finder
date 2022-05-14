@@ -7,6 +7,10 @@ body {
     min-width: 700px;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 /* Can be used to dynamically alter behaviour. Maybe will add later???*/
 @media screen and (max-width: 700px) {
     header h1 {
@@ -38,16 +42,8 @@ input:focus::-webkit-input-placeholder {
     color: #f3eff5;
 }
 
-button {
-    position: relative;
-    width: 160px;
-    height: 52px;
-    background: #f3eff5;
-    border-radius: 7.5px;
-    border: none;
-}
-
-body .whitetext, .login {
+body .whitetext,
+.login {
     font-family: "Arial";
     font-style: normal;
     font-weight: 700;
@@ -58,7 +54,8 @@ body .whitetext, .login {
     color: #ffffff;
 }
 
-header .tags .active, #submit {
+header .tags .active,
+#submit {
     font-family: "Arial";
     font-style: normal;
     font-weight: 700;
@@ -71,10 +68,39 @@ header .tags .active, #submit {
     border-radius: 10px 10px 0px 0px;
 }
 
+.searchtag{
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    background: #4ebfff;
+    border-radius: 10px 10px 0px 0px;
+    border: none;
+}
+
+.posttag {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    background: #f3eff5;
+    border-radius: 10px 10px 0px 0px;
+    border: none;
+}
+
 header .tags .inactive {
     background: #f3eff5;
     border-radius: 10px 10px 0px 0px;
 }
+
 header .tags .inactive a {
     font-family: "Arial";
     font-style: normal;
@@ -95,6 +121,12 @@ header .tags .inactive a {
     align-items: center;
     text-align: center;
     color: #050609;
+    position: relative;
+    width: 160px;
+    height: 52px;
+    background: #f3eff5;
+    border-radius: 7.5px;
+    border: none;
 }
 
 /* ================================= */
@@ -174,10 +206,8 @@ header .tags {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-}
-
-#post {
     text-align: center;
+
 }
 
 header .tags div {
@@ -202,10 +232,10 @@ header .inputform input:last-child {
 }
 
 header #searchbox {
-    width: 250px;
+    width: 240px;
 }
 
-header #searchbox::placeholder {
+header #searchbox {
     padding-left: 10px;
 }
 
@@ -249,6 +279,7 @@ header .postjobs {
     display: none;
 }
 
+
 /* ================================= */
 
 main {
@@ -261,12 +292,14 @@ main .mainwrapper {
     align-items: center;
     justify-content: start;
 }
+
 /* Minor resizing problem here */
 main .recents {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 10%;
 }
+
 main .filters {
     flex-grow: 0;
     flex-shrink: 0;
@@ -292,6 +325,7 @@ main .dummy_three {
 }
 
 main .filters button {
+    border: none;
     width: 160px;
     height: 30px;
     background: #E86C4A;
