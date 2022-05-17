@@ -5,6 +5,8 @@ body {
     width: auto;
     max-width: 1920px;
     min-width: 700px;
+    margin: 2px;
+
 }
 
 button:hover {
@@ -26,7 +28,7 @@ a {
 
 input {
     position: relative;
-    height: 31px;
+    height: 33px;
     background: #f3eff5;
     border-radius: 7.5px;
     border: none;
@@ -68,7 +70,7 @@ header .tags .active,
     border-radius: 10px 10px 0px 0px;
 }
 
-.searchtag{
+.activetag {
     font-family: "Arial";
     font-style: normal;
     font-weight: 700;
@@ -82,7 +84,7 @@ header .tags .active,
     border: none;
 }
 
-.posttag {
+.inactivetag {
     font-family: "Arial";
     font-style: normal;
     font-weight: 700;
@@ -93,6 +95,11 @@ header .tags .active,
     color: #000000;
     background: #f3eff5;
     border-radius: 10px 10px 0px 0px;
+    border: none;
+}
+
+.activetag:focus, .inactive:focus{
+    outline: none;
     border: none;
 }
 
@@ -129,6 +136,25 @@ header .tags .inactive a {
     border: none;
 }
 
+select {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    color: #050609;
+    position: relative;
+    width: 160px;
+    height: 35px;
+    background: #f3eff5;
+    border-radius: 7.5px;
+    border: none;
+    top: 30px;
+    margin-left: 25px;
+}
+
 /* ================================= */
 
 header {
@@ -144,6 +170,7 @@ header {
 }
 
 header nav {
+    margin: 10px;
     display: block;
     height: 60px;
     background-image: url("../images/logo.png");
@@ -196,7 +223,12 @@ header .headerbox {
     filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
 }
 
+header .searchjobs {
+    display: block;
+}
+
 header .highlighted_area {
+    height: 165px;
     margin-top: -10px;
     background-color: #4ebfff;
 }
@@ -207,7 +239,6 @@ header .tags {
     align-items: center;
     flex-direction: row;
     text-align: center;
-
 }
 
 header .tags div {
@@ -273,12 +304,36 @@ header .queryboxes button {
     margin-left: 25px;
 }
 
-/* This is to be selected if a user clicks on Post. */
-header .postjobs {
-    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.25));
+header #postjobs {
     display: none;
 }
 
+header .searchjobs {
+    display: block;
+}
+
+header #postlisting {
+    width: 340px;
+    padding-left: 10px;
+    background: #f3eff5;
+    border-radius: 7.5px;
+}
+
+header #postbutton {
+    top: 2px;
+    width: 120px;
+    height: 33px;
+    left: 15px;
+    background: #e86c4a;
+    border-radius: 7.5px;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
 
 /* ================================= */
 
@@ -286,7 +341,34 @@ main {
     background: #ffffff;
 }
 
+main .flexwrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .sponsors {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+main .carousel {
+    width: 700px;
+    justify-content: center;
+}
+
+main .carousel-item {
+    justify-content: center;
+
+}
+
 main .mainwrapper {
+    margin-bottom: 10px;
     position: relative;
     display: flex;
     align-items: center;
@@ -295,9 +377,14 @@ main .mainwrapper {
 
 /* Minor resizing problem here */
 main .recents {
+    margin: 0%;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 10%;
+}
+
+main .recents p {
+    margin: 0%;
 }
 
 main .filters {
@@ -328,7 +415,7 @@ main .filters button {
     border: none;
     width: 160px;
     height: 30px;
-    background: #E86C4A;
+    background: #e86c4a;
     border-radius: 7.5px;
     line-height: 50%;
 }
@@ -355,6 +442,7 @@ main .filters button {
 .articles .title {
     display: block;
     margin-top: 10px;
+    margin-bottom: 25px;
     font-family: "Arial";
     font-style: normal;
     font-weight: 500;
@@ -432,6 +520,7 @@ main .filters button {
     position: relative;
     font-family: "Inter";
     font-style: normal;
+    margin-top: 15px;
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
@@ -475,19 +564,22 @@ footer .socials ul {
 }
 
 footer .socials {
-    margin-top: 15px;
+    margin-top: 10px;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 20%;
 }
 
 footer .firstcol {
+    margin-top: 10px;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 20%;
 }
 
 footer .secondcol {
+    margin-top: 10px;
+
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 20%;

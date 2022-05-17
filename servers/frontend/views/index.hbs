@@ -1,268 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="refresh" content="60">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/style.css" />
-        
-        <title>Amazing_Job_Finder</title>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/bootstrap.js"></script>
+    <script src="https://unpk.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="./javascripts/responsive.js" defer></script>
+    <title>Amazing_Job_Finder</title>
+</head>
 
-    <body>
-        <header>
-            <nav>
-                <a href="/login">
-                    <span class="login">
-                        Log in
+<body>
+    <header>
+        <nav>
+            <a href="/login">
+                <span class="login">
+                    Log in
+                </span>
+            </a>
+            <div class="whitetext">
+                <a href="/signup">
+                    <span class="signupbox">
+                        Sign up
                     </span>
                 </a>
-                <div class="whitetext">
-                    <a href="/signup">
-                        <span class="signupbox">
-                            Sign up
-                        </span>    
-                    </a>
+            </div>
+            <a href="/logout">
+                <span class="logout">
+                    Log out
+                </span>
+            </a>
+
+        </nav>
+
+        <h1>If you can dream it, you can do it.</h1>
+
+        <div class="headerwrapper">
+            <div class="headerbox" id="headerbox">
+                <div class="tagswrapper">
+                    <div class="tags">
+                        <div class="active">
+                            <button class="activetag" id="search-button">
+                                Search
+                            </button>
+                        </div>
+                        <div class="inactive">
+                            <button class="inactivetag" id="post-button">
+                                Post
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <a href="/logout">
-                    <span class="logout">
-                        Log out
-                    </span>
-                </a>
-                
-            </nav>
+                <div class="searchjobs" id="searchjobs">
+                    <div class="highlighted_area">
+                        <div class="inputwrapper">
+                            <div class="inputform">
+                                <form action="/searchjobs" , method="get">
+                                    <input type="text" id="searchbox" name="searchbox" size="20" maxlength="20"
+                                        placeholder="Enter job title" />
+                                    <input type="text" id="zips" name="zips" size="5" maxlength="10"
+                                        placeholder="City/Zip Code" />
+                                    <input type="submit" id="submit" value="Search Jobs" />
+                                </form>
+                            </div>
+                        </div>
 
-            <h1>If you can dream it, you can do it.</h1>
-
-            <div class="headerwrapper">
-                <div class="headerbox">
-                    <div class="tagswrapper">
-                        <div class="tags">
-                            <div class="active" id="search-button">
-                                <button class="searchtag">
-                                    Search
+                        <div class="queryboxeswrapper">
+                            <div class="queryboxes">
+                                <button class="querybox" , onclick="">Latest</button>
+                                <button class="querybox" , onclick="">
+                                    Most Popular
                                 </button>
-                            </div>
-                            <div class="inactive" id="post-button">
-                                <button class="posttag">
-                                    Post
-                                </button>
+                                <button class="querybox" , onclick="">For You</button>
                             </div>
                         </div>
                     </div>
-                    <div class="searchjobs">
-                        <div class="highlighted_area">
-                            <div class="inputwrapper">
-                                <div class="inputform">
-                                    <form action="/searchjobs" , method="get">
-                                        <input type="text" id="searchbox" name="searchbox" size="20" maxlength="20"
-                                            placeholder="Enter job title" />
-                                        <input type="text" id="zips" name="zips" size="5" maxlength="10"
-                                            placeholder="City/Zip Code" />
-                                        <input type="submit" id="submit" value="Search Jobs" />
-                                    </form>
-                                </div>
+                </div>
+                <div class="postjobs" id="postjobs">
+                    <div class="highlighted_area">
+                        <div class="inputwrapper">
+                            <div class="inputform">
+                                <form action="/postpopup" method="post">
+                                    <input id="postlisting" type="text" name="title" size="20" maxlength="20"
+                                        placeholder="Listing title" />
+                                    <input id="postbutton" type="submit" value="Post job" />
+                                    <br />
+                                    <div class="queryboxwrapper">
+                                        <div class="queryboxes">
+                                            <select name="category" id="category">
+                                                <option value="webdev" selected>
+                                                    Web developer
+                                                </option>
+                                                <option value="softwereng">
+                                                    Software engineer
+                                                </option>
+                                                <option value="devops">DevOps engineer</option>
+                                                <option value="secops">
+                                                    Cybersecurity engineer
+                                                </option>
+                                                <option value="sysadmin">
+                                                    System Administrator
+                                                </option>
+                                            </select>
+                                            <select name="flexible" id="flexible">
+                                                <option value="onsite" selected>On-site</option>
+                                                <option value="hybrid">Hybrid</option>
+                                                <option value="remote">Remote</option>
+                                            </select>
+                                            <select name="hours" id="hours">
+                                                <option value="fulltime" selected>
+                                                    Full time
+                                                </option>
+                                                <option value="parttime">Part time</option>
+                                                <option value="flexible">Flexible</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-
-                            <div class="queryboxeswrapper">
-                                <div class="queryboxes">
-                                    <button class="querybox" , onclick="">Latest</button>
-                                    <button class="querybox" , onclick="">
-                                        Most Popular
-                                    </button>
-                                    <button class="querybox" , onclick="">For You</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="postjobs">
-                            <form action="/postpopup" method="post">
-                                <input type="text" name="title" size="20" maxlength="20" placeholder="Listing title" />
-                                <input type="submit" value="Post job" />
-                                <br />
-                                <select name="category" id="category">
-                                    <option value="webdev" selected>
-                                        Web developer
-                                    </option>
-                                    <option value="softwereng">
-                                        Software engineer
-                                    </option>
-                                    <option value="devops">DevOps engineer</option>
-                                    <option value="secops">
-                                        Cybersecurity engineer
-                                    </option>
-                                    <option value="sysadmin">
-                                        System Administrator
-                                    </option>
-                                </select>
-                                <select name="flexible" id="flexible">
-                                    <option value="onsite" selected>On-site</option>
-                                    <option value="hybrid">Hybrid</option>
-                                    <option value="remote">Remote</option>
-                                </select>
-                                <select name="hours" id="hours">
-                                    <option value="fulltime" selected>
-                                        Full time
-                                    </option>
-                                    <option value="parttime">Part time</option>
-                                    <option value="flexible">Flexible</option>
-                                </select>
-                            </form>
-
                         </div>
                     </div>
                 </div>
 
-        <script type="text/javascript">
-            const postBtn = document.getElementById("post-button");
-            const searchBtn = document.getElementById("search-button");
-            const a = document.getElementsByClassName("headerwrapper");
-
-            postBtn.addEventListener("click", displayme);
-            searchBtn.addEventListener("click", displayme);
-
-
-            var p = document.createElement('p');
-            p.innerHTML = 'some text here';
-            function displayme() {
-                a.style.display = 'none';
-                document.getElementById('headerwrapper').appendChild(p);
-            }
-        </script>
-        </header>
-
-        <br />
-
-        <main>
-            <div class="mainwrapper">
-                <div class="dummy"></div>
-                <div class="recents">
-                    <p>Recents</p>
-                </div>
-                <div class="dummy_two"></div>
-                <!-- Either a popup menu or a dropdown checkbox list with filters list -->
-                <div class="filters"><button class="whitetext" onclick="">filters</button></div>
-                <div class="dummy_three"></div>
             </div>
 
-            <article>
-                <div class="articles">
-                    {{#each data }}
-                    <div class="listing">
-                        <div class="wrapper">
-                            <div class="info">
-                                <h3 class="title">{{this.title}}</h3>
-                                <h5 class="workhours">{{this.workhours}}</h5>
+
+    </header>
+
+    <br>
+
+    <main>
+        <div class="mainwrapper">
+            <div class="dummy"></div>
+            <div class="recents">
+            </div>
+            <div class="dummy_two"></div>
+            <!-- Either a popup menu or a dropdown checkbox list with filters list -->
+            <div class="filters"><button class="whitetext" onclick="">filters</button></div>
+            <div class="dummy_three"></div>
+        </div>
+        <br>
+
+        <article>
+            <div class="articles">
+                {{#each data }}
+                <div class="listing">
+                    <div class="wrapper">
+                        <div class="info">
+                            <h3 class="title">{{this.title}}</h3>
+                            <h5 class="workhours">{{this.workhours}}</h5>
+                        </div>
+                        <div class="totheleft">
+                            <div class="logo"></div>
+                            <div class="companyname">
+                                <p>{{this.company}}</p>
                             </div>
-                            <div class="totheleft">
-                                <div class="logo"></div>
-                                <div class="companyname">
-                                    <p>{{this.company}}</p>
-                                </div>
-                                <div class="location">
-                                    <p>{{this.location}}</p>
-                                </div>
+                            <div class="location">
+                                <p>{{this.location}}</p>
                             </div>
-                            <p class="content">
-                                {{this.description}}
-                            </p>
-                            <p class="postedat">{{this.postdate}}</p>
+                        </div>
+                        <p class="content">
+                            {{this.description}}
+                        </p>
+                        <p class="postedat">{{this.postdate}}</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </article>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="flexwrapper">
+            <div class="sponsors">
+                <p>Our top sponsors:</p>
+            </div>
+        </div>
+        <!-- Carousel wrapper -->
+        <div class="flexwrapper">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        {{!-- Fetch these from the db --}}
+                        <img src="./images/1.gif" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
                         </div>
                     </div>
-                    {{/each}}
-                </div>
-            </article>
-
-            <!-- https://stackoverflow.com/questions/27313480/scroll-div-content-horizontally-using-left-and-right-arrow-in-jquery -->
-            <div class="companieslider">
-                <div id="rightArrow">
-                    <a href="#"><img src="../images/right.png" width="30" /></a>
-                </div>
-                <div id="viewContainer">
-                    <div id="tslshow">
-                        <div class="bktibx">Stack overflow</div>
-                        <div class="bktibx">Cosmote</div>
-                        <div class="bktibx">Vodafone</div>
-                        <div class="bktibx">Wind-Hellas</div>
-                        <div class="bktibx">Pizza Hut</div>
-                        <div class="bktibx">Samsung</div>
-                        <div class="bktibx">Univ. of Patras</div>
-                        <div class="bktibx">Discord</div>
-                        <div class="bktibx">Google</div>
-                        <div class="bktibx">Platinum Records</div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="./images/2.gif" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./images/3.gif" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                        </div>
                     </div>
                 </div>
-                <div id="leftArrow">
-                    <a href="#"><img src="../images/left.png" width="30" /></a>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <br />
+    <br />
 
-        <footer>
-            <div class="mainarea">
-                <div class="firstcol">
-                    <ul>
-                        <li><a class="whitetext" href="">About</a></li>
-                        <li><a class="whitetext" href="">Help Center</a></li>
-                        <li><a class="whitetext" href="">Support</a></li>
-                        <li><a class="whitetext" href="">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="secondcol">
-                    <ul>
-                        <li><a class="whitetext" href="">We 're hiring!</a></li>
-                        <li><a class="whitetext" href="">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="thirdcol">
-
-                </div>
-                <!-- Add social media images w/ links to some profiles -->
-                <div class="socials">
-                    <span class="whitetext">Find us on social media!</span>
-                    <ul>
-                        <li><a href="">
-                                <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                    height="30" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                    height="30" />
-                            </a>
-
-                        </li>
-                        <li><a href="">
-                                <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                    height="30" />
-                            </a>
-                        </li>
-                        <li><a href="">
-                                <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                    height="30" />
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-
-            <div class="legalstuff">
+    <footer>
+        <div class="mainarea">
+            <div class="firstcol">
                 <ul>
-                    <li><a href="">Cookies</a></li>
-                    <li><a href="">Terms and conditions</a></li>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li>
-                        <p>All rights reserved ©2022</p>
-                    </li>
+                    <li><a class="whitetext" href="">About</a></li>
+                    <li><a class="whitetext" href="">Help Center</a></li>
+                    <li><a class="whitetext" href="">Support</a></li>
+                    <li><a class="whitetext" href="">Contact</a></li>
                 </ul>
             </div>
-        </footer>
-    </body>
+            <div class="secondcol">
+                <ul>
+                    <li><a class="whitetext" href="">We 're hiring!</a></li>
+                    <li><a class="whitetext" href="">Blog</a></li>
+                </ul>
+            </div>
+            <div class="thirdcol">
+
+            </div>
+            <!-- Add social media images w/ links to some profiles -->
+            <div class="socials">
+                <span class="whitetext">Find us on social media!</span>
+                <ul>
+                    <li><a href="">
+                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
+                                height="30" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
+                                height="30" />
+                        </a>
+
+                    </li>
+                    <li><a href="">
+                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
+                                height="30" />
+                        </a>
+                    </li>
+                    <li><a href="">
+                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
+                                height="30" />
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="legalstuff">
+            <ul>
+                <li><a href="">Cookies</a></li>
+                <li><a href="">Terms and conditions</a></li>
+                <li><a href="">Privacy Policy</a></li>
+                <li>
+                    <p>All rights reserved ©2022</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
 
 </html>
