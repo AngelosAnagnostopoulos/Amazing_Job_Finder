@@ -1,44 +1,22 @@
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
+const templates = require('./public/javascripts/handlebarsTemplates');
 
 
-// Use the readAPI to fetch from db. This works in testing!
+var listings = templates.listings;
+var sponsors = templates.sponsors;
 
 var data = {
-    first: {
-        title: "Software engineer",
-        workhours: "Full time - On-site",
-        // Use 200 or so first characters from the long description and finish with '...'
-        description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-        company: "ATALLAS CERAMICA",
-        location: "Patras",
-        postdate: "Posted at: 2 days ago"
-    },
-    second: {
-        title: "Aids engineer",
-        workhours: "Full time - On-site",
-        // Use 200 or so first characters from the long description and finish with '...'
-        description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-        company: "ATALLAS CERAMICA",
-        location: "Patras",
-        postdate: "Posted at: 2 days ago"
-    },
-    third: {
-        title: "SuperAids engineer",
-        workhours: "Full time - On-site",
-        // Use 200 or so first characters from the long description and finish with '...'
-        description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-        company: "ATALLAS CERAMICA",
-        location: "Patras",
-        postdate: "Posted at: 2 days ago"
-    }
+    listings:listings,
+    sponsors:sponsors
 };
+
+console.log(data.sponsors);
 
 router.get('/', (req, res) => {
     res.render('index', { data: data });
 });
-
 
 router.get('/searchjobs', (req, res, next) => {
     fs.readFile("./views/joblist.html", function (err, data) {
@@ -49,13 +27,18 @@ router.get('/searchjobs', (req, res, next) => {
     return;
 });
 
+// router.post('/postpopup', (req, res, next) => {
+//     fs.readFile("./views/postpopup.html", function (err, data) {
+//         res.writeHead(200, { 'Content-Type': 'text/html' });
+//         res.write(data);
+//         res.end();
+//     });
+//     return;
+// });
+
 router.post('/postpopup', (req, res, next) => {
-    fs.readFile("./views/postpopup.html", function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-    return;
+    console.log("In the making");
+    next();
 });
 
 router.get('/login', (req, res, next) => {

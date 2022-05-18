@@ -83,10 +83,11 @@
                     <div class="highlighted_area">
                         <div class="inputwrapper">
                             <div class="inputform">
-                                <form action="/postpopup" method="post">
+                                <form action="/postpopup" method="post" id="postform">
                                     <input id="postlisting" type="text" name="title" size="20" maxlength="20"
                                         placeholder="Listing title" />
-                                    <input id="postbutton" type="submit" value="Post job" />
+                                    <input id="postbutton" type="button" value="Post job" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#postModal" style="padding: 0" />
                                     <br />
                                     <div class="queryboxwrapper">
                                         <div class="queryboxes">
@@ -127,7 +128,84 @@
 
             </div>
 
+            <!--Bootstrap modals-->
+            <!-- Post Modal -->
+            <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="postModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{!-- TODO: Write the CSS for this and add innerHTML elements with JS --}}
+                            <h1>Description</h1>
+                            <div class="wrapper">
+                                <div class="firstcol">
+                                    <div class="textarea">
+                                        <input type="text" name="" id="">
+                                    </div>
+                                    <div class="contactinfo">
 
+                                    </div>
+                                    {{!-- <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. A amet
+                                        voluptate possimus totam facilis odio iusto illo? Optio itaque
+                                        fugit totam eveniet porro veniam sunt quia laudantium esse id
+                                        neque deserunt, veritatis obcaecati magni enim maxime,
+                                        necessitatibus eaque aperiam saepe doloribus dolorem expedita
+                                        repellendus nobis suscipit. Maxime consequuntur laboriosam error
+                                        consectetur impedit, aut nihil porro corrupti reiciendis dolor
+                                        nesciunt, assumenda, incidunt soluta nam eligendi doloremque
+                                        tempora. Repellendus, eius enim at earum perspiciatis illum
+                                        ducimus similique repudiandae, dicta consequuntur reiciendis
+                                        excepturi quis beatae animi corporis. Expedita temporibus veniam
+                                        iusto voluptas ipsum quasi atque at odio quaerat ducimus itaque
+                                        excepturi ea provident illum exercitationem laborum quidem
+                                        dolorum fuga, sunt nihil alias molestias similique rem pariatur?
+                                        Non ea sint ipsa ratione eligendi labore, libero qui iure
+                                        dolorum quibusdam illo hic soluta voluptates doloremque atque
+                                        recusandae eveniet officia veritatis nobis aliquam nihil magni
+                                        praesentium rem repudiandae? Perspiciatis eligendi est nihil
+                                        recusandae possimus consectetur quam!
+                                    </p> --}}
+                                </div>
+                                <div class="secondcol"></div>
+                                <div class="thirdcol">
+                                    <div class="category">
+                                        <p>Category</p>
+                                        <input type="text" class="categorybox">
+                                    </div>
+                                    <div class="type">
+                                        <p>Type</p>
+                                        <input type="text" class="typebox">
+                                    </div>
+                                    <div class="location">
+                                        <p>Location</p>
+                                        <input type="text" class="locationbox">
+                                    </div>
+                                    <div class="onsite">
+                                        <p>On-site/Remote</p>
+                                        <input type="text" class="onsitebox">
+                                    </div>
+                                    <div class="postdate">
+                                        <p>Posted at:</p>
+                                        <input type="text" class="postdatebox">
+                                    </div>
+                                    <div class="salary">
+                                        <p>Salary range:</p>
+                                        <input type="text" class="salarybox">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="listingButton" class="btn btn-primary">Create Listing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </header>
 
     <br>
@@ -146,7 +224,7 @@
 
         <article>
             <div class="articles">
-                {{#each data }}
+                {{#each data.listings }}
                 <div class="listing">
                     <div class="wrapper">
                         <div class="info">
@@ -183,7 +261,7 @@
         </div>
         <!-- Carousel wrapper -->
         <div class="flexwrapper">
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div id="sponsorsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
                         aria-current="true" aria-label="Slide 1"></button>
@@ -193,33 +271,22 @@
                         aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
+                    {{#each data.sponsors}}
+                    {{#if this.top}}
                     <div class="carousel-item active" data-bs-interval="5000">
-                        {{!-- Fetch these from the db --}}
-                        <img src="./images/1.gif" class="d-block w-100" alt="...">
+                        <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                     </div>
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="./images/2.gif" class="d-block w-100" alt="...">
+                    {{^}}
+                    <div class="carousel-item" data-bs-interval="3000">
+                        <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="./images/3.gif" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                        </div>
-                    </div>
+                    {{/if}}
+                    {{/each}}
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
     </main>

@@ -46,3 +46,16 @@ function displaySearch() {
         searchBtn.parentElement.className = "active";
     }
 }
+
+
+//Job listing modal functionality
+const listingButton = document.getElementById("listingButton");
+const postform = document.getElementById('postform')
+postform.onsubmit = createListing;
+
+listingButton.addEventListener("click",createListing)
+
+function createListing() {
+    postform.submit();
+    window.location.href = "/";
+}
