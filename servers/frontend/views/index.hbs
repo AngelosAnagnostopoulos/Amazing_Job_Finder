@@ -86,37 +86,39 @@
                                 <form action="/postpopup" method="post" id="postform">
                                     <input id="postlisting" type="text" name="title" size="20" maxlength="20"
                                         placeholder="Listing title" />
-                                    <input id="postbutton" type="button" value="Post job" class="btn btn-primary"
+                                    <input id="postjob" type="button" value="Post job" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#postModal" style="padding: 0" />
-                                    <br />
+                                    <br>
                                     <div class="queryboxwrapper">
                                         <div class="queryboxes">
                                             <select name="category" id="category">
-                                                <option value="webdev" selected>
+                                                <option value="Web developer" selected>
                                                     Web developer
                                                 </option>
-                                                <option value="softwereng">
+                                                <option value="Software engineer">
                                                     Software engineer
                                                 </option>
-                                                <option value="devops">DevOps engineer</option>
-                                                <option value="secops">
+                                                <option value="DevOps engineer">DevOps engineer</option>
+                                                <option value="Cybersecurity engineer">
                                                     Cybersecurity engineer
                                                 </option>
-                                                <option value="sysadmin">
+                                                <option value="System Administrator">
                                                     System Administrator
                                                 </option>
                                             </select>
-                                            <select name="flexible" id="flexible">
-                                                <option value="onsite" selected>On-site</option>
-                                                <option value="hybrid">Hybrid</option>
-                                                <option value="remote">Remote</option>
+                                            <select name="onsite" id="onsite">
+                                                <option value="On-site" selected>
+                                                    On-site
+                                                </option>
+                                                <option value="Hybrid">Hybrid</option>
+                                                <option value="Remote">Remote</option>
                                             </select>
                                             <select name="hours" id="hours">
-                                                <option value="fulltime" selected>
+                                                <option value="Full time" selected>
                                                     Full time
                                                 </option>
-                                                <option value="parttime">Part time</option>
-                                                <option value="flexible">Flexible</option>
+                                                <option value="Part time">Part time</option>
+                                                <option value="Flexible">Flexible</option>
                                             </select>
                                         </div>
                                     </div>
@@ -134,21 +136,102 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="postModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="postModalLabel">
+                                <p id="postlistingtitle">Listing Title</p>
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            {{!-- TODO: Write the CSS for this and add innerHTML elements with JS --}}
-                            <h1>Description</h1>
                             <div class="wrapper">
                                 <div class="firstcol">
+                                    <p>Description</p>
                                     <div class="textarea">
-                                        <input type="text" name="" id="">
+                                        <textarea name="longdescription" id="longdescription" rows="12"
+                                            cols="50"></textarea>
                                     </div>
                                     <div class="contactinfo">
-
+                                        <p>Contact Information</p>
+                                        <span>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email"
+                                                class="contactinputs"></span><br>
+                                        <span>Tel: +30&nbsp;&nbsp;<input type="text" id="telephone"
+                                                class="contactinputs"></span><br>
+                                        <span>Website:<input type="text" id="website" class="contactinputs"></span>
                                     </div>
-                                    {{!-- <p>
+                                </div>
+                                <div class="secondcol"></div>
+                                <div class="thirdcol">
+                                    <div class="category">
+                                        <p>Category</p>
+                                        <select name="category" id="popupcategory">
+                                            <option value="Web developer" selected>
+                                                Web developer
+                                            </option>
+                                            <option value="Software engineer">
+                                                Software engineer
+                                            </option>
+                                            <option value="DevOps engineer">DevOps engineer</option>
+                                            <option value="Cybersecurity engineer">
+                                                Cybersecurity engineer
+                                            </option>
+                                            <option value="System Administrator">
+                                                System Administrator
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="type">
+                                        <p>Type</p>
+                                        <select name="hours" id="popuptype">
+                                            <option value="Full time" selected>
+                                                Full time
+                                            </option>
+                                            <option value="Part time">Part time</option>
+                                            <option value="Flexible">Flexible</option>
+                                        </select>
+                                    </div>
+                                    <div class="Location">
+                                        <p>Location</p>
+                                        <input type="text" class="locationbox" id="popuplocation">
+                                    </div>
+                                    <div class="onsite">
+                                        <p>On-site/Remote</p>
+                                        <select name="onsite" id="popuponsite">
+                                            <option value="On-site" selected>On-site</option>
+                                            <option value="Hybrid">Hybrid</option>
+                                            <option value="Remote">Remote</option>
+                                        </select>
+                                    </div>
+                                    <div class="salary">
+                                        <p>Salary (range):</p>
+                                        <input type="text" class="salarybox" id="popupsalary">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="listingButton" class="btn btn-primary">Create Listing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="empty"></div>
+                            <h5 class="modal-title" id="searchModal">
+                                <p id="searchpopuplistingtitle">Listing Title</p>
+                                <p id="searchpopupcompanyname">Company Name</p><img alt="Qries" src="./images/facebook" width="40"
+                                    height="40" />
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="searchwrapper">
+                                <div class="firstcol">
+                                    <h1>Description</h1>
+                                    <p id="searchpopupdescription">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. A amet
                                         voluptate possimus totam facilis odio iusto illo? Optio itaque
                                         fugit totam eveniet porro veniam sunt quia laudantium esse id
@@ -168,40 +251,95 @@
                                         recusandae eveniet officia veritatis nobis aliquam nihil magni
                                         praesentium rem repudiandae? Perspiciatis eligendi est nihil
                                         recusandae possimus consectetur quam!
-                                    </p> --}}
+                                    </p>
                                 </div>
                                 <div class="secondcol"></div>
-                                <div class="thirdcol">
+                                <div class="thirdcolsearch">
                                     <div class="category">
-                                        <p>Category</p>
-                                        <input type="text" class="categorybox">
+                                        <span class="infofield">
+                                            <p>Category:</p>
+                                        </span>
+                                        <span class="contentfield">
+                                            <p id="searchpopupcategory">Web developer</p>
+                                        </span>
                                     </div>
                                     <div class="type">
-                                        <p>Type</p>
-                                        <input type="text" class="typebox">
+                                        <span class="infofield">
+                                            <p>Type:</p>
+                                        </span>
+                                        <span class="contentfield">
+                                            <p id="searchpopuphours">Full-time</p>
+                                        </span>
                                     </div>
                                     <div class="location">
-                                        <p>Location</p>
-                                        <input type="text" class="locationbox">
+                                        <span class="infofield">
+                                            <p>Location:</p>
+                                        </span>
+                                        <span class="contentfield">
+                                            <p id="searchpopuplocation">University of Patras</p>
+                                        </span>
                                     </div>
                                     <div class="onsite">
-                                        <p>On-site/Remote</p>
-                                        <input type="text" class="onsitebox">
+                                        <span class="infofield">
+                                            <p>On-site/Remote:</p>
+                                        </span>
+                                        <span class="contentfield">
+                                            <p id="searchpopuponsite">Remote</p>
+                                        </span>
                                     </div>
                                     <div class="postdate">
-                                        <p>Posted at:</p>
-                                        <input type="text" class="postdatebox">
+                                        <span class="infofield">
+                                            <p>Posted at:</p>
+                                        </span>
+                                        <span class="contentfield">
+                                            <p id="searchpopuppostdate">20/01/2022</p>
+                                        </span>
                                     </div>
                                     <div class="salary">
-                                        <p>Salary range:</p>
-                                        <input type="text" class="salarybox">
+                                        <span class="infofield">
+                                            <p>Salary range:</p>
+                                        </span>
+                                        <span class="contentfield">
+                                            <p id="searchpopupsalary">100-200$/month</p>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+
+                        <div class="modal-footer" id="modalfooter">
+                            {{!-- This needs looking into --}}
+                            {{!-- <div class="contactInfo">
+                                <h5>Contact Information</h5>
+                                <div class="infowrapper">
+                                    <div class="firstcollumn">
+                                        <span>
+                                            <p>Email:</p><span class="emailfield">
+                                                <p>exampleAtexample.com</p>
+                                            </span>
+                                        </span>
+                                        <span>
+                                            <p>Tel.: +30</p><span class="telfield">
+                                                <p>1234567</p>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="secondcullumn">
+                                        <span>
+                                            <p>Website:</p><span class="websitefield">
+                                                <p>www.example.com</p>
+                                            </span>
+                                        </span>
+                                        <span>
+                                            <p>Facebook:</p><span class="facebookfield">
+                                                <p>example.com</p>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> --}}
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" id="listingButton" class="btn btn-primary">Create Listing</button>
+                            <button type="button" id="applicationButton" class="btn btn-primary">Apply Now</button>
                         </div>
                     </div>
                 </div>
@@ -221,30 +359,38 @@
             <div class="dummy_three"></div>
         </div>
         <br>
-
         <article>
             <div class="articles">
-                {{#each data.listings }}
+                {{#each data.listings}}
                 <div class="listing">
                     <div class="wrapper">
                         <div class="info">
-                            <h3 class="title">{{this.title}}</h3>
-                            <h5 class="workhours">{{this.workhours}}</h5>
+                            <h3 class="title" id="mainlistingtitle{{this.id}}">{{this.title}}</h3>
+                            <h5 class="workhours" id="mainlistinghours{{this.id}}">{{this.hours}} - {{this.onsite}}</h5>
                         </div>
                         <div class="totheleft">
                             <div class="logo"></div>
                             <div class="companyname">
-                                <p>{{this.company}}</p>
+                                <p id="mainlistingcompname{{this.id}}">{{this.company}}</p>
                             </div>
                             <div class="location">
-                                <p>{{this.location}}</p>
+                                <p id="mainlistinglocation{{this.id}}">{{this.location}}</p>
                             </div>
                         </div>
-                        <p class="content">
+                        <p class="content" id="mainlistingdescription{{this.id}}">
                             {{this.description}}
                         </p>
-                        <p class="postedat">{{this.postdate}}</p>
+                        <div class="hidden" style="display: none;">
+                            <p id="mainlistingbigdescription{{this.id}}">{{this.bigdescription}}</p>
+                            <p id="mainlistingcategory{{this.id}}">{{this.category}}</p>
+                            <p id="mainlistingonsite{{this.id}}">{{this.onsite}}</p>
+                            <p id="mainlistingsalary{{this.id}}">{{this.salary}}</p>
+                        </div>
+                        <p class="postedat" id="mainlistingpostdate{{this.id}}">{{this.postdate}}</p>
+                        <input type="button" id="{{this.id}}" value="Test" class="btn btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#searchModal" style="display: none;">
                     </div>
+
                 </div>
                 {{/each}}
             </div>
@@ -262,14 +408,6 @@
         <!-- Carousel wrapper -->
         <div class="flexwrapper">
             <div id="sponsorsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
                 <div class="carousel-inner">
                     {{#each data.sponsors}}
                     {{#if this.top}}
@@ -317,25 +455,21 @@
                 <span class="whitetext">Find us on social media!</span>
                 <ul>
                     <li><a href="">
-                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                height="30" />
+                            <img alt="Qries" src="./images/facebook" width="40" height="40" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                height="30" />
+                            <img alt="Qries" src="./images/instagram" width="40" height="40" />
                         </a>
 
                     </li>
                     <li><a href="">
-                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                height="30" />
+                            <img alt="Qries" src="./images/twitter" width="40" height="40" />
                         </a>
                     </li>
                     <li><a href="">
-                            <img alt="Qries" src="https://www.qries.com/images/banner_logo.png" width="30"
-                                height="30" />
+                            <img alt="Qries" src="./images/linkedin" width="40" height="40" />
                         </a>
                     </li>
                 </ul>

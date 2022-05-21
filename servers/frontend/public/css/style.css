@@ -6,7 +6,6 @@ body {
     max-width: 1920px;
     min-width: 700px;
     margin: 2px;
-
 }
 
 button:hover {
@@ -22,7 +21,7 @@ button:hover {
 
 a {
     text-decoration: none;
-    cursor: inherit;
+    cursor: pointer;
     color: inherit;
 }
 
@@ -98,7 +97,8 @@ header .tags .active,
     border: none;
 }
 
-.activetag:focus, .inactive:focus{
+.activetag:focus,
+.inactive:focus {
     outline: none;
     border: none;
 }
@@ -256,7 +256,6 @@ header .inputwrapper {
     top: 30px;
 }
 
-
 header .inputform input {
     margin-left: 25px;
 }
@@ -285,14 +284,13 @@ header #submit {
     height: 33.5px;
     background: #e86c4a;
     border-radius: 10px;
-    
 }
 
 header .postjobs select:first-child {
     margin: 0%;
-} 
+}
 
-header .queryboxeswrapper{
+header .queryboxeswrapper {
     padding: 0%;
     margin: 0%;
     position: relative;
@@ -301,7 +299,6 @@ header .queryboxeswrapper{
     align-items: center;
     width: 100%;
     background-color: #4ebfff;
-
 }
 
 header .queryboxeswrapper {
@@ -343,7 +340,7 @@ header #postlisting {
     margin-left: 0%;
 }
 
-header #postbutton {
+header #postjob {
     width: 120px;
     height: 34px;
     bottom: 1px;
@@ -362,27 +359,167 @@ header #postbutton {
 
 /* ================================= */
 
-header .modal-body .wrapper {
+.modal-header p{
+    margin: 0%;
+}
+
+.modal-header .empty {
+    flex: 1%;
+}
+
+.modal-header .modal-title {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex: 99%;
+}
+
+.modal-body {
+    height: 500px;
+}
+
+.modal-body .wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    height: inherit;
 }
 
-header .modal-body .thirdcol {
-    margin-left: 90px;
+.modal-body .thirdcol {
+    margin-bottom: 40px;
     flex: 40%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    height: inherit;
 }
 
-header .modal-body .secondcol {
-    flex: 20%;
+.modal-body .thirdcol div {
+    margin-left: 70px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body .secondcol {
+    flex: 1%;
+}
+
+.modal-body .firstcol {
+    flex: 40%;
+    height: inherit;
+    margin-left: 10px;
+}
+
+.modal-body .firstcol #longdescription {
+    height: 290px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: none;
+    background-color: #f3eff5;
+    resize: none;
+    padding-left: 5px;
+}
+
+.modal-body .firstcol span {
+    text-indent: 10px;
+}
+
+.modal-body .firstcol .contactinputs {
+    top: 0.1px;
+    display: inline;
+    height: 18px;
+    margin: 0%;
+    padding: 0%;
+    margin-left: 5px;
+    padding-left: 10px;
+}
+
+.modal-body select,
+.modal-body input {
+    top: 0%;
+    margin-left: 0%;
+    bottom: 10px;
+    width: 250px;
+    padding-left: 10px;
+}
+
+#searchModal .modal-body .firstcol p {
+    max-height: 400px;
+    overflow-y: scroll;
+    background-color: #f3eff5;
+}
+
+#searchModal .modal-body .firstcol p {
+    margin-top: 14px;
+}
+
+.modal-body .searchwrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+}
+
+
+
+.modal-body .thirdcolsearch {
+    background: rgba(111, 203, 255, 0.15);
+border-radius: 3.50661px;
+    flex: 40%;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-evenly;
+    height: 400px;
+}
+
+.modal-body .thirdcolsearch p {
+    margin: 0%;
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 25px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 10px solid transparent;
+}
+*::-webkit-scrollbar-thumb {        
+  box-shadow: inset 0 0 0 5px;
+}
+
+.modal-body .thirdcolsearch .infofield p {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 13px;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.modal-body .thirdcolsearch div {
+    margin: 0%;
+}
+
+#modalfooter {
+    background-color: #e86c4a;
+    width: auto;
+    height: 100px;
+    margin-top: 15px;
+}
+
+#modal-footer .contactInfo span{
+    display: inline;
 }
 
 
 /* ================================= */
-
 
 main {
     background: #ffffff;
@@ -411,7 +548,6 @@ main .carousel {
 
 main .carousel-item {
     justify-content: center;
-
 }
 
 main .mainwrapper {
@@ -484,6 +620,10 @@ main .filters button {
     max-width: 700px;
     max-height: 180px;
     margin-bottom: 15px;
+}
+
+.articles .listing:hover {
+    cursor: pointer;
 }
 
 .articles .title {
@@ -588,6 +728,10 @@ main .filters button {
     color: #000000;
 }
 
+.articles {
+    z-index: 1000;
+}
+
 /* ================================= */
 
 footer {
@@ -608,7 +752,16 @@ footer .mainarea {
 footer .socials ul {
     display: flex;
     flex-direction: row;
+    margin-right: 20px;
+    padding: 0%;
+
 }
+
+footer .socials li {
+    padding: 0%;
+    margin: 6px;
+}
+
 
 footer .socials {
     margin-top: 10px;

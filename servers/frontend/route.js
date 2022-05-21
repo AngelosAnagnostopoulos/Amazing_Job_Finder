@@ -12,51 +12,29 @@ var data = {
     sponsors:sponsors
 };
 
-console.log(data.sponsors);
 
 router.get('/', (req, res) => {
     res.render('index', { data: data });
 });
 
 router.get('/searchjobs', (req, res, next) => {
-    fs.readFile("./views/joblist.html", function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-    return;
+    console.log("/searchjobs in the making");
 });
 
-// router.post('/postpopup', (req, res, next) => {
-//     fs.readFile("./views/postpopup.html", function (err, data) {
-//         res.writeHead(200, { 'Content-Type': 'text/html' });
-//         res.write(data);
-//         res.end();
-//     });
-//     return;
-// });
+router.get('/postpopup', (req, res, next) => {
+    console.log("GET /postpopup in the making");
+});
 
 router.post('/postpopup', (req, res, next) => {
-    console.log("In the making");
-    next();
+    console.log("POST /postpopup in the making");
 });
 
 router.get('/login', (req, res, next) => {
-    fs.readFile("./views/login.html", function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-    return;
+    console.log("/login in the making");
 });
 
 router.get('/signup', (req, res, next) => {
-    fs.readFile("./views/signup.html", function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        res.end();
-    });
-    return;
+    console.log("/signup in the making");
 });
 
 
