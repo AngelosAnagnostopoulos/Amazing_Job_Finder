@@ -8,7 +8,6 @@ var port = 3000;
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
-
 app.listen(port, function (err) {
     if (typeof (err) == "undefined") {
         console.log("Your application is running on : " + port + " port");
