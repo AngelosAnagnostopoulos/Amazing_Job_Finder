@@ -12,34 +12,6 @@ var data = {
     sponsors:sponsors,
 };
 
-//Serve the content in groups of 10 after a job is searched for
-var listings = templates.listings;
-var listingslength = Object.keys(listings).length
-var tenths = Math.floor(listingslength / 10) + 1;
-var remainder = listings % 10;
-var counter = 0;
-
-var batches = [];
-
-for (let index = 0; index < tenths; index++) {
-    batches.push({
-        id: index,
-        listings: []
-    });
-}
-
-for (let index = 0; index < tenths; index++) {
-    if (index != tenths) {
-        for (; counter < index * 10; counter++) {
-            batches[index].listings.push(listings[counter]);
-        }    
-    }else {
-        for (; counter < remainder; counter++) {
-            batches[index].listings.push(listings[counter]);
-        }   
-    }
-}
-console.log(batches);
 
 router.get('/', (req, res) => {
     //By default, show 3 random jobs by making a call to the readAPI
@@ -50,7 +22,7 @@ router.get('/', (req, res) => {
 router.get('/searchjobs', (req, res, next) => {
     //Get the search parameters from the header fields + filters
     //and make a call to the readAPI.
-    res.render('jobsearch', { batches: batches});
+    console.log("GET /searchjobs in the making");
 });
 
 router.get('/postpopup', (req, res, next) => {

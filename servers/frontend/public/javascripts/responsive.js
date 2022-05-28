@@ -75,6 +75,7 @@ function setupPopup(e){
     postpopup.title.innerHTML = postheader.title.value;
     if (!postheader.title.value) {
         postpopup.title.innerHTML = "Listing title";
+        //Or throw an error
     }
     postpopup.category.value = postheader.category.value;
     postpopup.onsite.value = postheader.onsite.value;

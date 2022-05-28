@@ -7,13 +7,13 @@ function mainListings(){
             title: "Technical lead cybersecurity engineer",
             hours: "Full time",
             company: "ATALLAS CERAMICA",
-            location: "Patras",
+            location: "Athens",
             // Use 200 or so first characters from the long description and finish with '...'
             description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
             postdate: "Posted at: 3 days ago",
             
             onsite: "On site",
-            bigdescription: "Big big things here",
+            bigdescription: "Supreme description here",
             category: "Cybersecurity engineer",
             salary: "6100-6300",
 
@@ -28,7 +28,7 @@ function mainListings(){
             postdate: "Posted at: 2 days ago",
             
             onsite: "On site",
-            bigdescription: "Big big things here",
+            bigdescription: "Sed ut quibusdam repellat nulla voluptatem consequatur. Ipsum facere nihil dolores eos placeat. Ut rerum perspiciatis aliquam voluptatem et nobis officia sit. Accusantium maxime explicabo enim neque qui sit. Eum ab et laborum deserunt maxime dolores unde. Similique quibusdam explicabo eligendi autem ipsa quia qui maxime. Est et libero eum architecto quis libero velit. Fugiat quibusdam tempora quia atque corrupti. Consequatur omnis odit quod ea animi consequatur quibusdam. Ea iste officia cupiditate perferendis asperiores commodi. Aut consequatur est laudantium. Sit magnam et perspiciatis ut. Recusandae libero consequuntur magnam. Corporis qui sunt minus a voluptas eum et. Repellat consequatur tempore nam ullam mollitia qui fuga. Et est optio est tenetur dolorem laudantium eligendi esse. Occaecati et aut excepturi sapiente.",
             category: "Systems administrator",
             salary: "1100-1300",
             
@@ -53,24 +53,24 @@ function mainListings(){
 }
 
 function searchListings(){
-    let data = {
-        1: {
+    let data = [
+        {
             id: "1",
             title: "Technical lead cybersecurity engineer",
             hours: "Full time",
             company: "ATALLAS CERAMICA",
-            location: "Patras",
+            location: "Athens",
             // Use 200 or so first characters from the long description and finish with '...'
             description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 3 days ago",
+            postdate: "Posted at: 4 days ago",
             
             onsite: "On site",
-            bigdescription: "Big big things here",
+            bigdescription: "Supreme description for cybersec",
             category: "Cybersecurity engineer",
             salary: "6100-6300",
 
         },
-        2: {
+        {
             id: "2",
             title: "Senior SysAdmin",
             hours: "Full time",
@@ -80,12 +80,12 @@ function searchListings(){
             postdate: "Posted at: 2 days ago",
             
             onsite: "On site",
-            bigdescription: "Big big things here",
+            bigdescription: "Supreme description for systems administration",
             category: "Systems administrator",
             salary: "1100-1300",
             
         },
-        3: {
+        {
             id: "3",
             title: "Junior software engineer",
             hours: "Part time",
@@ -95,207 +95,12 @@ function searchListings(){
             postdate: "Posted at: 10 days ago",
             
             onsite: "On site",
-            bigdescription: "Big big things here",
+            bigdescription: "Sample text",
             category: "Software engineer",
             salary: "2100-3300",
 
-        },
-        4: {
-            id: "2",
-            title: "Senior SysAdmin",
-            hours: "Full time",
-            company: "ATALLAS CERAMICA",
-            location: "Trikala",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 2 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Systems administrator",
-            salary: "1100-1300",
-            
-        },
-        5: {
-            id: "3",
-            title: "Junior software engineer",
-            hours: "Part time",
-            company: "ATALLAS CERAMICA",
-            location: "Aigio",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 10 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Software engineer",
-            salary: "2100-3300",
-
-        },6: {
-            id: "2",
-            title: "Senior SysAdmin",
-            hours: "Full time",
-            company: "ATALLAS CERAMICA",
-            location: "Trikala",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 2 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Systems administrator",
-            salary: "1100-1300",
-            
-        },
-        7: {
-            id: "3",
-            title: "Junior software engineer",
-            hours: "Part time",
-            company: "ATALLAS CERAMICA",
-            location: "Aigio",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 10 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Software engineer",
-            salary: "2100-3300",
-
-        },8: {
-            id: "2",
-            title: "Senior SysAdmin",
-            hours: "Full time",
-            company: "ATALLAS CERAMICA",
-            location: "Trikala",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 2 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Systems administrator",
-            salary: "1100-1300",
-            
-        },
-        9: {
-            id: "3",
-            title: "Junior software engineer",
-            hours: "Part time",
-            company: "ATALLAS CERAMICA",
-            location: "Aigio",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 10 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Software engineer",
-            salary: "2100-3300",
-
-        },10: {
-            id: "2",
-            title: "Senior SysAdmin",
-            hours: "Full time",
-            company: "ATALLAS CERAMICA",
-            location: "Trikala",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 2 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Systems administrator",
-            salary: "1100-1300",
-            
-        },
-        11: {
-            id: "3",
-            title: "Junior software engineer",
-            hours: "Part time",
-            company: "ATALLAS CERAMICA",
-            location: "Aigio",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 10 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Software engineer",
-            salary: "2100-3300",
-
-        },12: {
-            id: "2",
-            title: "Senior SysAdmin",
-            hours: "Full time",
-            company: "ATALLAS CERAMICA",
-            location: "Trikala",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 2 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Systems administrator",
-            salary: "1100-1300",
-            
-        },
-        13: {
-            id: "3",
-            title: "Junior software engineer",
-            hours: "Part time",
-            company: "ATALLAS CERAMICA",
-            location: "Aigio",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 10 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Software engineer",
-            salary: "2100-3300",
-
-        },14: {
-            id: "2",
-            title: "Senior SysAdmin",
-            hours: "Full time",
-            company: "ATALLAS CERAMICA",
-            location: "Trikala",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 2 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Systems administrator",
-            salary: "1100-1300",
-            
-        },
-        15: {
-            id: "3",
-            title: "Junior software engineer",
-            hours: "Part time",
-            company: "ATALLAS CERAMICA",
-            location: "Aigio",
-            description: "Sample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSampleSample textSample textSample textSample textSD                                                                a     ",
-            postdate: "Posted at: 10 days ago",
-            
-            onsite: "On site",
-            bigdescription: "Big big things here",
-            category: "Software engineer",
-            salary: "2100-3300",
-
-        },
-        16:{test:"test"},
-        17:{test2:"test"},
-        18:{test3:"test"},
-        19:{test4:"test"},
-        20:{test5:"test"},
-        21:{test6:"test"},
-        22:{test7:"test"},
-        23:{test8:"test"},
-        24:{test9:"test"},
-        25:{test0:"test"},
-        26:{test11:"test"},
-        27:{test12:"test"},
-        28:{test13:"test"},
-        29:{test14:"test"},
-        30:{test15:"test"},
-        31:{test16:"test"},
-        32:{test17:"test"},
-        33:{test19:"test"},
-        34:{test129:"test"},
-        35:{test39:"test"},
-    };
+        }
+    ];
     return data;
 }
 
