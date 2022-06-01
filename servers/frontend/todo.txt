@@ -1,0 +1,5 @@
+Frontend stuff:
+
+Add searchjobs page
+Add filters popup
+Add login/signup popup with js from the template file (iframe?)

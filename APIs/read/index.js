@@ -37,16 +37,36 @@ app.get("/start", (req, res) => {
 	res.send("Conected xd!");
 });
 
-app.get("/", (req, res) => {
+app.get("/listings", (req, res) => {
 	if (!state) {
 		res.send("Not active yet!");
 		return;
 	}
-	client.query("SELECT * FROM job_listing;")
-		.then(data => res.send(data));
+	client.query("SELECT * FROM all_jobs_detailde_listing_view;")
+		.then(data => {
+			console.log(data.rows);
+			res.send(data.rows);
+		});
 	// res.send("Ok!");
 });
 
+app.get("/listings/:listingID", (req, res) => {
+	console.log(req.params);
+	client.query(`SELECT * FROM job_listing WHERE listing_id = ${req.params.listingID};`)
+		.then(data => {
+			if(data.rowCount == 0){
+				res.status(404).send("No data!");
+				return;
+			}
+			
+			res.send(data.rows);
+		});
+});
+
+// 404
+app.get("*", (req, res) => {
+	res.status(404).send("Not found!");
+});
 
 // run dev server
 app.listen(SERVE_PORT, () => console.log("Read api listening"));
