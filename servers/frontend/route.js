@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
@@ -6,17 +7,27 @@ const templates = require('./public/javascripts/handlebarsTemplates');
 
 var sponsors = templates.sponsors;
 var mainpagelistings = templates.mainpagelistings;
-
+/*
 var data = {
     mainpagelistings:mainpagelistings,
     sponsors:sponsors,
 };
+*/
 
-
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     //By default, show 3 random jobs by making a call to the readAPI
     //every day or so, also update the sponsors and serve the data.
-    res.render('index', { data: data });
+    console.log("/GET index");
+    const listings = await fetch("http://read_api:5000/listings")
+        .then(api_res => api_res.json());
+
+    console.log("Fetch returend: ", listings);
+
+    if(listings == null) {
+        res.send("error");
+    }
+
+    return res.render('index', { data: {mainpagelistings: listings} });
 });
 
 router.get('/searchjobs', (req, res, next) => {

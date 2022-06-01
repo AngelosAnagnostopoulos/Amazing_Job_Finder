@@ -37,13 +37,16 @@ app.get("/start", (req, res) => {
 	res.send("Conected xd!");
 });
 
-app.get("/", (req, res) => {
+app.get("/listings", (req, res) => {
 	if (!state) {
 		res.send("Not active yet!");
 		return;
 	}
-	client.query("SELECT * FROM job_listing;")
-		.then(data => res.send(data));
+	client.query("SELECT * FROM all_jobs_detailde_listing_view;")
+		.then(data => {
+			console.log(data.rows);
+			res.send(data.rows);
+		});
 	// res.send("Ok!");
 });
 
@@ -56,7 +59,7 @@ app.get("/listings/:listingID", (req, res) => {
 				return;
 			}
 			
-			res.send(data);
+			res.send(data.rows);
 		});
 });
 
