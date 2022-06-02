@@ -16,26 +16,19 @@ app = express();
 
 const client = new pg.Client(db_config);
 
-console.log("Now connecting!");
+console.log("read api staring!");
 
 let state = false;
 
-app.get("/start", (req, res) => {
-	if (state) {
-		res.send("Already running!");
-		return;
-	}
-
-	client.connect()
-		.then(() => {
-			state = true;
-			console.log("Connected to database");
-		}
-		)
-		.catch(err => console.log("error connecting to database", err));
-
-	res.send("Conected xd!");
-});
+client.connect()
+	.then(() => {
+		state = true;
+		console.log("Connected to database");
+	})
+	.catch(err => {
+		console.log("error connecting to database", err);
+		process.exit(1);
+	});
 
 app.get("/listings", (req, res) => {
 	if (!state) {
