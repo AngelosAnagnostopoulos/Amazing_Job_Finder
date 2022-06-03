@@ -76,7 +76,42 @@ router.post('/postpopup', (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
-    console.log("/login in the making");
+    console.log("GET /login");
+    
+    res.render("login");
+});
+
+router.post('/login', async (req, res, next) => {
+    console.log("POST /login with query:", req.query);
+
+    const api_res = await fetch("http://auth_api:5050/authorize", {
+        method: "POST",
+        body: JSON.stringify({
+            "username": req.query.username,
+            "password": req.query.password
+        }),
+        headers: {'Content-Type': 'application/json'}
+    });
+
+    const response = await api_res.json();
+
+    console.log(response);
+
+    if(!response || response["status"] == "error"){
+            console.log("Error authorize:", response["description"]);
+            return res.render("login", {"error": response["description"]});
+    }
+
+    req.session.userid = response["userID"];
+    console.log("Session created!");
+
+    return res.redirect("/");
+});
+
+router.post('/logout', (req, res, next) => {
+    req.session.destroy();
+
+    res.redirect("/");
 });
 
 router.get('/signup', (req, res, next) => {

@@ -1,12 +1,11 @@
 //Basic user creation script for the database. Switch later.
 db.createUser({
-    user:"angelos",
+    user:"test",
     pwd:"example",
     roles: [
         {
-            role:"admin",
+            role:"readWrite",
             db:"authDB",
-        },
-        "readWriteAnyDatabase"
-    ],
+        }
+    ]
 });

@@ -17,8 +17,6 @@ const client = new pg.Client(db_config);
 
 console.log("read api staring!");
 
-let state = false;
-
 client.connect()
 	.then(() => {
 		state = true;
@@ -48,7 +46,12 @@ app.get("/listings", (req, res) => {
 
 app.get("/listings/:listingID", (req, res) => {
 	console.log(req.params);
-	client.query(`SELECT * FROM all_jobs_detailed_listing_view WHERE listing_id = ${req.params.listingID};`)
+	const query = {
+		text: "SELECT * FROM all_jobs_detailed_listing_view WHERE listing_id = $1;",
+		values: [req.params.listingID]
+	};
+
+	client.query(query)
 		.then(data => {
 			if(data.rowCount == 0){
 				res.status(404).send("No data!");

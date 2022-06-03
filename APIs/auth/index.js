@@ -9,13 +9,14 @@ const SERVE_PORT = 5050;
 const SALT_ROUNDS = 10; // this is a toy project
 
 const db_config = {
-	host: "localhost",
-	user: "angelos",
+	host: "mdb",
+	user: "test",
 	password: "example",
 	port: 27017,
 	database: "authDB"
 };
 
+console.log("auth api start!");
 // connect to database
 const User = mongoose.model('User', userSchema);
 // User.create({username: "test1", password: "secure"});
@@ -32,21 +33,23 @@ app.post("/authorize", async (req, res) => {
 	const username = req.body.username;
 	const password_plain = req.body.password;
 
+	console.log(req.body);
 	console.log(`request to authorize user ${username} with pass ${password_plain}`);
 	
 	const queryResult = await User.findOne({username: username}).exec(); 
 
 	if(!queryResult) {
-		res.status(404).send(`No user with username ${username}!`);
+		res.json({status: "error", description: "Username not found"});
 		return;
 	}
 
 	if(bcrypt.compareSync(password_plain, queryResult.hashed_password)) {
-		res.send(queryResult._id);
+		res.json({status: "success",
+				  userID: queryResult._id});
 		return;
 	}
 
-	res.status(403).send("Wrong password!");
+	res.json({status: "error", description: "Wrong password"});
 });
 
 
@@ -59,7 +62,7 @@ app.post("/create", async (req, res) => {
 	const queryResult = await User.findOne({username: new_username}).exec(); 
 
 	if(queryResult) {
-		res.status(403).send("Username already in use!");
+		res.json({status: "error", description: "Username already in use!"});
 		return;
 	}
 
@@ -67,11 +70,11 @@ app.post("/create", async (req, res) => {
 
 	User.create({username: new_username, hashed_password: hashed_password}, (err, created_user) => {
 		if(err) {
-			res.status(501).send("Error creating user!");
+			res.json({status: "error", description: "Error creating user!"});
 			return;
 		}
 
-		res.send({user_id: created_user._id, username: created_user.username});
+		res.json({status: "success", userID: created_user._id, username: created_user.username});
 	});
 
 });

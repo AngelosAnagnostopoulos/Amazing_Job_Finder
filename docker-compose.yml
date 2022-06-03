@@ -62,7 +62,7 @@ services:
       - read
       - write
   
-  cache_database:
+  session_store:
     image: redis
     container_name: rdb
     ports: 
@@ -72,6 +72,7 @@ services:
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL    
     networks:
       - read
+      - backend
 
   auth_database:
     image: mongo:5.0.6-focal
@@ -82,9 +83,9 @@ services:
     volumes:
       - ./databases/mongo:/docker-entrypoint-initdb.d
     environment:
-      MONGO_INITDB_ROOT_USERNAME: angelos
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: authDB
+      - MONGO_INITDB_ROOT_USERNAME=angelos
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=authDB
     networks:
       - auth
 
@@ -112,7 +113,9 @@ services:
       - backend
       
   auth_API:
-    image: node:16-alpine
+    build:
+      context: ./APIs/auth
+    image: authapi
     container_name: auth_API
     networks:
       - auth
