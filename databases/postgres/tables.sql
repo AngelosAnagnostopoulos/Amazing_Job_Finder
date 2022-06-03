@@ -83,7 +83,7 @@ INSERT INTO job_listing (title, jtype, jlocation, det_desc, salary, position_id,
 ('Frontend Soydev', 'Fulltime', 'bloatland', 'React has no runtime overhead xd!', 69420, 1, 1, 1),
 ('Build Systems Engineer', 'Fulltime', 'sigma land', 'Makefiles to 2020 xd', 654321, 1, 1, 1);
 
-CREATE VIEW all_jobs_detailde_listing_view AS 
+CREATE VIEW all_jobs_detailed_listing_view AS 
     SELECT 
         listing_id AS "id", 
         job_listing.title AS title, 

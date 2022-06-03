@@ -1,7 +1,6 @@
 const express = require("express");
 const pg = require("pg");
 
-
 const SERVE_PORT = 5000;
 
 const db_config = {
@@ -30,22 +29,26 @@ client.connect()
 		process.exit(1);
 	});
 
+
 app.get("/listings", (req, res) => {
-	if (!state) {
-		res.send("Not active yet!");
-		return;
-	}
-	client.query("SELECT * FROM all_jobs_detailde_listing_view;")
+
+	console.log([req.params.title || "", req.params.limit, req.params.offset]);
+	const query = {
+		text: "SELECT * FROM all_jobs_detailed_listing_view WHERE title LIKE $1 LIMIT $2 OFFSET $3;",
+		values: [`%${req.query.title || ""}%`, req.query.limit, req.query.offset]
+	};
+
+		
+	client.query(query)
 		.then(data => {
 			console.log(data.rows);
 			res.send(data.rows);
 		});
-	// res.send("Ok!");
 });
 
 app.get("/listings/:listingID", (req, res) => {
 	console.log(req.params);
-	client.query(`SELECT * FROM job_listing WHERE listing_id = ${req.params.listingID};`)
+	client.query(`SELECT * FROM all_jobs_detailed_listing_view WHERE listing_id = ${req.params.listingID};`)
 		.then(data => {
 			if(data.rowCount == 0){
 				res.status(404).send("No data!");
