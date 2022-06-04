@@ -2,10 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/bootstrap.js"></script>
+    <script src="https://unpk.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="./javascripts/responsive.js" defer></script>
     <title>Amazing_Job_Finder</title>
 </head>
 
@@ -17,7 +21,8 @@
             </div>
             <div class="dummy_two"></div>
             <!-- Either a popup menu or a dropdown checkbox list with filters list -->
-            <div class="filters"><button class="whitetext" onclick="">filters</button></div>
+            <div class="filters"><button type="button" class="btn btn-primary whitetext" data-bs-toggle="modal"
+                    data-bs-target="#filtersModal" style="display: none;">filters</button></div> 
             <div class="dummy_three"></div>
         </div>
         <br>

@@ -205,10 +205,19 @@ header nav .signupbox {
   padding-inline-end: 5px;
 }
 
+header nav .signupbox:hover {
+  color: #ffffff;
+}
+
 header nav .login {
   display: block;
   float: right;
   color: #e86c4a;
+  border: 2px solid #e86c4a;
+  border-radius: 3.5px;
+  width: 75px;
+  height: 40px;
+  line-height: 37px;
 }
 
 header h1 {
@@ -553,6 +562,7 @@ header #postjob {
   width: 50px;
   height: 25px;
 }
+
 .modal-body .flexwrapper .filters_content .label-input-wrapper {
   display: flex;
   flex-direction: row;
@@ -604,9 +614,15 @@ header #postjob {
   color: #4ebfff;
 }
 
-.signupModalsChain .signupExternals button {
+.signupModalsChain .signupExternals {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupModalsChain .signupExternals img{
   width: 250px;
-  margin-top: 7.5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .signupModalsChain .signupLogin p {
@@ -720,6 +736,28 @@ header #postjob {
 
 /* ================================= */
 
+.weakpass{
+  color: #CC6600;
+  font-weight: 600;
+}
+
+.mediumpass{
+  color: #CCCC00;
+  font-weight: 600;
+}
+
+.strongpass{
+  color: yellowgreen;
+  font-weight: 600;
+}
+
+.verystrongpass{
+  color: #01a1b6;
+  font-weight: 600;
+}
+
+
+/* ================================= */
 
 main .flexwrapper {
   display: flex;
