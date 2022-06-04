@@ -11,3 +11,4 @@ RUN npm install
 EXPOSE 3000
 
 CMD ["sh", "wait-for-it.sh", "rdb:6379", "--", "npm", "start"]
+

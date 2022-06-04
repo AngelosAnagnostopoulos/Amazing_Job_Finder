@@ -45,7 +45,7 @@ app.post("/authorize", async (req, res) => {
 
 	if(bcrypt.compareSync(password_plain, queryResult.hashed_password)) {
 		res.json({status: "success",
-				  userID: queryResult._id});
+				  authUserID: queryResult._id});
 		return;
 	}
 
@@ -73,8 +73,10 @@ app.post("/create", async (req, res) => {
 			res.json({status: "error", description: "Error creating user!"});
 			return;
 		}
-
-		res.json({status: "success", userID: created_user._id, username: created_user.username});
+		
+		console.log(`CREATED user ${new_username} with pass ${new_password_plain}`);
+		
+		res.json({status: "success", authUserID: created_user._id, username: created_user.username});
 	});
 
 });

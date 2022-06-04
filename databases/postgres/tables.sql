@@ -2,6 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS person (
     person_id   SERIAL PRIMARY KEY,
+    person_auth_id char(24),
     username    varchar(255)
 );
 
@@ -72,12 +73,9 @@ INSERT INTO company VALUES
 
 INSERT INTO job_position VALUES (1, 'Software Engineer', 'Develop Software lmao', 69420);
 
-INSERT INTO person VALUES (1, 'mike'), (2, 'aggelos');
+INSERT INTO person VALUES (1, '629b4f81877f8f5d3102af96', 'mike');
 
 INSERT INTO poster VALUES (1, 'recruiter');
-
-INSERT INTO searcher VALUES (2);
-
 
 INSERT INTO job_listing (title, jtype, jlocation, det_desc, salary, position_id, poster_id, company_id) VALUES
 ('Frontend Soydev', 'Fulltime', 'bloatland', 'React has no runtime overhead xd!', 69420, 1, 1, 1),

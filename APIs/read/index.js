@@ -62,6 +62,23 @@ app.get("/listings/:listingID", (req, res) => {
 		});
 });
 
+app.get("/authidtodata/:authID", (req, res) => {
+	console.log("GET/ authidtodata/", req.params.authID); 
+	const query = {
+		text: "SELECT person_id, username FROM person WHERE person_auth_id = $1;",
+		values: [req.params.authID]
+	};
+
+	client.query(query)
+		.then(data => {
+			if(data.rowCount == 0){
+				res.json({status: "error"});
+				return;
+			}
+			
+			res.json({status: "success", ...data.rows[0]});
+		});
+});
 // 404
 app.get("*", (req, res) => {
 	res.status(404).send("Not found!");

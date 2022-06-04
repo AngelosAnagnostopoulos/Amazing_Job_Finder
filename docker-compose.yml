@@ -106,8 +106,14 @@ services:
       - backend
 
   write_API:
-    image: node:16-alpine
-    container_name: write_API
+    build:
+      context: ./APIs/write
+    image: writeapi
+    container_name: write_api
+    depends_on:
+      - "postgresql_slave"
+    ports:
+      - "6000:6000"
     networks:
       - write
       - backend
@@ -117,6 +123,8 @@ services:
       context: ./APIs/auth
     image: authapi
     container_name: auth_API
+    ports:
+      - 5050:5050
     networks:
       - auth
       - backend
