@@ -1,11 +1,14 @@
 body {
   position: relative;
-  background: #ffffff;
   height: fit-content;
   width: auto;
   max-width: 1920px;
   min-width: 700px;
   margin: 2px;
+}
+
+html,body,main,footer {
+  background: #faffff;
 }
 
 button:hover {
@@ -41,6 +44,18 @@ input:focus {
 /* This should probably be done another way */
 input:focus::-webkit-input-placeholder {
   color: #f3eff5;
+}
+
+.disabled{
+  pointer-events: none;
+}
+
+.warning, .warning:focus {
+  border: 2px solid red;
+}
+
+.success, .success:focus {
+  border: 2px solid green;
 }
 
 body .whitetext,
@@ -693,12 +708,18 @@ header #postjob {
     position: relative;
     bottom: 30px;
     left: 50px;
+    width: 120px;
+    max-width: 120px;
 }
+
+.signupModalsChain .signupFlexwrapper .signupcollumn1 input,.signupModalsChain .signupFlexwrapper .signupcollumn2 input {
+  position: relative;
+  left: 50px;
+}
+
+
 /* ================================= */
 
-main {
-  background: #ffffff;
-}
 
 main .flexwrapper {
   display: flex;

@@ -70,11 +70,16 @@
 
                         <div class="queryboxeswrapper">
                             <div class="queryboxes">
-                                <button class="querybox" , onclick="">Latest</button>
-                                <button class="querybox" , onclick="">
+                                <script>
+                                    function queryRickroll(){
+                                        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+                                    }
+                                </script>
+                                <button class="querybox" , onclick="queryRickroll()">Latest</button>
+                                <button class="querybox" , onclick="queryRickroll()">
                                     Most Popular
                                 </button>
-                                <button class="querybox" , onclick="">For You</button>
+                                <button class="querybox" , onclick="queryRickroll()">For You</button>
                             </div>
                         </div>
                     </div>
@@ -130,529 +135,509 @@
 
             </div>
 
-            <!--*************Bootstrap modals**************-->
-            <!--Filters modal-->
-            <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="filtersModalLabel">Filters</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            {{!-- Reload the database searches with specific filters --}}
-                            {{!-- How tf does one only reload a specific part of the page and not the entire thing? --}}
 
-                            <form action="" method="post">
-                                <div class="flexwrapper">
-                                    <div class="flexwrapper2">
+        </div>
+    </header>
 
-                                        <div id="filters_categories" class="filters_categories filters_content">
-                                            <p>Category</p>
-                                            <div class="label-input-wrapper">
-                                                <input type="checkbox" id="categories_option1" name="categories_option1"
-                                                    value="Tech">
-                                                <label for="categories_option1"> Tech</label>
-                                            </div>
-                                            <div class="label-input-wrapper">
-
-                                                <input type="checkbox" id="categories_option2" name="categories_option2"
-                                                    value="Managment">
-                                                <label for="categories_option2"> Managment</label>
-                                            </div>
-                                            <div class="label-input-wrapper">
-
-                                                <input type="checkbox" id="categories_option3" name="categories_option3"
-                                                    value="Finances">
-                                                <label for="categories_option3"> Finances</label>
-                                            </div>
-                                        </div>
-                                        <div id="filters_type" class="filters_type filters_content">
-                                            <p>Job type</p>
-                                            <div class="label-input-wrapper">
-
-                                                <input type="checkbox" id="type_option1" name="type_option1"
-                                                    value="Full-time">
-                                                <label for="type_option1"> Full-time</label>
-                                            </div>
-                                            <div class="label-input-wrapper">
-                                                <input type="checkbox" id="type_option2" name="type_option2"
-                                                    value="Part-time">
-                                                <label for="type_option2"> Part-time</label>
-                                            </div>
-                                            <div class="label-input-wrapper">
-                                                <input type="checkbox" id="type_option3" name="type_option3"
-                                                    value="Flexible">
-                                                <label for="type_option3"> Flexible</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="filters_onsite" class="filters_onsite filters_content">
-                                        <p>On-site/Remote</p>
-                                        <div class="label-input-wrapper">
-                                            <input type="checkbox" id="onsite_option1" name="onsite_option1"
-                                                value="On-site">
-                                            <label for="onsite_option1"> On-site</label>
-                                        </div>
-                                        <div class="label-input-wrapper">
-                                            <input type="checkbox" id="onsite_option2" name="onsite_option2"
-                                                value="Remote">
-                                            <label for="onsite_option2"> Remote</label>
-                                        </div>
-                                        <div class="label-input-wrapper">
-                                            <input type="checkbox" id="onsite_option3" name="onsite_option3"
-                                                value="Hybrid">
-                                            <label for="onsite_option3"> Hybrid</label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div id="filters_salary" class="filters_salary">
-                                        {{!-- Minimum salary. Range is [min,inf) --}}
-                                        <input id="salaryRange" type="range" min="500" max="3000" value="700"><br>
-                                        <div id="filters_text">
-                                            <label for="filters_salary">Starting salary:&nbsp;</label>
-                                            <span id="sliderval">700 euros</span>
-                                            <script>
-                                                var rangeslider = document.getElementById("salaryRange");
-                                                var output = document.getElementById("sliderval");
-                                                output.innerHTML = rangeslider.value + " euros";
-
-                                                rangeslider.oninput = function () {
-                                                    output.innerHTML = this.value + " euros";
-                                                }
-                                            </script>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Refresh search</button>
-                        </div>
+    <br>
+    <div name="modals">
+        <!--*************Bootstrap modals**************-->
+        <!--Filters modal-->
+        <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="filtersModalLabel">Filters</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-            </div>
+                    <div class="modal-body">
+                        {{!-- Reload the database searches with specific filters --}}
+                        {{!-- How tf does one only reload a specific part of the page and not the entire thing? --}}
 
-            <!-- Post Modal -->
-            <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="postModalLabel">
-                                <p id="postlistingtitle">Listing Title</p>
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="wrapper">
-                                <div class="firstcol">
-                                    <p>Description</p>
-                                    <div class="textarea">
-                                        <textarea name="longdescription" id="longdescription" rows="12"
-                                            cols="50"></textarea>
-                                    </div>
-                                    <div class="contactinfo">
-                                        <p>Contact Information</p>
-                                        <span>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email"
-                                                class="contactinputs"></span><br>
-                                        <span>Tel: +30&nbsp;&nbsp;<input type="text" id="telephone"
-                                                class="contactinputs"></span><br>
-                                        <span>Website:<input type="text" id="website" class="contactinputs"></span>
-                                    </div>
-                                </div>
-                                <div class="secondcol"></div>
-                                <div class="thirdcol">
-                                    <div class="category">
+                        <form action="" method="post">
+                            <div class="flexwrapper">
+                                <div class="flexwrapper2">
+
+                                    <div id="filters_categories" class="filters_categories filters_content">
                                         <p>Category</p>
-                                        <select name="category" id="popupcategory">
-                                            <option value="Web developer" selected>
-                                                Web developer
-                                            </option>
-                                            <option value="Software engineer">
-                                                Software engineer
-                                            </option>
-                                            <option value="DevOps engineer">DevOps engineer</option>
-                                            <option value="Cybersecurity engineer">
-                                                Cybersecurity engineer
-                                            </option>
-                                            <option value="System Administrator">
-                                                System Administrator
-                                            </option>
-                                        </select>
+                                        <div class="label-input-wrapper">
+                                            <input type="checkbox" id="categories_option1" name="categories_option1"
+                                                value="Tech">
+                                            <label for="categories_option1"> Tech</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+
+                                            <input type="checkbox" id="categories_option2" name="categories_option2"
+                                                value="Managment">
+                                            <label for="categories_option2"> Managment</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+
+                                            <input type="checkbox" id="categories_option3" name="categories_option3"
+                                                value="Finances">
+                                            <label for="categories_option3"> Finances</label>
+                                        </div>
                                     </div>
-                                    <div class="type">
-                                        <p>Type</p>
-                                        <select name="hours" id="popuptype">
-                                            <option value="Full time" selected>
-                                                Full time
-                                            </option>
-                                            <option value="Part time">Part time</option>
-                                            <option value="Flexible">Flexible</option>
-                                        </select>
+                                    <div id="filters_type" class="filters_type filters_content">
+                                        <p>Job type</p>
+                                        <div class="label-input-wrapper">
+
+                                            <input type="checkbox" id="type_option1" name="type_option1"
+                                                value="Full-time">
+                                            <label for="type_option1"> Full-time</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+                                            <input type="checkbox" id="type_option2" name="type_option2"
+                                                value="Part-time">
+                                            <label for="type_option2"> Part-time</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+                                            <input type="checkbox" id="type_option3" name="type_option3"
+                                                value="Flexible">
+                                            <label for="type_option3"> Flexible</label>
+                                        </div>
                                     </div>
-                                    <div class="Location">
-                                        <p>Location</p>
-                                        <input type="text" class="locationbox" id="popuplocation">
+                                </div>
+
+                                <div id="filters_onsite" class="filters_onsite filters_content">
+                                    <p>On-site/Remote</p>
+                                    <div class="label-input-wrapper">
+                                        <input type="checkbox" id="onsite_option1" name="onsite_option1"
+                                            value="On-site">
+                                        <label for="onsite_option1"> On-site</label>
                                     </div>
-                                    <div class="onsite">
-                                        <p>On-site/Remote</p>
-                                        <select name="onsite" id="popuponsite">
-                                            <option value="On-site" selected>On-site</option>
-                                            <option value="Hybrid">Hybrid</option>
-                                            <option value="Remote">Remote</option>
-                                        </select>
+                                    <div class="label-input-wrapper">
+                                        <input type="checkbox" id="onsite_option2" name="onsite_option2" value="Remote">
+                                        <label for="onsite_option2"> Remote</label>
                                     </div>
-                                    <div class="salary">
-                                        <p>Salary (range):</p>
-                                        <input type="text" class="salarybox" id="popupsalary">
+                                    <div class="label-input-wrapper">
+                                        <input type="checkbox" id="onsite_option3" name="onsite_option3" value="Hybrid">
+                                        <label for="onsite_option3"> Hybrid</label>
                                     </div>
+                                </div>
+                                <br>
+                                <div id="filters_salary" class="filters_salary">
+                                    {{!-- Minimum salary. Range is [min,inf) --}}
+                                    <input id="salaryRange" type="range" min="500" max="3000" value="700"><br>
+                                    <div id="filters_text">
+                                        <label for="filters_salary">Starting salary:&nbsp;</label>
+                                        <span id="sliderval">700 euros</span>
+                                        <script>
+                                            var rangeslider = document.getElementById("salaryRange");
+                                            var output = document.getElementById("sliderval");
+                                            output.innerHTML = rangeslider.value + " euros";
+
+                                            rangeslider.oninput = function () {
+                                                output.innerHTML = this.value + " euros";
+                                            }
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Refresh search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post Modal -->
+        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="postModalLabel">
+                            <p id="postlistingtitle">Listing Title</p>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrapper">
+                            <div class="firstcol">
+                                <p>Description</p>
+                                <div class="textarea">
+                                    <textarea name="longdescription" id="longdescription" rows="12"
+                                        cols="50"></textarea>
+                                </div>
+                                <div class="contactinfo">
+                                    <p>Contact Information</p>
+                                    <span>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email"
+                                            class="contactinputs"></span><br>
+                                    <span>Tel: +30&nbsp;&nbsp;<input type="text" id="telephone"
+                                            class="contactinputs"></span><br>
+                                    <span>Website:<input type="text" id="website" class="contactinputs"></span>
+                                </div>
+                            </div>
+                            <div class="secondcol"></div>
+                            <div class="thirdcol">
+                                <div class="category">
+                                    <p>Category</p>
+                                    <select name="category" id="popupcategory">
+                                        <option value="Web developer" selected>
+                                            Web developer
+                                        </option>
+                                        <option value="Software engineer">
+                                            Software engineer
+                                        </option>
+                                        <option value="DevOps engineer">DevOps engineer</option>
+                                        <option value="Cybersecurity engineer">
+                                            Cybersecurity engineer
+                                        </option>
+                                        <option value="System Administrator">
+                                            System Administrator
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="type">
+                                    <p>Type</p>
+                                    <select name="hours" id="popuptype">
+                                        <option value="Full time" selected>
+                                            Full time
+                                        </option>
+                                        <option value="Part time">Part time</option>
+                                        <option value="Flexible">Flexible</option>
+                                    </select>
+                                </div>
+                                <div class="Location">
+                                    <p>Location</p>
+                                    <input type="text" class="locationbox" id="popuplocation">
+                                </div>
+                                <div class="onsite">
+                                    <p>On-site/Remote</p>
+                                    <select name="onsite" id="popuponsite">
+                                        <option value="On-site" selected>On-site</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                        <option value="Remote">Remote</option>
+                                    </select>
+                                </div>
+                                <div class="salary">
+                                    <p>Salary (range):</p>
+                                    <input type="text" class="salarybox" id="popupsalary">
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" id="listingButton" class="btn btn-primary">Create Listing</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="listingButton" class="btn btn-primary">Create Listing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listing Modal -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="empty"></div>
+                        <h5 class="modal-title" id="searchModal">
+                            <p id="searchpopuplistingtitle">Listing Title</p>
+                            <p id="searchpopupcompanyname">Company Name</p><img alt="Qries" src="./images/facebook"
+                                width="40" height="40" />
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="searchwrapper">
+                            <div class="firstcol">
+                                <h1>Description</h1>
+                                <p id="searchpopupdescription">
+                                </p>
+                            </div>
+                            <div class="secondcol"></div>
+                            <div class="thirdcolsearch">
+                                <div class="category">
+                                    <span class="infofield">
+                                        <p>Category:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopupcategory">Web developer</p>
+                                    </span>
+                                </div>
+                                <div class="type">
+                                    <span class="infofield">
+                                        <p>Type:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuphours">Full-time</p>
+                                    </span>
+                                </div>
+                                <div class="location">
+                                    <span class="infofield">
+                                        <p>Location:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuplocation">University of Patras</p>
+                                    </span>
+                                </div>
+                                <div class="onsite">
+                                    <span class="infofield">
+                                        <p>On-site/Remote:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuponsite">Remote</p>
+                                    </span>
+                                </div>
+                                <div class="postdate">
+                                    <span class="infofield">
+                                        <p>Posted at:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuppostdate">20/01/2022</p>
+                                    </span>
+                                </div>
+                                <div class="salary">
+                                    <span class="infofield">
+                                        <p>Salary range:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopupsalary">100-200$/month</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" id="modalfooter">
+                        {{!-- This needs looking into --}}
+                        {{!-- <div class="contactInfo">
+                            <h5>Contact Information</h5>
+                            <div class="infowrapper">
+                                <div class="firstcollumn">
+                                    <span>
+                                        <p>Email:</p><span class="emailfield">
+                                            <p>exampleAtexample.com</p>
+                                        </span>
+                                    </span>
+                                    <span>
+                                        <p>Tel.: +30</p><span class="telfield">
+                                            <p>1234567</p>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="secondcullumn">
+                                    <span>
+                                        <p>Website:</p><span class="websitefield">
+                                            <p>www.example.com</p>
+                                        </span>
+                                    </span>
+                                    <span>
+                                        <p>Facebook:</p><span class="facebookfield">
+                                            <p>example.com</p>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="applicationButton" class="btn btn-primary">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign-Up Modal -->
+        <div class="signupModalsChain">
+            <div class="modal fade" id="signupModal" aria-hidden="true" aria-labelledby="signupModalLabel"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel">Welcome!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Sign up</h1>
+                            <div class="inputField">
+                                <label for="username">Username:</label><br>
+                                <input type="text" name="username" id="signupusername">
+                            </div>
+                            <div class="inputField">
+                                <label for="email">E-mail:</label><br>
+                                <input type="text" name="email" id="signupemail">
+                            </div>
+                            <button id="signupButton1" class="btn btn-primary" data-bs-target="#signupModal2"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Continue</button>
+                            <div>
+                                <p id="signupOr">or</p>
+                            </div>
+                            <div class="signupExternals">
+                                <button id="facebookbutton">Continue with Facebook</button><br>
+                                <button id="googlebutton">Continue with Google</button><br>
+                                <button id="applebutton">Continue with Apple</button>
+                            </div>
+                            <div class="signupLogin">
+                                <p class="blueBold">Already have an account?</p>
+                                <p class="orangeUnderlined">Log in</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Listing Modal -->
-            <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+            <div class="modal fade" id="signupModal2" aria-hidden="true" aria-labelledby="signupModalLabel2"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="empty"></div>
-                            <h5 class="modal-title" id="searchModal">
-                                <p id="searchpopuplistingtitle">Listing Title</p>
-                                <p id="searchpopupcompanyname">Company Name</p><img alt="Qries" src="./images/facebook"
-                                    width="40" height="40" />
+                            <h5 class="modal-title" id="signupModalLabel2">Please enter your password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Sign up</h1>
+                            <div class="inputField">
+                                <label for="signupPassword">Password:</label><br>
+                                <input type="password" name="password" id="signupPassword">
+                            </div>
+                            <div class="inputField">
+                                <label for="signupPasswordConfirm">Confirm Password:</label><br>
+                                <input type="password" name="confirmpassword" id="signupPasswordConfirm">
+                            </div>
+                            <button id="signupButton2" class="btn btn-primary" data-bs-target="#signupModal3"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Continue</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="signupModal3" aria-hidden="true" aria-labelledby="signupModalLabel3"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">Are you an employee, or an employer?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>I want to...</h1>
+                            <button id="signupButton3" class="btn btn-primary" data-bs-target="#signupModal4"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Find Jobs</button>
+                            <button id="signupButton10" class="btn btn-primary" data-bs-target="#signupModal5"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Post Jobs</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal2"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="signupModal4" aria-hidden="true" aria-labelledby="signupModalLabel4"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">What kinds of jobs are you looking for?
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="searchwrapper">
-                                <div class="firstcol">
-                                    <h1>Description</h1>
-                                    <p id="searchpopupdescription">
-                                    </p>
-                                </div>
-                                <div class="secondcol"></div>
-                                <div class="thirdcolsearch">
-                                    <div class="category">
-                                        <span class="infofield">
-                                            <p>Category:</p>
-                                        </span>
-                                        <span class="contentfield">
-                                            <p id="searchpopupcategory">Web developer</p>
-                                        </span>
-                                    </div>
-                                    <div class="type">
-                                        <span class="infofield">
-                                            <p>Type:</p>
-                                        </span>
-                                        <span class="contentfield">
-                                            <p id="searchpopuphours">Full-time</p>
-                                        </span>
-                                    </div>
-                                    <div class="location">
-                                        <span class="infofield">
-                                            <p>Location:</p>
-                                        </span>
-                                        <span class="contentfield">
-                                            <p id="searchpopuplocation">University of Patras</p>
-                                        </span>
-                                    </div>
-                                    <div class="onsite">
-                                        <span class="infofield">
-                                            <p>On-site/Remote:</p>
-                                        </span>
-                                        <span class="contentfield">
-                                            <p id="searchpopuponsite">Remote</p>
-                                        </span>
-                                    </div>
-                                    <div class="postdate">
-                                        <span class="infofield">
-                                            <p>Posted at:</p>
-                                        </span>
-                                        <span class="contentfield">
-                                            <p id="searchpopuppostdate">20/01/2022</p>
-                                        </span>
-                                    </div>
-                                    <div class="salary">
-                                        <span class="infofield">
-                                            <p>Salary range:</p>
-                                        </span>
-                                        <span class="contentfield">
-                                            <p id="searchpopupsalary">100-200$/month</p>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <h1>Interests</h1>
+                            <div class="signupFlexwrapper">
+                                <div class="signupcollumn1">
+                                    <input type="checkbox" name="tech" id="techboxsearcher"><label for="techbox">Tech</label>
+                                    <input type="checkbox" name="security" id="securityboxsearcher"><label for="securitybox">Security</label>
+                                    <input type="checkbox" name="systems" id="systemsboxsearcher"><label for="systemsbox">Systems</label>
+                                    <input type="checkbox" name="webdev" id="webdevboxsearcher"><label for="webdevbox">Webdev</label>
 
-                        <div class="modal-footer" id="modalfooter">
-                            {{!-- This needs looking into --}}
-                            {{!-- <div class="contactInfo">
-                                <h5>Contact Information</h5>
-                                <div class="infowrapper">
-                                    <div class="firstcollumn">
-                                        <span>
-                                            <p>Email:</p><span class="emailfield">
-                                                <p>exampleAtexample.com</p>
-                                            </span>
-                                        </span>
-                                        <span>
-                                            <p>Tel.: +30</p><span class="telfield">
-                                                <p>1234567</p>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <div class="secondcullumn">
-                                        <span>
-                                            <p>Website:</p><span class="websitefield">
-                                                <p>www.example.com</p>
-                                            </span>
-                                        </span>
-                                        <span>
-                                            <p>Facebook:</p><span class="facebookfield">
-                                                <p>example.com</p>
-                                            </span>
-                                        </span>
-                                    </div>
                                 </div>
-                            </div> --}}
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" id="applicationButton" class="btn btn-primary">Apply Now</button>
+                                <div class="signupcollumn2">
+                                    <input type="checkbox" name="data" id="databoxsearcher"><label for="databox">Data</label>
+                                    <input type="checkbox" name="quality" id="qualityboxsearcher"><label for="qualitybox">Quality</label>
+                                    <input type="checkbox" name="management" id="managementboxsearcher"><label for="managementbox">Management</label>
+                                    <input type="checkbox" name="finances" id="financesboxsearcher"><label for="financesbox">Finances</label>
+                                </div>
+
+                            </div>
+                            <button type="submit" id="signupButton4" data-bs-dismiss="modal" class="btn btn-primary"> Continue</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Sign-Up Modal -->
-            <div class="signupModalsChain">
-                <div class="modal fade" id="signupModal" aria-hidden="true" aria-labelledby="signupModalLabel"
-                    tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signupModalLabel">Welcome!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h1>Sign up</h1>
-                                <div class="inputField">
-                                    <label for="username">Username:</label><br>
-                                    <input type="text" name="username" id="username">
-                                </div>
-                                <div class="inputField">
-                                    <label for="email">E-mail:</label><br>
-                                    <input type="text" name="email" id="email">
-                                </div>
-                                <button id="signupButton1" class="btn btn-primary" data-bs-target="#signupModal2"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Continue</button>
-                                <div>
-                                    <p id="signupOr">or</p>
-                                </div>
-                                <div class="signupExternals">
-                                    <button id="facebookbutton">Continue with Facebook</button><br>
-                                    <button id="googlebutton">Continue with Google</button><br>
-                                    <button id="applebutton">Continue with Apple</button>
-                                </div>
-                                <div class="signupLogin">
-                                    <p class="blueBold">Already have an account?</p>
-                                    <p class="orangeUnderlined">Log in</p>
-                                </div>
-                            </div>
+            <div class="modal fade" id="signupModal5" aria-hidden="true" aria-labelledby="signupModalLabel5"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">What jobs are you posting?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="signupModal2" aria-hidden="true" aria-labelledby="signupModalLabel2"
-                    tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signupModalLabel2">Please enter your password</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h1>Sign up</h1>
-                                <div class="inputField">
-                                    <label for="signupPassword">Password:</label><br>
-                                    <input type="password" name="password" id="signupPassword">
-                                </div>
-                                <div class="inputField">
-                                    <label for="signupPasswordConfirm">Confirm Password:</label><br>
-                                    <input type="password" name="confirmpassword" id="signupPasswordConfirm">
-                                </div>
-                                <button id="signupButton2" class="btn btn-primary" data-bs-target="#signupModal3"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Continue</button>
-                                <button class="btn btn-primary btn-back" data-bs-target="#signupModal"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="signupModal3" aria-hidden="true" aria-labelledby="signupModalLabel3"
-                    tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signupModalLabel2">Are you an employee, or an employer?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h1>I want to...</h1>
-                                <button id="signupButton3" class="btn btn-primary" data-bs-target="#signupModal4"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Find Jobs</button>
-                                <button id="signupButton10" class="btn btn-primary" data-bs-target="#signupModal5"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Post Jobs</button>
-                                <button class="btn btn-primary btn-back" data-bs-target="#signupModal2"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="signupModal4" aria-hidden="true" aria-labelledby="signupModalLabel4"
-                    tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signupModalLabel2">What kinds of jobs are you looking for?
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h1>Interests</h1>
-                                <div class="signupFlexwrapper">
-                                    <div class="signupcollumn1">
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-
-                                    </div>
-                                    <div class="signupcollumn2">
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                    </div>
+                        <div class="modal-body">
+                            <h1>I am looking for</h1>
+                            <div class="signupFlexwrapper">
+                                <div class="signupcollumn1">
+                                    <input type="checkbox" name="tech" id="techboxposter"><label for="techbox">Tech</label>
+                                    <input type="checkbox" name="security" id="securityboxposter"><label for="securitybox">Security</label>
+                                    <input type="checkbox" name="systems" id="systemsboxposter"><label for="systemsbox">Systems</label>
+                                    <input type="checkbox" name="webdev" id="webdevboxposter"><label for="webdevbox">Webdev</label>
 
                                 </div>
-                                <button type="submit" id="signupButton4" class="btn btn-primary"> Continue</button>
-                                <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="signupModal5" aria-hidden="true" aria-labelledby="signupModalLabel5"
-                    tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="signupModalLabel2">What jobs are you posting?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h1>I am looking for</h1>
-                                <div class="signupFlexwrapper">
-                                    <div class="signupcollumn1">
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-
-                                    </div>
-                                    <div class="signupcollumn2">
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                        <input type="checkbox" name="tech" id="techbox"><label
-                                            for="techbox">Tech</label>
-                                    </div>
+                                <div class="signupcollumn2">
+                                    <input type="checkbox" name="data" id="databoxposter"><label for="databox">Data</label>
+                                    <input type="checkbox" name="quality" id="qualityboxposter"><label for="qualitybox">Quality</label>
+                                    <input type="checkbox" name="management" id="managementboxposter"><label for="managementbox">Management</label>
+                                    <input type="checkbox" name="finances" id="financesboxposter"><label for="financesbox">Finances</label>
                                 </div>
 
-                                <button type="submit" id="signupButton5" class="btn btn-primary"> Continue</button>
-                                <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="signupModalsChain">
-                <div class="modal fade" id="loginModal" aria-hidden="true" aria-labelledby="signupModalLabel"
-                    tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="loginModalLabel">Welcome!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h1>Log in</h1>
-                                <div class="inputField">
-                                    <label for="username">Username:</label><br>
-                                    <input type="text" name="username" id="username">
-                                </div>
-                                <div class="inputField">
-                                    <label for="password">Password:</label><br>
-                                    <input type="password" name="password" id="password">
-                                </div>
-                                <p class="blueBold">Forgot your password?</p>
-                                <button id="loginButton" class="btn btn-primary" data-bs-target="#signupModal2"
-                                    data-bs-toggle="modal" data-bs-dismiss="modal">Log in</button>
-                                <div>
-                                    <p id="signupOr">or</p>
-                                </div>
-                                <div class="signupExternals">
-                                    <button id="facebookbutton">Continue with Facebook</button><br>
-                                    <button id="googlebutton">Continue with Google</button><br>
-                                    <button id="applebutton">Continue with Apple</button>
-                                </div>
-                                <div class="signupLogin">
-                                    <p class="blueBold">Dont have an account?</p>
-                                    <p class="orangeUnderlined">Sign up!</p>
-                                </div>
-                            </div>
+                            <button type="submit" id="signupButton5" data-bs-dismiss="modal" class="btn btn-primary"> Continue</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <br>
+        <div class="signupModalsChain">
+            <div class="modal fade" id="loginModal" aria-hidden="true" aria-labelledby="signupModalLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">Welcome!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Log in</h1>
+                            <div class="inputField">
+                                <label for="username">Username:</label><br>
+                                <input type="text" name="username" id="loginusername">
+                            </div>
+                            <div class="inputField">
+                                <label for="password">Password:</label><br>
+                                <input type="password" name="password" id="loginpassword">
+                            </div>
+                            <a class="blueBold" style="text-decoration: underline; margin-top: 5px;">Forgot your
+                                password?</a><br>
+                            <button id="loginButton" class="btn btn-primary"
+                                >Log in</button>
+                            <div>
+                                <p id="signupOr">or</p>
+                            </div>
+                            <div class="signupExternals">
+                                <button id="facebookbutton">Continue with Facebook</button><br>
+                                <button id="googlebutton">Continue with Google</button><br>
+                                <button id="applebutton">Continue with Apple</button>
+                            </div>
+                            <div class="signupLogin">
+                                <p class="blueBold">Dont have an account?</p>
+                                <p class="orangeUnderlined">Sign up!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="./javascripts/signup.js"></script>
+
+        </div>
+    </div>
 
     <main>
         <div class="mainwrapper">
