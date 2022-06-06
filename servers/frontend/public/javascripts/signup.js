@@ -49,7 +49,7 @@ function sendSignupSearcher() {
     ]
 
     let data = []
-    let url = "/signup/searcher"
+    let url = "/signup"
 
     data.push(sUsername, sPassword, sEmail)
     for (let index = 0; index < checkboxes.length; index++) {
@@ -77,7 +77,7 @@ function sendSignupPoster() {
     ]
 
     let data = []
-    let url = "/signup/poster"
+    let url = "/signup"
 
     data.push(sUsername, sPassword, sEmail)
     for (let index = 0; index < checkboxes.length; index++) {

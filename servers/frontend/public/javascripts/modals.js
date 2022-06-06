@@ -61,7 +61,7 @@ function createListing(e) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/postpopup", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(listingData);
+    xhr.send(JSON.stringify(listingData));
 }
 
 const listingsbox = document.getElementsByClassName("listing");

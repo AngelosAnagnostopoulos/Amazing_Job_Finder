@@ -37,6 +37,7 @@ function mustBeLoggedIn(req, res, next) {
     
     console.log("Must be logged in middleware!");
     console.log("session:", req.session);
+    console.log(req.cookie);
 
     if(req.session.userID) {
         console.log("Logged in, go ahead");
@@ -76,16 +77,20 @@ router.get('/searchjobs', async (req, res, next) => {
 
 });
 
-router.get('/postpopup', (req, res, next) => {
+router.get('/postpopup', mustBeLoggedIn, (req, res, next) => {
     //Basically show the popup that is now done through the index.hbs file
     console.log("GET /postpopup in the making");
+
+    console.log("req.body:", req.body);
+    console.log("req query:", req.query);
 });
 
 router.post('/postjob', mustBeLoggedIn, (req, res, next) => { 
     //Use the writeAPI to make a listing with the fields given in the responsive.js and reroute the user to '/'
     console.log("POST /postjob");
     
-    console.log(req);
+    console.log("req.body:", req.body);
+    console.log("req query:", req.query);
 });
 
 router.get('/login', (req, res, next) => {
@@ -125,8 +130,7 @@ router.post('/login', async (req, res, next) => {
         return res.send(503);
     }
 
-    // FIXME: session is undefined
-    req.session.userID = user_res["userID"];
+    req.session.userID = ""+ user_res["userID"];
     req.session.username = user_res["username"];
     
     console.log("Session created!");
@@ -140,6 +144,8 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
     console.log("POST /signup");
+
+    console.log(req.body);
 
     const auth_api_res = await fetch("http://auth_api:5050/create", {
         method: "POST",
@@ -183,7 +189,7 @@ router.post('/signup', async (req, res, next) => {
     return res.redirect("/");
 });
 
-router.post('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
     req.session.destroy();
 
     res.redirect("/");

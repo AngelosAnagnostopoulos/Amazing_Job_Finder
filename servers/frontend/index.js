@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const route = require("./route");
 const session = require("express-session");
 const redis = require("redis");
+const cookieParser = require("cookie-parser");
 const connectRedis = require("connect-redis");
 
 
@@ -19,6 +20,7 @@ app.use(express.static("views"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 
 let RedisStore = connectRedis(session);
@@ -40,11 +42,13 @@ redisClient.connect();
 
 app.use(session({
     store: new RedisStore({client: redisClient}),
+    proxy: true,
+    name: "usersession",
     secret: "publicsecretxd",
     saveUninitialized: false,
-    resave: false,
+    resave: true,
     cookie: {
-        secure: false,
+        //secure: true,
         maxAge: 1000*60*60 // 1 hour (ms)
     }
 }));
