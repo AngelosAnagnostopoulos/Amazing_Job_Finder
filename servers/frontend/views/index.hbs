@@ -5,36 +5,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/bootstrap.css" />
+
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/bootstrap.js"></script>
-    <script src="https://unpk.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="./css/animations.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+
     <script type="text/javascript" src="./javascripts/responsive.js" defer></script>
+    <script type="text/javascript" src="./javascripts/modals.js" defer></script>
+    <script type="text/javascript" src="./javascripts/signup.js" defer></script>
+
     <title>Amazing_Job_Finder</title>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a data-bs-toggle="modal" href="#loginModal" role="button">
-                <span class="login">
-                    Log in
+    <nav>
+        <a data-bs-toggle="modal" href="#loginModal" role="button">
+            <span class="login" id="navloginbox">
+                Log in
+            </span>
+        </a>
+        <div class="whitetext">
+            <a data-bs-toggle="modal" href="#signupModal" role="button">
+                <span class="signupbox" id="navsignupbox">
+                    <p> Sign up </p>
                 </span>
             </a>
-            <div class="whitetext">
-                <a data-bs-toggle="modal" href="#signupModal" role="button">
-                    <span class="signupbox">
-                        Sign up
-                    </span>
-                </a>
-            </div>
-            <a href="/logout">
-                <span class="logout">
-                    Log out
-                </span>
-            </a>
+        </div>
+        <a href="/logout">
+            <span class="logout">
+                <p> Log out </p>
+            </span>
+        </a>
 
-        </nav>
+    </nav>
+    <header>
+
 
         <h1>If you can dream it, you can do it.</h1>
 
@@ -71,7 +83,7 @@
                         <div class="queryboxeswrapper">
                             <div class="queryboxes">
                                 <script>
-                                    function queryRickroll(){
+                                    function queryRickroll() {
                                         window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
                                     }
                                 </script>
@@ -84,12 +96,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="postjobs" id="postjobs">
+                <div class="postjobs inactiveHeaderBox" id="postjobs">
                     <div class="highlighted_area">
                         <div class="inputwrapper">
                             <div class="inputform">
                                 <form action="/postpopup" method="post" id="postform">
-                                    <input id="postlisting" type="text" name="title" size="20" maxlength="20"
+                                    <input id="postlisting" type="text" name="title" size="40" maxlength="40"
                                         placeholder="Listing title" />
                                     <input id="postjob" type="button" value="Post job" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#postModal" style="padding: 0" />
@@ -258,7 +270,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="wrapper">
+                        <div class="wrapper postWrapper">
                             <div class="firstcol">
                                 <p>Description</p>
                                 <div class="textarea">
@@ -464,14 +476,18 @@
                                 <input type="text" name="email" id="signupemail">
                             </div>
                             <button id="signupButton1" class="btn btn-primary" data-bs-target="#signupModal2"
-                                data-bs-toggle="modal" data-bs-dismiss="modal">Continue</button>
+                                data-bs-toggle="modal" data-bs-dismiss="modal"
+                                style="font-weight: 700;">Continue</button>
                             <div>
                                 <p id="signupOr">or</p>
                             </div>
                             <div class="signupExternals">
-                                <button id="facebookbutton">Continue with Facebook</button><br>
-                                <button id="googlebutton">Continue with Google</button><br>
-                                <button id="applebutton">Continue with Apple</button>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/facebookbtn.svg" alt="facebooklogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/googlebtn.svg" alt="googlelogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/applebtn.svg" alt="applelogin" srcset=""></a>
                             </div>
                             <div class="signupLogin">
                                 <p class="blueBold">Already have an account?</p>
@@ -499,8 +515,12 @@
                                 <label for="signupPasswordConfirm">Confirm Password:</label><br>
                                 <input type="password" name="confirmpassword" id="signupPasswordConfirm">
                             </div>
+                            <div id="passwordStrength">
+                                Null...
+                            </div>
                             <button id="signupButton2" class="btn btn-primary" data-bs-target="#signupModal3"
-                                data-bs-toggle="modal" data-bs-dismiss="modal">Continue</button>
+                                data-bs-toggle="modal" data-bs-dismiss="modal"
+                                style="font-weight: 700;">Continue</button>
                             <button class="btn btn-primary btn-back" data-bs-target="#signupModal"
                                 data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
                         </div>
@@ -540,21 +560,30 @@
                             <h1>Interests</h1>
                             <div class="signupFlexwrapper">
                                 <div class="signupcollumn1">
-                                    <input type="checkbox" name="tech" id="techboxsearcher"><label for="techbox">Tech</label>
-                                    <input type="checkbox" name="security" id="securityboxsearcher"><label for="securitybox">Security</label>
-                                    <input type="checkbox" name="systems" id="systemsboxsearcher"><label for="systemsbox">Systems</label>
-                                    <input type="checkbox" name="webdev" id="webdevboxsearcher"><label for="webdevbox">Webdev</label>
+                                    <input type="checkbox" name="tech" id="techboxsearcher"><label
+                                        for="techbox">Tech</label>
+                                    <input type="checkbox" name="security" id="securityboxsearcher"><label
+                                        for="securitybox">Security</label>
+                                    <input type="checkbox" name="systems" id="systemsboxsearcher"><label
+                                        for="systemsbox">Systems</label>
+                                    <input type="checkbox" name="webdev" id="webdevboxsearcher"><label
+                                        for="webdevbox">Webdev</label>
 
                                 </div>
                                 <div class="signupcollumn2">
-                                    <input type="checkbox" name="data" id="databoxsearcher"><label for="databox">Data</label>
-                                    <input type="checkbox" name="quality" id="qualityboxsearcher"><label for="qualitybox">Quality</label>
-                                    <input type="checkbox" name="management" id="managementboxsearcher"><label for="managementbox">Management</label>
-                                    <input type="checkbox" name="finances" id="financesboxsearcher"><label for="financesbox">Finances</label>
+                                    <input type="checkbox" name="data" id="databoxsearcher"><label
+                                        for="databox">Data</label>
+                                    <input type="checkbox" name="quality" id="qualityboxsearcher"><label
+                                        for="qualitybox">Quality</label>
+                                    <input type="checkbox" name="management" id="managementboxsearcher"><label
+                                        for="managementbox">Management</label>
+                                    <input type="checkbox" name="finances" id="financesboxsearcher"><label
+                                        for="financesbox">Finances</label>
                                 </div>
 
                             </div>
-                            <button type="submit" id="signupButton4" data-bs-dismiss="modal" class="btn btn-primary"> Continue</button>
+                            <button type="submit" id="signupButton4" data-bs-dismiss="modal" class="btn btn-primary"
+                                style="font-weight: 700;"> Continue</button>
                             <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
                                 data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
                         </div>
@@ -573,21 +602,30 @@
                             <h1>I am looking for</h1>
                             <div class="signupFlexwrapper">
                                 <div class="signupcollumn1">
-                                    <input type="checkbox" name="tech" id="techboxposter"><label for="techbox">Tech</label>
-                                    <input type="checkbox" name="security" id="securityboxposter"><label for="securitybox">Security</label>
-                                    <input type="checkbox" name="systems" id="systemsboxposter"><label for="systemsbox">Systems</label>
-                                    <input type="checkbox" name="webdev" id="webdevboxposter"><label for="webdevbox">Webdev</label>
+                                    <input type="checkbox" name="tech" id="techboxposter"><label
+                                        for="techbox">Tech</label>
+                                    <input type="checkbox" name="security" id="securityboxposter"><label
+                                        for="securitybox">Security</label>
+                                    <input type="checkbox" name="systems" id="systemsboxposter"><label
+                                        for="systemsbox">Systems</label>
+                                    <input type="checkbox" name="webdev" id="webdevboxposter"><label
+                                        for="webdevbox">Webdev</label>
 
                                 </div>
                                 <div class="signupcollumn2">
-                                    <input type="checkbox" name="data" id="databoxposter"><label for="databox">Data</label>
-                                    <input type="checkbox" name="quality" id="qualityboxposter"><label for="qualitybox">Quality</label>
-                                    <input type="checkbox" name="management" id="managementboxposter"><label for="managementbox">Management</label>
-                                    <input type="checkbox" name="finances" id="financesboxposter"><label for="financesbox">Finances</label>
+                                    <input type="checkbox" name="data" id="databoxposter"><label
+                                        for="databox">Data</label>
+                                    <input type="checkbox" name="quality" id="qualityboxposter"><label
+                                        for="qualitybox">Quality</label>
+                                    <input type="checkbox" name="management" id="managementboxposter"><label
+                                        for="managementbox">Management</label>
+                                    <input type="checkbox" name="finances" id="financesboxposter"><label
+                                        for="financesbox">Finances</label>
                                 </div>
 
                             </div>
-                            <button type="submit" id="signupButton5" data-bs-dismiss="modal" class="btn btn-primary"> Continue</button>
+                            <button type="submit" id="signupButton5" data-bs-dismiss="modal" class="btn btn-primary">
+                                Continue</button>
                             <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
                                 data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
                         </div>
@@ -614,16 +652,21 @@
                                 <label for="password">Password:</label><br>
                                 <input type="password" name="password" id="loginpassword">
                             </div>
-                            <a class="blueBold" style="text-decoration: underline; margin-top: 5px;">Forgot your
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="blueBold"
+                                style="text-decoration: underline; margin-top: 5px;">Forgot your
                                 password?</a><br>
-                            <button id="loginButton" class="btn btn-primary" data-bs-dismiss="modal">Log in</button>
+                            <button id="loginButton" class="btn btn-primary" data-bs-dismiss="modal"
+                                style="font-weight: 700;">Log in</button>
                             <div>
                                 <p id="signupOr">or</p>
                             </div>
                             <div class="signupExternals">
-                                <button id="facebookbutton">Continue with Facebook</button><br>
-                                <button id="googlebutton">Continue with Google</button><br>
-                                <button id="applebutton">Continue with Apple</button>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/facebookbtn.svg" alt="facebooklogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/googlebtn.svg" alt="googlelogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/applebtn.svg" alt="applelogin" srcset=""></a>
                             </div>
                             <div class="signupLogin">
                                 <p class="blueBold">Dont have an account?</p>
@@ -633,7 +676,6 @@
                     </div>
                 </div>
             </div>
-            <script type="text/javascript" src="./javascripts/signup.js"></script>
 
         </div>
     </div>
@@ -644,11 +686,10 @@
             <div class="recents">
             </div>
             <div class="dummy_two"></div>
-            <div class="filters"><button type="button" class="btn btn-primary whitetext" data-bs-toggle="modal"
-                    data-bs-target="#filtersModal">filters</button></div>
             <div class="dummy_three"></div>
         </div>
         <br>
+        <h4 id="mainscreenInfo"> Hot searches near you</h4>
         <article>
             <div class="articles">
                 {{#each data.mainpagelistings}}
@@ -742,21 +783,21 @@
             <div class="socials">
                 <span class="whitetext">Find us on social media!</span>
                 <ul>
-                    <li><a href="">
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
                             <img alt="Qries" src="./images/facebook" width="40" height="40" />
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
                             <img alt="Qries" src="./images/instagram" width="40" height="40" />
                         </a>
 
                     </li>
-                    <li><a href="">
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
                             <img alt="Qries" src="./images/twitter" width="40" height="40" />
                         </a>
                     </li>
-                    <li><a href="">
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
                             <img alt="Qries" src="./images/linkedin" width="40" height="40" />
                         </a>
                     </li>
@@ -767,9 +808,10 @@
 
         <div class="legalstuff">
             <ul>
-                <li><a href="">Cookies</a></li>
-                <li><a href="">Terms and conditions</a></li>
-                <li><a href="">Privacy Policy</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Cookies</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Terms and conditions</a>
+                </li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Privacy Policy</a></li>
                 <li>
                     <p>All rights reserved ©2022</p>
                 </li>

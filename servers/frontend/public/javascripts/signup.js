@@ -15,39 +15,16 @@ function sendLoginInfo(e) {
     makePostRequest(url, userData)
 }
 
-
-// Check if passwords match while user is making an account
+// Create signup post request with info from modals
 const signupUsername = document.getElementById("signupusername")
 const signupEmail = document.getElementById("signupemail")
 const signupPassword = document.getElementById("signupPassword")
 const signupPasswordConfirm = document.getElementById("signupPasswordConfirm")
-
-const passwordButton = document.getElementById("signupButton2") 
+const passwordButton = document.getElementById("signupButton2")
 
 signupPasswordConfirm.addEventListener("keyup", checkPasswordsClient)
+signupPassword.addEventListener("keyup", checkPasswordsClient)
 
-if (signupPassword.value == "") {
-    passwordButton.classList.add("disabled")
-}
-
-function checkPasswordsClient(e) {
-
-    if (signupPassword.value != signupPasswordConfirm.value) {
-        passwordButton.classList.add("disabled")
-        signupPassword.classList.add("warning")
-        signupPasswordConfirm.classList.add("warning")
-    } else if (signupPassword.value == signupPasswordConfirm.value) {
-        passwordButton.classList.remove("disabled")
-        signupPassword.classList.remove("warning")
-        signupPasswordConfirm.classList.remove("warning")
-        signupPassword.classList.add("success")
-        signupPasswordConfirm.classList.add("success")
-    } 
-
-}
-
-
-// Create signup post request with info from modals
 const signupSearcherButton = document.getElementById("signupButton4")
 const signupPosterButton = document.getElementById("signupButton5")
 
@@ -60,7 +37,6 @@ const sPassword = signupPassword.value
 
 
 function sendSignupSearcher() {
-    // console.log("Hello from searcher")
     let checkboxes = [
         document.getElementById("techboxsearcher"),
         document.getElementById("securityboxsearcher"),
@@ -74,8 +50,8 @@ function sendSignupSearcher() {
 
     let data = []
     let url = "/signup/searcher"
-    
-    data.push(sUsername,sPassword,sEmail)
+
+    data.push(sUsername, sPassword, sEmail)
     for (let index = 0; index < checkboxes.length; index++) {
         if (checkboxes[index].checked) {
             data.push(checkboxes[index])
@@ -89,7 +65,6 @@ function sendSignupSearcher() {
 // Submit interests from checkboxes to user profile 
 // and filter searches based on them
 function sendSignupPoster() {
-    // console.log("Hello from poster")
     let checkboxes = [
         document.getElementById("techboxposter"),
         document.getElementById("securityboxposter"),
@@ -104,7 +79,7 @@ function sendSignupPoster() {
     let data = []
     let url = "/signup/poster"
 
-    data.push(sUsername,sPassword,sEmail)
+    data.push(sUsername, sPassword, sEmail)
     for (let index = 0; index < checkboxes.length; index++) {
         if (checkboxes[index].checked) {
             data.push(checkboxes[index])
@@ -115,7 +90,7 @@ function sendSignupPoster() {
     clearArray(data)
 }
 
-function makePostRequest(url, data){
+function makePostRequest(url, data) {
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -129,13 +104,105 @@ function makePostRequest(url, data){
     xhr.send(JSON.stringify(data));
 }
 
-
 function clearArray(array) {
     array.length = 0;
 }
 
-//Make sure user submits username and email
+// Check if passwords match while user is making an account
 
+
+function checkPasswordsClient(e) {
+
+    let strength = checkPasswordStrength(signupPassword.value)
+    console.log(strength)
+    if (signupPassword.value != signupPasswordConfirm.value || strength == "Weak" || strength == "Very Weak") {
+        passwordButton.classList.add("disabled")
+        signupPassword.classList.add("warning")
+        signupPasswordConfirm.classList.add("warning")
+        signupPassword.classList.remove("success")
+        signupPasswordConfirm.classList.remove("success")
+        let mismatch = document.createElement("p")
+    } else if (signupPassword.value == signupPasswordConfirm.value) {
+        passwordButton.classList.remove("disabled")
+        signupPassword.classList.remove("warning")
+        signupPasswordConfirm.classList.remove("warning")
+        signupPassword.classList.add("success")
+        signupPasswordConfirm.classList.add("success")
+    }
+
+}
+
+function checkPasswordStrength(password) {
+    const strengthText = document.getElementById("passwordStrength")
+
+    let strength = {
+        1: 'Very Weak',
+        2: 'Weak',
+        3: 'Medium',
+        4: 'Strong',
+        5: 'Very Strong'
+    };
+
+    let styleClasses = {
+        'Weak': "weakpass",
+        'Medium': "mediumpass",
+        'Strong': "strongpass",
+        'Very Strong': "verystrongpass"
+    }
+
+    let strengthValue = {
+        'caps': false,
+        'length': false,
+        'special': false,
+        'numbers': false,
+        'small': false
+    };
+
+    if (password.length < 4) {
+        strengthText.innerText = "Very Weak"
+        strengthText.classList.add("weakpass")
+    } else {
+
+        if (password.length >= 8) {
+            strengthValue.length = true;
+        }
+
+        for (let index = 0; index < password.length; index++) {
+            let char = password.charCodeAt(index);
+            if (!strengthValue.caps && char >= 65 && char <= 90) {
+                strengthValue.caps = true;
+            } else if (!strengthValue.numbers && char >= 48 && char <= 57) {
+                strengthValue.numbers = true;
+            } else if (!strengthValue.small && char >= 97 && char <= 122) {
+                strengthValue.small = true;
+            } else if (!strengthValue.numbers && char >= 48 && char <= 57) {
+                strengthValue.numbers = true;
+            } else if (!strengthValue.special && (char >= 33 && char <= 47) || (char >= 58 && char <= 64)) {
+                strengthValue.special = true;
+            }
+        }
+
+        let strengthIndicator = 0;
+        for (let metric in strengthValue) {
+            if (strengthValue[metric] === true) {
+                strengthIndicator++;
+            }
+        }
+
+        if (password.length > 12) {
+            strengthIndicator++
+        }
+
+        strengthText.innerText = strength[strengthIndicator]
+        let styleclass = styleClasses[strength[strengthIndicator]]
+        strengthText.classList.add(styleclass)
+
+    }
+    return strengthText.innerText
+}
+
+
+//Make sure user submits username and email
 const nameMailButton = document.getElementById("signupButton1")
 
 const nameInputSignup = document.getElementById("signupusername")
@@ -145,13 +212,29 @@ nameMailButton.classList.add("disabled")
 nameInputSignup.addEventListener("keyup", checkUsernameEmailClient)
 emailInputSignup.addEventListener("keyup", checkUsernameEmailClient)
 
-//Should probably add functionality for proper names emails and passwords but who cares
-function checkUsernameEmailClient(e){
-    if (nameInputSignup.value == "" || emailInputSignup == ""){
+function checkUsernameEmailClient(e) {
+    if (!checkEmailClient(emailInputSignup.value) || !checkUsernameClient(nameInputSignup.value)) {
         nameMailButton.classList.add("disabled")
-    }else if (nameInputSignup.value !== ""){
-        if(emailInputSignup !== ""){
-            nameMailButton.classList.remove("disabled")
-        }
+    } else if (nameInputSignup.value != "" && emailInputSignup.value != "") {
+        nameMailButton.classList.remove("disabled")
+    }
+}
+
+// Check username and email requirements
+function checkEmailClient(email) {
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (email.match(regexEmail)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkUsernameClient(username) {
+    let regexName = /^[a-zA-Z0-9_]+$/;
+    if (username.match(regexName)) {
+        return true;
+    } else {
+        return false;
     }
 }
