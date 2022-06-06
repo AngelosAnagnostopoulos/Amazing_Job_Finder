@@ -215,7 +215,7 @@ function checkUsernameEmailClient(e) {
     if (!checkEmailClient(emailInputSignup.value) || !checkUsernameClient(nameInputSignup.value)) {
         nameMailButton.classList.add("disabled")
     } else if (nameInputSignup.value != "" && emailInputSignup.value != "") {
-            nameMailButton.classList.remove("disabled")
+        nameMailButton.classList.remove("disabled")
     }
 }
 

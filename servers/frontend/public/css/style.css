@@ -15,13 +15,6 @@ button:hover {
   cursor: pointer;
 }
 
-/* Can be used to dynamically alter behaviour. Maybe will add later???*/
-@media screen and (max-width: 700px) {
-  header h1 {
-    display: none;
-  }
-}
-
 a {
   text-decoration: none;
   cursor: pointer;
@@ -184,20 +177,30 @@ header {
   background-position: 40% 40%;
 }
 
-header nav {
+nav {
   margin: 10px;
   display: block;
-  height: 60px;
+  height: 80px;
   background-image: url('../images/logo.png');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 60px 60px;
 }
 
-header nav .signupbox {
+/* Sticky elements */
+
+nav {
+  overflow: hidden;
+}
+
+
+nav .signupbox {
   display: block;
   float: right;
   height: 40px;
+  width: 82px;
   background: #e86c4a;
+  border: 2px solid #e86c4a;
+  line-height: 36px;
   border-radius: 5px;
 
   margin-right: 10px;
@@ -205,22 +208,23 @@ header nav .signupbox {
   padding-inline-end: 5px;
 }
 
-header nav .signupbox:hover {
-  color: #ffffff;
+nav .signupbox p {
+  text-align: center;
 }
 
-header nav .login {
+nav .login {
   display: block;
   float: right;
   color: #e86c4a;
   border: 2px solid #e86c4a;
   border-radius: 3.5px;
-  width: 75px;
+  width: 80px;
   height: 40px;
   line-height: 37px;
 }
 
 header h1 {
+  margin-bottom: 20px;
   font-family: 'Arial';
   font-style: normal;
   font-weight: 900;
@@ -231,7 +235,7 @@ header h1 {
   color: #e86c4a;
 }
 
-header nav .logout {
+nav .logout {
   display: none;
 }
 
@@ -247,13 +251,8 @@ header .headerbox {
   filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
 }
 
-header .searchjobs {
-  display: block;
-}
-
 header .highlighted_area {
-  height: 165px;
-  margin-top: -10px;
+  height: 155px;
   background-color: #4ebfff;
 }
 
@@ -278,6 +277,10 @@ header .inputwrapper {
   align-items: center;
   width: 100%;
   top: 30px;
+}
+
+header .inputform {
+  margin-top: -10px;
 }
 
 header .inputform input {
@@ -321,7 +324,6 @@ header .queryboxeswrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   background-color: #4ebfff;
 }
 
@@ -338,6 +340,7 @@ header .queryboxeswrapper {
 
 header .queryboxes .querybox {
   bottom: 15px;
+  right: 10px;
 }
 
 header .queryboxes button {
@@ -346,14 +349,6 @@ header .queryboxes button {
 
 header .queryboxes button:first-child {
   margin-left: 0px;
-}
-
-header #postjobs {
-  display: none;
-}
-
-header .searchjobs {
-  display: block;
 }
 
 header #postlisting {
@@ -365,10 +360,10 @@ header #postlisting {
 }
 
 header #postjob {
-  width: 120px;
+  width: 115px;
   height: 34px;
   bottom: 1px;
-  left: 25px;
+  left: 47px;
   background: #e86c4a;
   border: 0px;
   border-radius: 7.5px;
@@ -495,6 +490,7 @@ header #postjob {
   width: 300px;
   justify-content: space-evenly;
   height: 400px;
+  margin-top: 25px;
 }
 
 .modal-body .thirdcolsearch p {
@@ -835,6 +831,11 @@ main .filters button {
   background: #e86c4a;
   border-radius: 7.5px;
   line-height: 50%;
+}
+
+#mainscreenInfo {
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .articles {
