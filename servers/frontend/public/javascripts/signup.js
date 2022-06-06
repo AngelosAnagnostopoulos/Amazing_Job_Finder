@@ -10,7 +10,7 @@ function sendLoginInfo(e) {
         "username": username.value,
         "password": password.value
     }
-    let url = "/login/user/json"
+    let url = "/login"
 
     makePostRequest(url, userData)
 }
@@ -124,8 +124,9 @@ function makePostRequest(url, data){
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onload = () => console.log(xhr.responseText);
-
-    xhr.send(data);
+    
+    console.log(data);
+    xhr.send(JSON.stringify(data));
 }
 
 

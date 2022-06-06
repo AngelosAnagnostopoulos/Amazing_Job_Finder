@@ -76,7 +76,7 @@ app.get("/authidtodata/:authID", (req, res) => {
 				return;
 			}
 			
-			res.json({status: "success", ...data.rows[0]});
+			res.json({status: "success", userID: data.rows[0].person_id, username: data.rows[0].username});
 		});
 });
 // 404

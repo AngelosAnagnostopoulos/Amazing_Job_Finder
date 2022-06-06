@@ -18,7 +18,8 @@ app.use(express.static("public"));
 app.use(express.static("views"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', route);
+app.use(bodyParser.json());
+
 
 let RedisStore = connectRedis(session);
 const redisClient = redis.createClient({
@@ -47,6 +48,8 @@ app.use(session({
         maxAge: 1000*60*60 // 1 hour (ms)
     }
 }));
+
+app.use('/', route);
 
 app.listen(port, function (err) {
     if (typeof (err) == "undefined") {

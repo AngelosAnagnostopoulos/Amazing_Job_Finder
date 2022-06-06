@@ -95,13 +95,13 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-    console.log("POST /login with query:", req.query);
+    console.log("POST /login body:", req.body, "query", req.query);
 
     const api_res = await fetch("http://auth_api:5050/authorize", {
         method: "POST",
         body: JSON.stringify({
-            "username": req.query.username,
-            "password": req.query.password
+            "username": req.body.username,
+            "password": req.body.password
         }),
         headers: {'Content-Type': 'application/json'}
     });
@@ -125,12 +125,10 @@ router.post('/login', async (req, res, next) => {
         return res.send(503);
     }
 
+    // FIXME: session is undefined
     req.session.userID = user_res["userID"];
     req.session.username = user_res["username"];
-
-    //req.session.save();
-
-    console.log("session:", req.session);
+    
     console.log("Session created!");
 
     return res.redirect("/");
