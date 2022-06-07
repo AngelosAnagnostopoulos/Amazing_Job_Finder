@@ -123,12 +123,21 @@ function jobPopup(e) {
 
 }
 
-const applyButton = document.getElementById("applicationButton");
-applyButton.addEventListener("click", applyForJob);
+const isConnected = false;
+const applicationBtn = document.getElementById("applicationButton");
+applicationBtn.addEventListener("click", applyForJob)
 
 function applyForJob(e) {
-    console.log("Application successful!");
+    promptLogin();
     // If not connected then prompt for login/signup, otherwise
     // prompt the user for a CV file and cover letter (optionally) 
     // and send them to the corresponding company's email
+}
+
+function promptLogin(e) {
+    if (isConnected) {
+        console.log("User already logged in!");
+    } else {
+        loginbox.click();
+    }
 }
