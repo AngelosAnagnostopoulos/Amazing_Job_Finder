@@ -25,7 +25,9 @@
 </head>
 
 <body>
+
     <nav>
+
         <a data-bs-toggle="modal" href="#loginModal" role="button">
             <span class="login" id="navloginbox">
                 Log in
@@ -44,10 +46,9 @@
             </span>
         </a>
 
+
     </nav>
     <header>
-
-
         <h1>If you can dream it, you can do it.</h1>
 
         <div class="headerwrapper">
@@ -146,8 +147,6 @@
                 </div>
 
             </div>
-
-
         </div>
     </header>
 
@@ -253,7 +252,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Refresh search</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Refresh search</button>
                     </div>
                 </div>
             </div>
@@ -449,7 +448,7 @@
                             </div>
                         </div> --}}
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="applicationButton" class="btn btn-primary">Apply Now</button>
+                        <button type="button" id="applicationButton" data-bs-dismiss="modal" class="btn btn-primary">Apply Now</button>
                     </div>
                 </div>
             </div>
@@ -681,15 +680,23 @@
     </div>
 
     <main>
-        <div class="mainwrapper">
-            <div class="dummy"></div>
-            <div class="recents">
-            </div>
-            <div class="dummy_two"></div>
-            <div class="dummy_three"></div>
-        </div>
+        <div class="filters">
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+
+            <h4 id="mainscreenInfo"> Hot searches near you</h4>
+            <div class="dummycol"></div>
+            <button id="filtersbutton" type="button" class=" btn btn-primary whitetext disabled" data-bs-toggle="modal"
+                    data-bs-target="#filtersModal" style="opacity: 0;" >filters
+            </button>
+            
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+
+        </div> 
         <br>
-        <h4 id="mainscreenInfo"> Hot searches near you</h4>
         <article>
             <div class="articles">
                 {{#each data.mainpagelistings}}
@@ -723,37 +730,39 @@
                     </div>
                 </div>
                 {{/each}}
+
             </div>
         </article>
 
         <br>
         <br>
         <br>
-
-        <div class="flexwrapper">
-            <div class="sponsors">
-                <p>Our top sponsors:</p>
+        <div id="lemao">
+            <div class="flexwrapper">
+                <div class="sponsors">
+                    <p>Our top sponsors:</p>
+                </div>
             </div>
-        </div>
-        <!-- Carousel wrapper -->
-        <div class="flexwrapper">
-            <div id="sponsorsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {{#each data.sponsors}}
-                    {{#if this.top}}
-                    <div class="carousel-item active" data-bs-interval="5000">
-                        <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
-                        <div class="carousel-caption d-none d-md-block">
+            <!-- Carousel wrapper -->
+            <div class="flexwrapper">
+                <div id="sponsorsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {{#each data.sponsors}}
+                        {{#if this.top}}
+                        <div class="carousel-item active" data-bs-interval="5000">
+                            <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
                         </div>
-                    </div>
-                    {{^}}
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
-                        <div class="carousel-caption d-none d-md-block">
+                        {{^}}
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
                         </div>
+                        {{/if}}
+                        {{/each}}
                     </div>
-                    {{/if}}
-                    {{/each}}
                 </div>
             </div>
         </div>
@@ -763,6 +772,7 @@
 
     <footer>
         <div class="mainarea">
+            <div class="dummycol" style="flex-basis:12.5%;"></div>
             <div class="firstcol">
                 <ul>
                     <li><a class="whitetext" href="">About</a></li>
@@ -804,6 +814,7 @@
                 </ul>
 
             </div>
+
         </div>
 
         <div class="legalstuff">
@@ -818,6 +829,8 @@
             </ul>
         </div>
     </footer>
+    </div>
+
 </body>
 
 </html>

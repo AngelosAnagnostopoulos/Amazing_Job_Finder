@@ -48,6 +48,15 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .preload * {
   animation-duration: 0s !important;
   -webkit-animation-duration: 0s !important;
@@ -87,13 +96,13 @@
 }
 
 .queryboxes button:hover {
-  border: 3px solid blue;
-  transition: border 300ms;
+  border: 3px solid #e86c4acb;
+  transition: border 500ms;
 }
 
 .queryboxes button:not(:hover) {
   border: 3px solid #f3eff5;
-  transition: border 300ms;
+  transition: border 500ms;
 }
 
 .activeHeaderBox {
@@ -112,4 +121,8 @@
 .inactiveAnimation,
 .inactivetagAnimation {
   animation: setInactiveHeader 500ms;
+}
+
+.filtersFadein{
+  animation: fadeIn 500ms forwards;
 }

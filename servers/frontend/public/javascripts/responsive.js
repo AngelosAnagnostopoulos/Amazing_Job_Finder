@@ -1,3 +1,4 @@
+//Init vals and listeners
 const postBtn = document.getElementById("post-button");
 const searchBtn = document.getElementById("search-button");
 
@@ -5,14 +6,19 @@ const searchBtn = document.getElementById("search-button");
 const searchdaddy = document.getElementById("searchjobs");
 const postdaddy = document.getElementById("postjobs");
 
+const searchJobsBtn = document.getElementById("submit");
+const loginbox = document.getElementById('navloginbox');
+
 searchBtn.state = 1;
 searchBtn.daddy = searchdaddy;
 
 postBtn.state = 0;
 postBtn.daddy = postdaddy;
 
+//Listeners
 postBtn.addEventListener("click", displayPost);
 searchBtn.addEventListener("click", displaySearch);
+searchJobsBtn.addEventListener("click", displaySearchResults);
 
 function displayPost() {
     if (postBtn.state == 0) {
@@ -79,7 +85,6 @@ function displaySearch() {
 })();
 
 ; (function () {
-    var loginbox = document.getElementById('navloginbox');
     function loginhoveredIn() {
         loginbox.classList.add("loginhoverin");
         loginbox.classList.remove("loginhoverout");
@@ -93,3 +98,28 @@ function displaySearch() {
     loginbox.addEventListener('mouseout', loginhoveredOut);
 
 })();
+
+
+function displaySearchResults(e) {
+    const mainInfo = document.getElementById("mainscreenInfo");
+    const sponsors = document.getElementById("lemao");
+    const filtersBtn = document.getElementById("filtersbutton");
+    const firstListing = document.getElementsByClassName("listing");
+
+    filtersBtn.classList.add("filtersFadein")
+    filtersBtn.classList.remove("disabled")
+    sponsors.style.display = "none";
+    mainInfo.innerHTML = "Your search results";
+    scrollToTarget(filtersBtn);
+}
+
+
+function scrollToTarget(element) {
+    var offset = 50;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition + window.pageYOffset - offset;
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+    });
+}

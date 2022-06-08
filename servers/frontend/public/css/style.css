@@ -7,10 +7,6 @@ body {
   margin: 2px;
 }
 
-html,body,main,footer {
-  background: #faffff;
-}
-
 button:hover {
   cursor: pointer;
 }
@@ -28,6 +24,7 @@ input {
   border-radius: 7.5px;
   border: none;
 }
+
 
 input:focus {
   outline: none;
@@ -169,31 +166,29 @@ header {
   position: relative;
   top: 0px;
   left: 0px;
-  height: 400px;
+  height: 500px;
   min-width: auto;
   background-image: url('../images/banner.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
   background-position: 40% 40%;
+  background-repeat: no-repeat;
+  background-size:cover;
+  overflow: visible;
 }
 
 nav {
-  margin: 10px;
   display: block;
-  height: 80px;
+  height: 100px;
+  margin-bottom: 20px;
   background-image: url('../images/logo.png');
   background-repeat: no-repeat;
   background-size: 60px 60px;
+  background-position: 30px,75px;
+  background-position-y: center;
 }
-
-/* Sticky elements */
-
-nav {
-  overflow: hidden;
-}
-
 
 nav .signupbox {
+  margin: 30px 30px 10px 30px;
+
   display: block;
   float: right;
   height: 40px;
@@ -213,6 +208,8 @@ nav .signupbox p {
 }
 
 nav .login {
+  margin: 30px 30px 20px 0px;
+
   display: block;
   float: right;
   color: #e86c4a;
@@ -223,15 +220,16 @@ nav .login {
   line-height: 37px;
 }
 
+
 header h1 {
   margin-bottom: 20px;
   font-family: 'Arial';
   font-style: normal;
   font-weight: 900;
   font-size: 30px;
-  line-height: 36px;
+  line-height: 36px;  
+  margin-top: 50px;
   text-align: center;
-
   color: #e86c4a;
 }
 
@@ -593,6 +591,31 @@ header #postjob {
   height: unset;
 }
 
+main .filters {
+  display: flex;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  justify-content: space-evenly;
+}
+
+main .filters button {
+  min-width: 125px;
+  max-width: 125px;
+}
+
+main .filters h4 {
+  min-width: fit-content;
+  max-width: fit-content;
+}
+
+#filtersbutton:hover,#filtersbutton:checked  {
+  background-color: #e86c4a;
+}
+
+#filtersModal .modal-body p {
+  font-weight: 800;
+}
+
 .signupModalsChain input {
   position: unset;
 }
@@ -629,7 +652,7 @@ header #postjob {
 }
 .signupModalsChain .inputField input {
   background: #f3eff5;
-  box-shadow: inset -4px 4px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: inset -4px 4px 5px rgba(15, 66, 104, 0.05);
   border-radius: 3.5px;
 }
 #signupButton1,
@@ -785,40 +808,11 @@ main .mainwrapper {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 
-/* Minor resizing problem here */
 main .recents {
   margin: 0%;
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 10%;
-}
-
-main .recents p {
-  margin: 0%;
-}
-
-main .filters {
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 10%;
-}
-
-main .dummy {
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 32%;
-}
-
-main .dummy_two {
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 18%;
-}
-
-main .dummy_three {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 30%;
@@ -834,8 +828,8 @@ main .filters button {
 }
 
 #mainscreenInfo {
+  margin: 0%;
   text-align: center;
-  margin-bottom: 15px;
 }
 
 .articles {
@@ -849,7 +843,7 @@ main .filters button {
 
 .articles .listing {
   background-color: white;
-  filter: drop-shadow(4px 4px 9px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.25));
   width: 700px;
   height: 180px;
   max-width: 700px;
@@ -1007,7 +1001,16 @@ footer .socials {
   margin-top: 10px;
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 20%;
+  flex-basis: 30%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+footer .socials ul {
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
 }
 
 footer .firstcol {
@@ -1028,7 +1031,7 @@ footer .secondcol {
 footer .thirdcol {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 40%;
+  flex-basis: 22.5%;
 }
 
 footer .legalstuff {
