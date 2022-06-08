@@ -13,7 +13,7 @@ var port = 3000;
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
-app.set('trust proxy', 1);
+//app.set('trust proxy', 1);
 
 app.use(express.static("public"));
 app.use(express.static("views"));
@@ -25,6 +25,7 @@ app.use(cookieParser());
 
 let RedisStore = connectRedis(session);
 const redisClient = redis.createClient({
+    legacyMode: true,
     socket: {
         host: 'rdb',
         port: 6379,
@@ -42,11 +43,11 @@ redisClient.connect();
 
 app.use(session({
     store: new RedisStore({client: redisClient}),
-    proxy: true,
     name: "usersession",
+    proxy: false,
     secret: "publicsecretxd",
     saveUninitialized: false,
-    resave: true,
+    resave: false,
     cookie: {
         //secure: true,
         maxAge: 1000*60*60 // 1 hour (ms)

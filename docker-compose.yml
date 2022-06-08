@@ -17,6 +17,8 @@ services:
     build: ./servers/frontend
     restart: always
     container_name: node_1
+    #ports:
+    # - 8080:3000
     networks:
       - frontend
       - backend

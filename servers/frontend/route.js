@@ -45,7 +45,7 @@ function mustBeLoggedIn(req, res, next) {
     }
 
     console.log("Not logged in, redirecting!");
-    return res.redirect("/");
+    res.redirect("/");
 }
 
 
@@ -83,6 +83,8 @@ router.get('/postpopup', mustBeLoggedIn, (req, res, next) => {
 
     console.log("req.body:", req.body);
     console.log("req query:", req.query);
+
+    res.end();
 });
 
 router.post('/postjob', mustBeLoggedIn, (req, res, next) => { 
@@ -130,12 +132,15 @@ router.post('/login', async (req, res, next) => {
         return res.send(503);
     }
 
-    req.session.userID = ""+ user_res["userID"];
-    req.session.username = user_res["username"];
-    
-    console.log("Session created!");
+    const sess = req.session;
 
-    return res.redirect("/");
+    sess.userID = ""+ user_res["userID"];
+    sess.username = user_res["username"];
+    sess.save();
+
+    console.log("Session created!", req.session);
+
+    res.end();
 });
 
 router.get('/signup', (req, res, next) => {
@@ -180,7 +185,9 @@ router.post('/signup', async (req, res, next) => {
 
     if(!write_res_json || write_res_json["status"] == "error") {
        console.log("Errot creating user to postgres!");
-        return res.send(503);
+        res.send(503);
+        res.end();
+        return;
     }
 
 
