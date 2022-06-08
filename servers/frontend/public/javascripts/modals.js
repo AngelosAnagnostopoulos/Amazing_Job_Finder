@@ -11,7 +11,7 @@ function setupPopup(e) {
         category: document.getElementById("category"),
         onsite: document.getElementById("onsite"),
         hours: document.getElementById("hours"),
-    }
+    };
 
     let postpopup = {
         title: document.getElementById("postlistingtitle"),
@@ -21,7 +21,7 @@ function setupPopup(e) {
         hours: document.getElementById("popuptype"),
         location: document.getElementById("popuplocation"),
         salary: document.getElementById("popupsalary"),
-    }
+    };
 
     postpopup.title.innerHTML = postheader.title.value;
     if (!postheader.title.value) {
@@ -71,7 +71,7 @@ for (let index = 0; index < listingsbox.length; index++) {
 
 function jobPopup(e) {
     const listing = e.currentTarget;
-    const button = listing.firstChild.nextElementSibling.lastChild.previousElementSibling
+    const button = listing.firstChild.nextElementSibling.lastChild.previousElementSibling;
     const id = button.id;
     button.click();
 
@@ -92,7 +92,7 @@ function jobPopup(e) {
         category: document.getElementById("mainlistingcategory" + id),
         onsite: document.getElementById("mainlistingonsite" + id),
         salary: document.getElementById("mainlistingsalary" + id),
-    }
+    };
 
     let popupData = {
         title: document.getElementById("searchpopuplistingtitle"),
@@ -107,7 +107,7 @@ function jobPopup(e) {
         onsite: document.getElementById("searchpopuponsite"),
         salary: document.getElementById("searchpopupsalary"),
         // +Company logo
-    }
+    };
 
     popupData.title.innerHTML = listingData.title.innerHTML;
     popupData.hours.innerHTML = listingData.hours.innerHTML;
@@ -123,15 +123,42 @@ function jobPopup(e) {
 
 }
 
-const isConnected = false;
+//Get these from cookie/userinfo from server
+const isConnected = true;
+const isSearcher = true;
+const isPoster = false;
+
 const applicationBtn = document.getElementById("applicationButton");
-applicationBtn.addEventListener("click", applyForJob)
+applicationBtn.addEventListener("click", applyForJob);
 
 function applyForJob(e) {
     promptLogin();
+    if (isSearcher){
+        //display popup with CV
+    }else {
+        searcherError();
+    }
     // If not connected then prompt for login/signup, otherwise
     // prompt the user for a CV file and cover letter (optionally) 
     // and send them to the corresponding company's email
+}
+
+function submitJobListing(e){
+    promptLogin();
+    if (isPoster){
+        //Send listing through with writeAPI
+        listingSubmitSuccess();
+    }else {
+        posterError();
+    }
+}
+
+function searcherError() {
+    console.log("Searcher error!");
+}
+
+function posterError() {
+    console.log("Poster error!");
 }
 
 function promptLogin(e) {

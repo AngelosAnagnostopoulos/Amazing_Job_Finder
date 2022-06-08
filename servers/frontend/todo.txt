@@ -1,2 +1,0 @@
-Check if user is logged in and show Log Out button.
-Prompt user for loggin if he tries to post a job or apply for a job.

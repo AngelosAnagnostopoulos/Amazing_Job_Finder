@@ -1,93 +1,95 @@
 // Submit a post request w/ json "Login" data
-const button = document.getElementById("loginButton")
-button.addEventListener("click", sendLoginInfo)
+const button = document.getElementById("loginButton");
+button.addEventListener("click", sendLoginInfo);
 
 function sendLoginInfo(e) {
-    const username = document.getElementById("loginusername")
-    const password = document.getElementById("loginpassword")
+    const username = document.getElementById("loginusername");
+    const password = document.getElementById("loginpassword");
 
     let userData = {
         "username": username.value,
         "password": password.value
-    }
-    let url = "/login/user/json"
+    };
+    let url = "/login";
 
-    makePostRequest(url, userData)
+    makePostRequest(url, userData);
 }
 
 // Create signup post request with info from modals
-const signupUsername = document.getElementById("signupusername")
-const signupEmail = document.getElementById("signupemail")
-const signupPassword = document.getElementById("signupPassword")
-const signupPasswordConfirm = document.getElementById("signupPasswordConfirm")
-const passwordButton = document.getElementById("signupButton2")
+const signupUsername = document.getElementById("signupusername");
+const signupEmail = document.getElementById("signupemail");
+const signupPassword = document.getElementById("signupPassword");
+const signupPasswordConfirm = document.getElementById("signupPasswordConfirm");
+const passwordButton = document.getElementById("signupButton2");
 
-signupPasswordConfirm.addEventListener("keyup", checkPasswordsClient)
-signupPassword.addEventListener("keyup", checkPasswordsClient)
+signupPasswordConfirm.addEventListener("keyup", checkPasswordsClient);
+signupPassword.addEventListener("keyup", checkPasswordsClient);
 
-const signupSearcherButton = document.getElementById("signupButton4")
-const signupPosterButton = document.getElementById("signupButton5")
+const signupSearcherButton = document.getElementById("signupButton4");
+const signupPosterButton = document.getElementById("signupButton5");
 
-signupSearcherButton.addEventListener("click", sendSignupSearcher)
-signupPosterButton.addEventListener("click", sendSignupPoster)
+signupSearcherButton.addEventListener("click", sendSignupSearcher);
+signupPosterButton.addEventListener("click", sendSignupPoster);
 
-const sUsername = signupUsername.value
-const sEmail = signupEmail.value
-const sPassword = signupPassword.value
+const sUsername = signupUsername.value;
+const sEmail = signupEmail.value;
+const sPassword = signupPassword.value;
 
 
 function sendSignupSearcher() {
-    let checkboxes = [
-        document.getElementById("techboxsearcher"),
-        document.getElementById("securityboxsearcher"),
-        document.getElementById("systemsboxsearcher"),
-        document.getElementById("webdevboxsearcher"),
-        document.getElementById("databoxsearcher"),
-        document.getElementById("qualityboxsearcher"),
-        document.getElementById("managementboxsearcher"),
-        document.getElementById("financesboxsearcher")
-    ]
 
-    let data = []
-    let url = "/signup/searcher"
+    let data = {
+        "username": sUsername,
+        "password": sPassword,
+        "email": sEmail,
+        "interests": [],
+        "isSearcher": true,
+        "isPoster": false,
+    };
 
-    data.push(sUsername, sPassword, sEmail)
+    let url = "/signup";
+
     for (let index = 0; index < checkboxes.length; index++) {
         if (checkboxes[index].checked) {
-            data.push(checkboxes[index])
+            data.interests.push(checkboxes[index]);
         }
     }
 
-    makePostRequest(url, data)
-    clearArray(data)
+    makePostRequest(url, data);
 }
 
 // Submit interests from checkboxes to user profile 
 // and filter searches based on them
 function sendSignupPoster() {
     let checkboxes = [
-        document.getElementById("techboxposter"),
-        document.getElementById("securityboxposter"),
-        document.getElementById("systemsboxposter"),
-        document.getElementById("webdevboxposter"),
-        document.getElementById("databoxposter"),
-        document.getElementById("qualityboxposter"),
-        document.getElementById("managementboxposter"),
-        document.getElementById("financesboxposter")
-    ]
+        document.getElementById("techboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("securityboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("systemsboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("webdevboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("databoxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("qualityboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("managementboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("financesboxsearcher").nextElementSibling.innerHTML
+    ];
 
-    let data = []
-    let url = "/signup/poster"
+    let data = {
+        "username": sUsername,
+        "password": sPassword,
+        "email": sEmail,
+        "interests": [],
+        "isSearcher": false,
+        "isPoster": true,
+    };
 
-    data.push(sUsername, sPassword, sEmail)
+    let url = "/signup";
+
     for (let index = 0; index < checkboxes.length; index++) {
         if (checkboxes[index].checked) {
-            data.push(checkboxes[index])
+            data.interests.push(checkboxes[index]);
         }
     }
 
-    makePostRequest(url, data)
-    clearArray(data)
+    makePostRequest(url, data);
 }
 
 function makePostRequest(url, data) {
@@ -103,36 +105,30 @@ function makePostRequest(url, data) {
     xhr.send(data);
 }
 
-function clearArray(array) {
-    array.length = 0;
-}
-
 // Check if passwords match while user is making an account
-
-
 function checkPasswordsClient(e) {
 
-    let strength = checkPasswordStrength(signupPassword.value)
-    console.log(strength)
+    let strength = checkPasswordStrength(signupPassword.value);
+    console.log(strength);
     if (signupPassword.value != signupPasswordConfirm.value || strength == "Weak" || strength == "Very Weak") {
-        passwordButton.classList.add("disabled")
-        signupPassword.classList.add("warning")
-        signupPasswordConfirm.classList.add("warning")
-        signupPassword.classList.remove("success")
-        signupPasswordConfirm.classList.remove("success")
-        let mismatch = document.createElement("p")
+        passwordButton.classList.add("disabled");
+        signupPassword.classList.add("warning");
+        signupPasswordConfirm.classList.add("warning");
+        signupPassword.classList.remove("success");
+        signupPasswordConfirm.classList.remove("success");
+        let mismatch = document.createElement("p");
     } else if (signupPassword.value == signupPasswordConfirm.value) {
-        passwordButton.classList.remove("disabled")
-        signupPassword.classList.remove("warning")
-        signupPasswordConfirm.classList.remove("warning")
-        signupPassword.classList.add("success")
-        signupPasswordConfirm.classList.add("success")
+        passwordButton.classList.remove("disabled");
+        signupPassword.classList.remove("warning");
+        signupPasswordConfirm.classList.remove("warning");
+        signupPassword.classList.add("success");
+        signupPasswordConfirm.classList.add("success");
     }
 
 }
 
 function checkPasswordStrength(password) {
-    const strengthText = document.getElementById("passwordStrength")
+    const strengthText = document.getElementById("passwordStrength");
 
     let strength = {
         1: 'Very Weak',
@@ -147,7 +143,7 @@ function checkPasswordStrength(password) {
         'Medium': "mediumpass",
         'Strong': "strongpass",
         'Very Strong': "verystrongpass"
-    }
+    };
 
     let strengthValue = {
         'caps': false,
@@ -158,8 +154,8 @@ function checkPasswordStrength(password) {
     };
 
     if (password.length < 4) {
-        strengthText.innerText = "Very Weak"
-        strengthText.classList.add("weakpass")
+        strengthText.innerText = "Very Weak";
+        strengthText.classList.add("weakpass");
     } else {
 
         if (password.length >= 8) {
@@ -189,7 +185,7 @@ function checkPasswordStrength(password) {
         }
 
         if (password.length > 12) {
-            strengthIndicator++
+            strengthIndicator++;
         }
 
         strengthText.innerText = strength[strengthIndicator]
@@ -197,25 +193,25 @@ function checkPasswordStrength(password) {
         strengthText.classList.add(styleclass)
 
     }
-    return strengthText.innerText
+    return strengthText.innerText;
 }
 
 
 //Make sure user submits username and email
-const nameMailButton = document.getElementById("signupButton1")
+const nameMailButton = document.getElementById("signupButton1");
 
-const nameInputSignup = document.getElementById("signupusername")
-const emailInputSignup = document.getElementById("signupemail")
-nameMailButton.classList.add("disabled")
+const nameInputSignup = document.getElementById("signupusername");
+const emailInputSignup = document.getElementById("signupemail");
+nameMailButton.classList.add("disabled");
 
-nameInputSignup.addEventListener("keyup", checkUsernameEmailClient)
-emailInputSignup.addEventListener("keyup", checkUsernameEmailClient)
+nameInputSignup.addEventListener("keyup", checkUsernameEmailClient);
+emailInputSignup.addEventListener("keyup", checkUsernameEmailClient);
 
 function checkUsernameEmailClient(e) {
     if (!checkEmailClient(emailInputSignup.value) || !checkUsernameClient(nameInputSignup.value)) {
-        nameMailButton.classList.add("disabled")
+        nameMailButton.classList.add("disabled");
     } else if (nameInputSignup.value != "" && emailInputSignup.value != "") {
-        nameMailButton.classList.remove("disabled")
+        nameMailButton.classList.remove("disabled");
     }
 }
 
