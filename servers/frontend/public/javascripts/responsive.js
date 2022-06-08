@@ -7,7 +7,7 @@ const searchdaddy = document.getElementById("searchjobs");
 const postdaddy = document.getElementById("postjobs");
 
 const searchJobsBtn = document.getElementById("submit");
-const loginbox = document.getElementById('navloginbox');
+
 
 searchBtn.state = 1;
 searchBtn.daddy = searchdaddy;
@@ -69,7 +69,8 @@ function displaySearch() {
 }
 
 ; (function () {
-    var signupbox = document.getElementById('navsignupbox');
+
+    let signupbox = document.getElementById('navsignupbox');
     function signuphoveredIn() {
         signupbox.classList.add("signuphoverin");
         signupbox.classList.remove("signuphoverout");
@@ -85,6 +86,7 @@ function displaySearch() {
 })();
 
 ; (function () {
+    let loginbox = document.getElementById('navloginbox');
     function loginhoveredIn() {
         loginbox.classList.add("loginhoverin");
         loginbox.classList.remove("loginhoverout");
@@ -96,6 +98,22 @@ function displaySearch() {
 
     loginbox.addEventListener('mouseover', loginhoveredIn);
     loginbox.addEventListener('mouseout', loginhoveredOut);
+
+})();
+
+; (function () {
+    let logoutbox = document.getElementById('navlogoutbox');
+    function logouthoveredIn() {
+        logoutbox.classList.add("loginhoverin");
+        logoutbox.classList.remove("loginhoverout");
+    };
+    function logouthoveredOut() {
+        logoutbox.classList.add("loginhoverout");
+        logoutbox.classList.remove("loginhoverin");
+    };
+
+    logoutbox.addEventListener('mouseover', logouthoveredIn);
+    logoutbox.addEventListener('mouseout', logouthoveredOut);
 
 })();
 
@@ -123,3 +141,4 @@ function scrollToTarget(element) {
         behavior: "smooth"
     });
 }
+

@@ -25,7 +25,6 @@ input {
   border: none;
 }
 
-
 input:focus {
   outline: none;
   border: none;
@@ -36,15 +35,17 @@ input:focus::-webkit-input-placeholder {
   color: #f3eff5;
 }
 
-.disabled{
+.disabled {
   pointer-events: none;
 }
 
-.warning, .warning:focus {
+.warning,
+.warning:focus {
   border: 2px solid red;
 }
 
-.success, .success:focus {
+.success,
+.success:focus {
   border: 2px solid green;
 }
 
@@ -171,7 +172,7 @@ header {
   background-image: url('../images/banner.svg');
   background-position: 40% 40%;
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   overflow: visible;
 }
 
@@ -182,7 +183,7 @@ nav {
   background-image: url('../images/logo.png');
   background-repeat: no-repeat;
   background-size: 60px 60px;
-  background-position: 30px,75px;
+  background-position: 30px, 75px;
   background-position-y: center;
 }
 
@@ -220,21 +221,16 @@ nav .login {
   line-height: 37px;
 }
 
-
 header h1 {
   margin-bottom: 20px;
   font-family: 'Arial';
   font-style: normal;
   font-weight: 900;
   font-size: 30px;
-  line-height: 36px;  
+  line-height: 36px;
   margin-top: 50px;
   text-align: center;
   color: #e86c4a;
-}
-
-nav .logout {
-  display: none;
 }
 
 header .headerwrapper {
@@ -608,7 +604,8 @@ main .filters h4 {
   max-width: fit-content;
 }
 
-#filtersbutton:hover,#filtersbutton:checked  {
+#filtersbutton:hover,
+#filtersbutton:checked {
   background-color: #e86c4a;
 }
 
@@ -638,7 +635,7 @@ main .filters h4 {
   flex-direction: column;
 }
 
-.signupModalsChain .signupExternals img{
+.signupModalsChain .signupExternals img {
   width: 250px;
   justify-content: center;
   align-items: center;
@@ -693,7 +690,7 @@ main .filters h4 {
   color: #7b7a7a;
 }
 
-.signupModalsChain .signupLogin .blueBold{
+.signupModalsChain .signupLogin .blueBold {
   font-family: 'Arial';
   font-style: normal;
   font-weight: 600;
@@ -705,14 +702,14 @@ main .filters h4 {
 }
 
 .signupModalsChain .blueBold {
-    margin-top: 10px;
-    font-family: 'Arial';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 14px;
-  
-    color: #4ebfff;
+  margin-top: 10px;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+
+  color: #4ebfff;
 }
 
 .signupModalsChain .signupLogin .orangeUnderlined {
@@ -728,53 +725,54 @@ main .filters h4 {
 }
 
 .signupModalsChain .signupFlexwrapper {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.signupModalsChain .signupFlexwrapper .signupcollumn1,.signupModalsChain .signupFlexwrapper .signupcollumn2 {
-    flex: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.signupModalsChain .signupFlexwrapper .signupcollumn1,
+.signupModalsChain .signupFlexwrapper .signupcollumn2 {
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.signupModalsChain .signupFlexwrapper .signupcollumn1 label,.signupModalsChain .signupFlexwrapper .signupcollumn2 label {
-    position: relative;
-    bottom: 30px;
-    left: 50px;
-    width: 120px;
-    max-width: 120px;
+.signupModalsChain .signupFlexwrapper .signupcollumn1 label,
+.signupModalsChain .signupFlexwrapper .signupcollumn2 label {
+  position: relative;
+  bottom: 30px;
+  left: 50px;
+  width: 120px;
+  max-width: 120px;
 }
 
-.signupModalsChain .signupFlexwrapper .signupcollumn1 input,.signupModalsChain .signupFlexwrapper .signupcollumn2 input {
+.signupModalsChain .signupFlexwrapper .signupcollumn1 input,
+.signupModalsChain .signupFlexwrapper .signupcollumn2 input {
   position: relative;
   left: 50px;
 }
 
-
 /* ================================= */
 
-.weakpass{
-  color: #CC6600;
+.weakpass {
+  color: #cc6600;
   font-weight: 600;
 }
 
-.mediumpass{
-  color: #CCCC00;
+.mediumpass {
+  color: #cccc00;
   font-weight: 600;
 }
 
-.strongpass{
+.strongpass {
   color: yellowgreen;
   font-weight: 600;
 }
 
-.verystrongpass{
+.verystrongpass {
   color: #01a1b6;
   font-weight: 600;
 }
-
 
 /* ================================= */
 

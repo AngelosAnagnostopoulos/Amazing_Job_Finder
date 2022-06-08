@@ -1,11 +1,14 @@
+//Get these from cookie/userinfo from server
+const isConnected = false;
+const isSearcher = true;
+const isPoster = true;
+
 //Job listing modal functionality
 //Carry over values from main page to popup and add a route
 const postjobbutton = document.getElementById("postjob");
 postjobbutton.addEventListener("click", setupPopup);
 
 function setupPopup(e) {
-    //window.location.href = "/postpopup";
-
     let postheader = {
         title: document.getElementById("postlisting"),
         category: document.getElementById("category"),
@@ -38,8 +41,6 @@ createListingButton.addEventListener("click", createListing);
 
 function createListing(e) {
 
-    //If user is connected, else prompt a login/signup popup
-
     const listingData = {
         title: document.getElementById("postlistingtitle").innerHTML,
         longdescription: document.getElementById("longdescription").value,
@@ -54,10 +55,6 @@ function createListing(e) {
         // companyname: User should be connected so just use their name
     }
 
-    // TODO: write submit code and proper routes implementations
-    // Make this into a form or simply send the json?
-    // listingData.setAttribute("method", "post");
-    // listingData.setAttribute("action", "submit.js");
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/postpopup", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -76,7 +73,6 @@ function jobPopup(e) {
     button.click();
 
     // Call the readAPI for the data
-
 
     let listingData = {
         title: document.getElementById("mainlistingtitle" + id),
@@ -123,34 +119,42 @@ function jobPopup(e) {
 
 }
 
-//Get these from cookie/userinfo from server
-const isConnected = true;
-const isSearcher = true;
-const isPoster = false;
 
 const applicationBtn = document.getElementById("applicationButton");
-applicationBtn.addEventListener("click", applyForJob);
+const submitListingBtn = document.getElementById("listingButton");
+const cvModalBtn = document.getElementById("applicationButtonhidden");
+const cvSendApplyBtn = document.getElementById("cvapplyButton");
 
-function applyForJob(e) {
-    promptLogin();
-    if (isSearcher){
-        //display popup with CV
-    }else {
+applicationBtn.addEventListener("click", showCVmodal);
+submitListingBtn.addEventListener("click", submitJobListing);
+cvSendApplyBtn.addEventListener("click", applyToJob);
+
+
+function showCVmodal(e) {
+    if (promptLoginSearcher()) {
+        cvModalBtn.click();
+    } else {
         searcherError();
     }
-    // If not connected then prompt for login/signup, otherwise
-    // prompt the user for a CV file and cover letter (optionally) 
-    // and send them to the corresponding company's email
 }
 
-function submitJobListing(e){
-    promptLogin();
-    if (isPoster){
+function applyToJob() {
+    let file = document.getElementById("myFile");
+    let url = "/listing/application";
+    makePostRequest(url, file);
+}
+
+function submitJobListing(e) {
+    if (promptLoginPoster()) {
         //Send listing through with writeAPI
         listingSubmitSuccess();
-    }else {
+    } else {
         posterError();
     }
+}
+
+function listingSubmitSuccess() {
+    console.log("Listing submit successfull!");
 }
 
 function searcherError() {
@@ -161,10 +165,51 @@ function posterError() {
     console.log("Poster error!");
 }
 
-function promptLogin(e) {
-    if (isConnected) {
-        console.log("User already logged in!");
+function makePostRequest(url, data) {
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onload = () => console.log(xhr.responseText);
+
+    xhr.send(data);
+}
+
+function promptLoginSearcher() {
+    if (isConnected && isSearcher) {
+        console.log("Searcher user already logged in!");
+        return true;
     } else {
         loginbox.click();
     }
+    return false;
 }
+
+function promptLoginPoster() {
+    if (isConnected && isPoster) {
+        console.log("Poster user already logged in!");
+        return true;
+    } else {
+        loginbox.click();
+    }
+    return false;
+}
+
+const loginbox = document.getElementById('navloginbox');
+const logoutbox = document.getElementById('navlogoutbox');
+const signupbox = document.getElementById('navsignupbox');
+
+; (function () {
+    if (isConnected) {
+        signupbox.style.display = "none";
+        loginbox.style.display = "none";
+        logoutbox.style.display = "block"
+    } else {
+        loginbox.style.display = "block";
+        signupbox.style.display = "block";
+        logoutbox.style.display = "none"
+    }
+})();
