@@ -1,3 +1,8 @@
+//Get these from cookie/userinfo from server
+const isConnected = false;
+const isSearcher = true;
+const isPoster = true;
+
 //Job listing modal functionality
 //Carry over values from main page to popup and add a route
 const postjobbutton = document.getElementById("postjob");
@@ -49,7 +54,7 @@ function createListing(e) {
         website: document.getElementById("website").value,
         // companyname: User should be connected so just use their name
     }
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/postpopup", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -114,12 +119,6 @@ function jobPopup(e) {
 
 }
 
-//Get these from cookie/userinfo from server
-const isConnected = true;
-const isSearcher = true;
-const isPoster = true;
-
-
 
 const applicationBtn = document.getElementById("applicationButton");
 const submitListingBtn = document.getElementById("listingButton");
@@ -132,9 +131,9 @@ cvSendApplyBtn.addEventListener("click", applyToJob);
 
 
 function showCVmodal(e) {
-    if (promptLoginSearcher()){
-        cvModalBtn.click();    
-    }else {
+    if (promptLoginSearcher()) {
+        cvModalBtn.click();
+    } else {
         searcherError();
     }
 }
@@ -142,14 +141,14 @@ function showCVmodal(e) {
 function applyToJob() {
     let file = document.getElementById("myFile");
     let url = "/listing/application";
-    makePostRequest(url,file);
+    makePostRequest(url, file);
 }
 
-function submitJobListing(e){
-    if (promptLoginPoster()){
+function submitJobListing(e) {
+    if (promptLoginPoster()) {
         //Send listing through with writeAPI
         listingSubmitSuccess();
-    }else {
+    } else {
         posterError();
     }
 }
@@ -198,3 +197,19 @@ function promptLoginPoster() {
     }
     return false;
 }
+
+const loginbox = document.getElementById('navloginbox');
+const logoutbox = document.getElementById('navlogoutbox');
+const signupbox = document.getElementById('navsignupbox');
+
+; (function () {
+    if (isConnected) {
+        signupbox.style.display = "none";
+        loginbox.style.display = "none";
+        logoutbox.style.display = "block"
+    } else {
+        loginbox.style.display = "block";
+        signupbox.style.display = "block";
+        logoutbox.style.display = "none"
+    }
+})();
