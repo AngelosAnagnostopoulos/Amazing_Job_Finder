@@ -36,8 +36,6 @@ async function searchJobs(serachParams, count=10, offset=0) {
 function mustBeLoggedIn(req, res, next) {
     
     console.log("Must be logged in middleware!");
-    console.log("session:", req.session);
-    console.log(req.cookie);
 
     if(req.session.userID) {
         console.log("Logged in, go ahead");
@@ -79,20 +77,41 @@ router.get('/searchjobs', async (req, res, next) => {
 
 router.get('/postpopup', mustBeLoggedIn, (req, res, next) => {
     //Basically show the popup that is now done through the index.hbs file
-    console.log("GET /postpopup in the making");
+    console.log("GET /postpopup");
 
-    console.log("req.body:", req.body);
-    console.log("req query:", req.query);
-
-    res.end();
+    next();
 });
 
-router.post('/postjob', mustBeLoggedIn, (req, res, next) => { 
+router.post('/postpopup', mustBeLoggedIn, (req, res, next) => { 
     //Use the writeAPI to make a listing with the fields given in the responsive.js and reroute the user to '/'
-    console.log("POST /postjob");
+    console.log("POST /postpopup");
+
+    const data = {userID: req.session.userID, ...req.body};
     
-    console.log("req.body:", req.body);
-    console.log("req query:", req.query);
+    console.log("User type:", req.session.user_type); 
+
+    if(req.session.user_type != "poster") {
+        return res.status(403).send("Only posters can post!");
+    }
+
+    fetch("http://write_api:6000/createjoblisting", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {'Content-Type': 'application/json'}
+    })
+    .then(api_res => api_res.json())
+        .then(api_res_json => {
+            if(api_res_json["status"] == "error") throw api_res_json;
+
+            console.log("job listed!", api_res_json);
+        })
+    .catch(err => {
+        console.log("error posting job listing", err);
+    });
+
+
+    res.redirect("/");
+    // res.send("This should create the job listing");
 });
 
 router.get('/login', (req, res, next) => {
@@ -136,6 +155,7 @@ router.post('/login', async (req, res, next) => {
 
     sess.userID = ""+ user_res["userID"];
     sess.username = user_res["username"];
+    sess.user_type = user_res["user_type"];
     sess.save();
 
     console.log("Session created!", req.session);
@@ -155,8 +175,8 @@ router.post('/signup', async (req, res, next) => {
     const auth_api_res = await fetch("http://auth_api:5050/create", {
         method: "POST",
         body: JSON.stringify({
-            "username": req.query.username,
-            "password": req.query.password
+            "username": req.body.username,
+            "password": req.body.password
         }),
         headers: {'Content-Type': 'application/json'}
     });
@@ -174,8 +194,10 @@ router.post('/signup', async (req, res, next) => {
     const write_res = await fetch("http://write_api:6000/createuser", {
         method: "POST",
         body: JSON.stringify({
-            user_auth_id: auth_api_json.authUserID,
-            username: auth_api_json.username
+            "user_auth_id": auth_api_json.authUserID,
+            "username": auth_api_json.username,
+            "email": req.body.email,
+            "user_type": req.body.isPoster ? "poster" : "searcher"
         }),
         headers: {'Content-Type': 'application/json'}
     } ); 

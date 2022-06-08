@@ -36,13 +36,13 @@ client.connect()
 
 
 app.post("/createjoblisting", (req, res) => {
-
+	const data = req.body;
 	console.log("/createjoblisting ");
 
 	const query = {
 		text: "INSERT INTO job_listing (title, jtype, jlocation, det_desc, salary, position_id, poster_id, company_id) VALUES " +
 			  "($1, $2, $3, $4, $5, $6, $7, $8);",
-		values: Object.values(req.body)
+		values: [data.title, data.onsite, data.location, data.longdescription, data.salary, 1 /* get pos id*/, data.userID, 1]
 	};
 
 		
@@ -56,10 +56,11 @@ app.post("/createjoblisting", (req, res) => {
 
 app.post("/createuser", (req, res) => {
 	console.log("/createuser");
+	console.log(req.body);
 
 	const query = {
-		text: "INSERT INTO person(person_auth_id, username) VALUES ($1, $2);",
-		values: [req.body.user_auth_id, req.body.username]
+		text: "INSERT INTO person(person_auth_id, username, email, user_type) VALUES ($1, $2, $3, $4);",
+		values: [req.body.user_auth_id, req.body.username, req.body.email, req.body.user_type]
 	};
 
 		
@@ -81,7 +82,7 @@ app.post("/createuser", (req, res) => {
 					console.log("Success retreiving back");
 					// handle signup BS
 
-					return res.json({status: "success", ...data.rows});
+					return res.json({status: "success", ...data.rows[0]});
 				});
 		})
 		.catch(err => res.json({status: "error"}));

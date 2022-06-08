@@ -36,23 +36,34 @@ const sEmail = signupEmail.value;
 const sPassword = signupPassword.value;
 
 
-function sendSignupSearcher() {
+function getCheckboxes() {
+    let checkboxes = [
+        document.getElementById("techboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("securityboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("systemsboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("webdevboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("databoxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("qualityboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("managementboxsearcher").nextElementSibling.innerHTML,
+        document.getElementById("financesboxsearcher").nextElementSibling.innerHTML
+    ];
 
-<<<<<<< HEAD
-    let data = []
-    let url = "/signup"
-=======
+    return checkboxes;
+}
+
+function sendSignupSearcher() {
+    let checkboxes = getCheckboxes();
+    
     let data = {
-        "username": sUsername,
-        "password": sPassword,
-        "email": sEmail,
+        "username": signupUsername.value,
+        "password": signupPassword.value,
+        "email": signupEmail.value,
         "interests": [],
         "isSearcher": true,
         "isPoster": false,
     };
 
     let url = "/signup";
->>>>>>> frontend
 
     for (let index = 0; index < checkboxes.length; index++) {
         if (checkboxes[index].checked) {
@@ -66,32 +77,18 @@ function sendSignupSearcher() {
 // Submit interests from checkboxes to user profile 
 // and filter searches based on them
 function sendSignupPoster() {
-    let checkboxes = [
-        document.getElementById("techboxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("securityboxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("systemsboxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("webdevboxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("databoxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("qualityboxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("managementboxsearcher").nextElementSibling.innerHTML,
-        document.getElementById("financesboxsearcher").nextElementSibling.innerHTML
-    ];
+    let checkboxes = getCheckboxes();
 
-<<<<<<< HEAD
-    let data = []
-    let url = "/signup"
-=======
     let data = {
-        "username": sUsername,
-        "password": sPassword,
-        "email": sEmail,
+        "username": signupUsername.value,
+        "password": signupPassword.value,
+        "email": signupEmail.value,
         "interests": [],
         "isSearcher": false,
         "isPoster": true,
     };
 
     let url = "/signup";
->>>>>>> frontend
 
     for (let index = 0; index < checkboxes.length; index++) {
         if (checkboxes[index].checked) {

@@ -1,20 +1,12 @@
 -- Creates all tables for the database and adds some dummy data.
+CREATE TYPE user_type_enum AS ENUM ('poster', 'searcher');
 
 CREATE TABLE IF NOT EXISTS person (
     person_id   SERIAL PRIMARY KEY,
     person_auth_id char(24),
-    username    varchar(255)
-);
-
-CREATE TABLE IF NOT EXISTS searcher (
-  searcher_id   SERIAL PRIMARY KEY,
-  FOREIGN KEY (searcher_id) REFERENCES person(person_id)
-);
-
-CREATE TABLE IF NOT EXISTS poster (
-  poster_id     SERIAL PRIMARY KEY,
-  title       varchar(255),
-  FOREIGN KEY (poster_id) REFERENCES person(person_id)
+    username    varchar(255),
+    email       varchar(255),
+    user_type   user_type_enum 
 );
 
 CREATE TABLE IF NOT EXISTS job_position (
@@ -54,7 +46,7 @@ CREATE TABLE IF NOT EXISTS job_listing (
     poster_id INT NOT NULL,
     company_id INT NOT NULL,
     FOREIGN KEY (position_id) REFERENCES job_position(position_id),
-    FOREIGN KEY (poster_id) REFERENCES poster(poster_id),
+    FOREIGN KEY (poster_id) REFERENCES person(person_id),
     FOREIGN KEY (company_id) REFERENCES company(company_id)
 );
 
@@ -65,7 +57,7 @@ CREATE TABLE IF NOT EXISTS job_application (
     application_text TEXT, -- maybe a file?
     application_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (job_listing_id) REFERENCES job_listing(listing_id),
-    FOREIGN KEY (searcher_id) REFERENCES searcher(searcher_id)
+    FOREIGN KEY (searcher_id) REFERENCES person(person_id)
 );
 
 INSERT INTO company VALUES 
@@ -73,9 +65,7 @@ INSERT INTO company VALUES
 
 INSERT INTO job_position VALUES (1, 'Software Engineer', 'Develop Software lmao', 69420);
 
-INSERT INTO person VALUES (1, '629b4f81877f8f5d3102af96', 'mike');
-
-INSERT INTO poster VALUES (1, 'recruiter');
+INSERT INTO person VALUES (1, '629b4f81877f8f5d3102af96', 'mike', 'mike@test.gr', 'poster');
 
 INSERT INTO job_listing (title, jtype, jlocation, det_desc, salary, position_id, poster_id, company_id) VALUES
 ('Frontend Soydev', 'Fulltime', 'bloatland', 'React has no runtime overhead xd!', 69420, 1, 1, 1),
@@ -94,3 +84,6 @@ CREATE VIEW all_jobs_detailed_listing_view AS
         job_position.title AS "category",
         salary
     FROM job_listing NATURAL LEFT JOIN company, job_position;
+
+-- restart sequence id gen
+SELECT SETVAL('person_person_id_seq', (SELECT MAX(person_id) + 1 FROM person));

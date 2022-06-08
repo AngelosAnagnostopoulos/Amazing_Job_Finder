@@ -65,7 +65,7 @@ app.get("/listings/:listingID", (req, res) => {
 app.get("/authidtodata/:authID", (req, res) => {
 	console.log("GET/ authidtodata/", req.params.authID); 
 	const query = {
-		text: "SELECT person_id, username FROM person WHERE person_auth_id = $1;",
+		text: "SELECT person_id, username, user_type FROM person WHERE person_auth_id = $1;",
 		values: [req.params.authID]
 	};
 
@@ -75,8 +75,11 @@ app.get("/authidtodata/:authID", (req, res) => {
 				res.json({status: "error"});
 				return;
 			}
-			
-			res.json({status: "success", userID: data.rows[0].person_id, username: data.rows[0].username});
+			console.log(data.rows[0]);			
+			res.json({status: "success", userID: data.rows[0].person_id, 
+										 username: data.rows[0].username,
+										 user_type: data.rows[0].user_type
+			});
 		});
 });
 // 404

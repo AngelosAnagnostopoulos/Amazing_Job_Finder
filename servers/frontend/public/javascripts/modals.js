@@ -4,7 +4,7 @@ const postjobbutton = document.getElementById("postjob");
 postjobbutton.addEventListener("click", setupPopup);
 
 function setupPopup(e) {
-    window.location.href = "/postpopup";
+    //window.location.href = "/postpopup";
 
     let postheader = {
         title: document.getElementById("postlisting"),
