@@ -15,7 +15,7 @@ function sendLoginInfo(e) {
     makePostRequest(url, userData);
 }
 
-// Create signup post request with info from modals
+// Create signup pos t request with info from modals
 const signupUsername = document.getElementById("signupusername");
 const signupEmail = document.getElementById("signupemail");
 const signupPassword = document.getElementById("signupPassword");

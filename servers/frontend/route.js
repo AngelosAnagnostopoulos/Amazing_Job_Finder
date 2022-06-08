@@ -25,11 +25,6 @@ router.get('/searchjobs', (req, res, next) => {
     console.log("GET /searchjobs in the making");
 });
 
-router.get('/postpopup', (req, res, next) => {
-    //Basically show the popup that is now done through the index.hbs file
-    console.log("GET /postpopup in the making");
-});
-
 router.post('/postpopup', (req, res, next) => {
     //Use the writeAPI to make a listing with the fields given in the responsive.js and reroute the user to '/'
     console.log("POST /postpopup in the making");

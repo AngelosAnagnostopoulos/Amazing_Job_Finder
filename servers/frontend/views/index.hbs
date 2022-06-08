@@ -153,6 +153,26 @@
     <br>
     <div name="modals">
         <!--*************Bootstrap modals**************-->
+        <!-- CV submit Modal -->
+        <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="margin-top: 200px">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cvModalLabel">Upload your CV</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="height: 200px;">
+                        <form action="/submitListing" method="post" style="height: 180px;">
+                            <input type="file" id="myFile" name="filename" style="margin-top: 25%;">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="cvapplyButton" data-bs-dismiss="modal">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--Filters modal-->
         <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -417,38 +437,11 @@
                     </div>
 
                     <div class="modal-footer" id="modalfooter">
-                        {{!-- This needs looking into --}}
-                        {{!-- <div class="contactInfo">
-                            <h5>Contact Information</h5>
-                            <div class="infowrapper">
-                                <div class="firstcollumn">
-                                    <span>
-                                        <p>Email:</p><span class="emailfield">
-                                            <p>exampleAtexample.com</p>
-                                        </span>
-                                    </span>
-                                    <span>
-                                        <p>Tel.: +30</p><span class="telfield">
-                                            <p>1234567</p>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="secondcullumn">
-                                    <span>
-                                        <p>Website:</p><span class="websitefield">
-                                            <p>www.example.com</p>
-                                        </span>
-                                    </span>
-                                    <span>
-                                        <p>Facebook:</p><span class="facebookfield">
-                                            <p>example.com</p>
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div> --}}
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="applicationButton" data-bs-dismiss="modal" class="btn btn-primary">Apply Now</button>
+                        <button type="button" id="applicationButton" data-bs-dismiss="modal"
+                            class="btn btn-primary">Apply Now</button>
+                        <button type="button" id="applicationButtonhidden" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#cvModal"
+                            class="btn btn-primary" style="display: none;"></button>
                     </div>
                 </div>
             </div>
@@ -633,6 +626,7 @@
             </div>
         </div>
 
+        <!-- Log-in Modal -->
         <div class="signupModalsChain">
             <div class="modal fade" id="loginModal" aria-hidden="true" aria-labelledby="signupModalLabel" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
@@ -688,14 +682,14 @@
             <h4 id="mainscreenInfo"> Hot searches near you</h4>
             <div class="dummycol"></div>
             <button id="filtersbutton" type="button" class=" btn btn-primary whitetext disabled" data-bs-toggle="modal"
-                    data-bs-target="#filtersModal" style="opacity: 0;" >filters
+                data-bs-target="#filtersModal" style="opacity: 0;">filters
             </button>
-            
+
             <div class="dummycol"></div>
             <div class="dummycol"></div>
             <div class="dummycol"></div>
 
-        </div> 
+        </div>
         <br>
         <article>
             <div class="articles">
