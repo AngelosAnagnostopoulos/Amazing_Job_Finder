@@ -2,15 +2,6 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
-const templates = require('./public/javascripts/handlebarsTemplates');
-var sponsors = templates.sponsors;
-var mainpagelistings = templates.mainpagelistings;
-/*
-var data = {
-    mainpagelistings:mainpagelistings,
-    sponsors:sponsors,
-};
-*/
 
 async function searchJobs(serachParams, count=10, offset=0) {
     let URI = "http://read_api:5000/listings";
@@ -49,8 +40,10 @@ function mustBeLoggedIn(req, res, next) {
     res.redirect("/");
 }
 
-async function applyToJob(jobID, personID, data){
-};
+router.post("/apply", mustBeLoggedIn, async function (req, res){
+    console.log("POST /apply");
+    res.send({status: "success"}); 
+});
 
 router.get('/', async (req, res) => {
     //By default, show 3 random jobs by making a call to the readAPI
@@ -76,7 +69,7 @@ router.get('/searchjobs', async (req, res, next) => {
         res.send("error");
     }
 
-    return res.render('index', { data: {mainpagelistings: listings} });
+    return res.render('index', { data: {mainpagelistings: listings} , shouldScroll: true});
 
 });
 

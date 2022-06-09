@@ -20,6 +20,13 @@
     <script type="text/javascript" src="./javascripts/responsive.js" defer></script>
     <script type="text/javascript" src="./javascripts/modals.js" defer></script>
     <script type="text/javascript" src="./javascripts/signup.js" defer></script>
+    <script type="text/javascript" >
+        const isConnected = {{#if session}}true{{else}}false{{/if}};
+        const isPoster = "{{session.user_type}}" == "poster";
+        const isSearcher = "{{session.user_type}}" == "searcher";
+
+        //console.log(isConnected, isPoster, isSearcher);
+    </script>
 
     <title>Amazing_Job_Finder</title>
 </head>
@@ -829,7 +836,6 @@
         </div>
     </footer>
     </div>
-
 </body>
 
 </html>

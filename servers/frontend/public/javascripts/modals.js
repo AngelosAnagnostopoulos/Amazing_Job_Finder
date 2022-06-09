@@ -1,7 +1,9 @@
 //Get these from cookie/userinfo from server
-const isConnected = false;
+/*
+const isConnected = true;
 const isSearcher = true;
 const isPoster = true;
+*/
 
 //Job listing modal functionality
 //Carry over values from main page to popup and add a route
@@ -140,8 +142,8 @@ function showCVmodal(e) {
 
 function applyToJob() {
     let file = document.getElementById("myFile");
-    let url = "/listing/application";
-    makePostRequest(url, file);
+    let url = "/apply";
+    makePostRequest(url, file, console.log);
 }
 
 function submitJobListing(e) {
