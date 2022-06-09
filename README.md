@@ -23,6 +23,7 @@ First, install docker and docker-compose on your machine. Then clone the reposit
 $ sudo apt update -y
 $ sudo apt install -y docker docker.io docker-compose
 $ git clone https://github.com/AngelosAnagnostopoulos/Amazing_Job_Finder.git && cd Amazing_Job_Finder
+$ sudo docker-compose build
 $ sudo docker-compose up
 ```
 
@@ -40,12 +41,12 @@ $ sudo docker exec -it mdb -u angelos -p        #use authDB. db.users.find();
 ```
 
 ### Technologies used:
-- Frontend: HTML5, CSS3, Bootstrap, SASS, Handlebars
+- Frontend: HTML5, CSS3, Bootstrap5, Handlebars
 - APIs: NodeJS, Javascript
 - Servers/LoadBalancing: Nginx
 - Backend: Redis, PostgreSQL, MongoDB
-- Utils: Git/Github, Github Actions,Codecov ,Docker/Docker-compose
-- NodeJS:  Mocha, Istanbul (nyc)
+- Utils: Git/Github, Github Actions, Codecov ,Docker/Docker-compose
+
 
 ### Systems Design:
 The key idea in mind while creating the systems design was scalability and reliability. We did not get so far as to implement a CDN or multiple backend database nodes because that would be overkill even for our standards, but most of the systems found inside a modern web application are here! 
@@ -75,18 +76,13 @@ Updated workflows and package.json.
 Added codecov integration for testing details.
 
 ### Todolist:
-- Design systems and databases. **Done**
-- Create project skeleton. **Done**
-    - Create the database containers and write the initialization scripts. **Done**
-    - Spin up all necessary containers and put them in a docker-compose.yml file. **Done**
-- Set up first CI/CD draft. **Done**
-- Figure out testing details and update ci/cd workflows to use specific directories. **Done**
-- Create a frontend template (first conceptualy, then in html/css/). **Done (needs to be made in code)**
-- Get database read-replicas up and running. **Done**
-- Add functionality to handle zip codes and cities.
-- Write basic APIs to test databases and interconnectivity (Simple 200 OK responses will do).
-- Make webpage responsive by adding javascript.
-- Extend API functionality and implement microservices.
+The application is mainly done. Features that remain are:
+- Implement companies and have poster users work for them
+- Implement "forgot your pssword"
+- Make the "Already have an account/Don't have an account" links point to corresponding modals
+- Cache the search queries and their results in a redis database
+- Migrate CSS3 to SASS(?)
+- Add a couple of scrolling animations if we fancy
 
 ##### Microservices:
 - Job Info (Fetch job information on a read request)
@@ -110,8 +106,3 @@ Added codecov integration for testing details.
 ##### AuthAPI
 1) Query the mongo database for user credentials and check against onces received from WriteAPI
 2) On failure, return error, on success use the user's ID to query the postgres database and return user info plus the user's permissions (We assume that all authenticated users have permission to list jobs but not accept them. All authenticated employees have permissions for both. This model will most likely change as stated above). There is no need for cache since a mongo query on a single table with a single key is good enough for any application.
-
-
-> Notes: 
-> Add limit on job_post creation on the poster role to prevent attacks.
-> There are MAJOR security flaws detected on our NodeJS packages, which we 'll pretend don't exist.
