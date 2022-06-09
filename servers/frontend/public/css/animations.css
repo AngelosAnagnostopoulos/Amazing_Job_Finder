@@ -1,0 +1,128 @@
+@keyframes setInactiveHeader {
+  from {
+    background-color: #4ebfff;
+    color: white;
+  }
+
+  to {
+    background-color: #f3eff5;
+    color: black;
+  }
+}
+
+@keyframes setActiveHeader {
+  from {
+    background-color: #f3eff5;
+    color: black;
+  }
+
+  to {
+    background-color: #4ebfff;
+    color: white;
+  }
+}
+
+@keyframes signupAnimationHover {
+  from {
+    background-color: #e86c4a;
+    color: white;
+  }
+
+  to {
+    background-color: white;
+    border: 2px solid #e86c4a;
+    color: #e86c4a;
+  }
+}
+
+@keyframes signupAnimationNotHover {
+  from {
+    background-color: white;
+    border: 2px solid #e86c4a;
+    color: #e86c4a;
+  }
+
+  to {
+    background-color: #e86c4a;
+    color: white;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preload * {
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition: background-color 0s, opacity 0s, color 0s, width 0s, height 0s,
+    padding 0s, margin 0s !important;
+}
+
+.signuphoverin{
+    line-height: 36px;
+    animation: signupAnimationHover 300ms forwards;
+}
+
+.signuphoverout{
+    line-height: 40px;
+    animation: signupAnimationNotHover 300ms;
+}
+
+
+.loginhoverin{
+    animation: signupAnimationNotHover 300ms forwards;
+
+}
+
+.loginhoverout{
+    animation: signupAnimationHover 300ms forwards;
+
+}
+
+.listing:hover {
+  transform: scale(1.025);
+  transition: 300ms linear;
+}
+
+.listing:not(:hover) {
+  transform: scale(1);
+  transition: 300ms linear;
+}
+
+.queryboxes button:hover {
+  border: 3px solid #e86c4acb;
+  transition: border 500ms;
+}
+
+.queryboxes button:not(:hover) {
+  border: 3px solid #f3eff5;
+  transition: border 500ms;
+}
+
+.activeHeaderBox {
+  display: block;
+}
+
+.inactiveHeaderBox {
+  display: none;
+}
+
+.activeAnimation,
+.activetagAnimation {
+  animation: setActiveHeader 500ms;
+}
+
+.inactiveAnimation,
+.inactivetagAnimation {
+  animation: setInactiveHeader 500ms;
+}
+
+.filtersFadein{
+  animation: fadeIn 500ms forwards;
+}

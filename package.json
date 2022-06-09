@@ -14,8 +14,11 @@
   },
   
   "scripts": {
+    "test_auth": "nyc mocha ./APIs/__tests__/test_auth.js",
+    "test_write": "nyc mocha ./APIs/__tests__/test_write.js",
+    "test_read": "nyc mocha ./APIs/__tests__/test_read.js",
     "test": "nyc mocha ./APIs/__tests__/*.js",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"    
   },
   "repository": {
     "type": "git",

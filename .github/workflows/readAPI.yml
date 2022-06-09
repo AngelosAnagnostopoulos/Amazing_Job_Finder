@@ -1,15 +1,16 @@
-name: Redis tests
+name: ReadAPI CI
 
 on:
   push:
     branches:
       - development
-
-jobs:
-
+      - apis
+      
+jobs:  
   build:
+
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
@@ -18,20 +19,17 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '16'
-
-    - name: Start redis
-      uses: zhulik/redis-action@1.1.0
-        
+      
     - name: Install dependencies
       run: npm install
 
     - name: Run tests
-      run: npm run test
+      run: npm run test_read
       env:
         CI: true
 
     - name: Make coverage file
       run: npm run report-coverage
-
+    
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3.0.0    

@@ -13,22 +13,20 @@ services:
     networks:
       - frontend
     
-  web_server_1:
-    image: nginx:1.21.6-alpine
+  server_1:
+    build: ./servers/frontend
     restart: always
     container_name: node_1
-    volumes:
-      - ./servers/frontend/indexa.html:/usr/share/nginx/html/index.html
+    #ports:
+    # - 8080:3000
     networks:
       - frontend
       - backend
 
-  web_server_2:
-    image: nginx:1.21.6-alpine
+  server_2:
+    build: ./servers/frontend
     restart: always
     container_name: node_2
-    volumes:
-      - ./servers/frontend/indexb.html:/usr/share/nginx/html/index.html
     networks:
       - frontend
       - backend
@@ -66,7 +64,7 @@ services:
       - read
       - write
   
-  cache_database:
+  session_store:
     image: redis
     container_name: rdb
     ports: 
@@ -76,6 +74,7 @@ services:
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL    
     networks:
       - read
+      - backend
 
   auth_database:
     image: mongo:5.0.6-focal
@@ -86,9 +85,9 @@ services:
     volumes:
       - ./databases/mongo:/docker-entrypoint-initdb.d
     environment:
-      MONGO_INITDB_ROOT_USERNAME: angelos
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: authDB
+      - MONGO_INITDB_ROOT_USERNAME=angelos
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=authDB
     networks:
       - auth
 
@@ -109,15 +108,25 @@ services:
       - backend
 
   write_API:
-    image: node:16-alpine
-    container_name: write_API
+    build:
+      context: ./APIs/write
+    image: writeapi
+    container_name: write_api
+    depends_on:
+      - "postgresql_slave"
+    ports:
+      - "6000:6000"
     networks:
       - write
       - backend
       
   auth_API:
-    image: node:16-alpine
+    build:
+      context: ./APIs/auth
+    image: authapi
     container_name: auth_API
+    ports:
+      - 5050:5050
     networks:
       - auth
       - backend

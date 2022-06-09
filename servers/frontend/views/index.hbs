@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/animations.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+
+    <script type="text/javascript" src="./javascripts/responsive.js" defer></script>
+    <script type="text/javascript" src="./javascripts/modals.js" defer></script>
+    <script type="text/javascript" src="./javascripts/signup.js" defer></script>
+    <script type="text/javascript" >
+        const isConnected = {{#if session.userID }} true {{else}} false {{/if}};
+        const isPoster = "{{session.user_type}}" == "poster";
+        const isSearcher = "{{session.user_type}}" == "searcher";
+    </script>
+
+    <title>Amazing_Job_Finder</title>
+</head>
+
+<body>
+    <nav>
+        <span class="greetingg">{{session.userName}}</span>
+        <a href="/logout">
+            <span class="login" id="navlogoutbox">
+                <p> Log out </p>
+            </span>
+        </a>
+        <a data-bs-toggle="modal" href="#loginModal" role="button">
+            <span class="login" id="navloginbox">
+                Log in
+            </span>
+        </a>
+        <div class="whitetext">
+            <a data-bs-toggle="modal" href="#signupModal" role="button">
+                <span class="signupbox" id="navsignupbox">
+                    <p> Sign up </p>
+                </span>
+            </a>
+        </div>
+    </nav>
+    <header>
+        <h1 id="headerText">If you can dream it, you can do it.</h1>
+        <div class="headerwrapper">
+            <div class="headerbox" id="headerbox">
+                <div class="tagswrapper">
+                    <div class="tags">
+                        <div class="active">
+                            <button class="activetag" id="search-button">
+                                Search
+                            </button>
+                        </div>
+                        <div class="inactive">
+                            <button class="inactivetag" id="post-button">
+                                Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchjobs" id="searchjobs">
+                    <div class="highlighted_area">
+                        <div class="inputwrapper">
+                            <div class="inputform">
+                                <form action="/searchjobs" , method="get" id="searchform">
+                                    <input type="text" id="searchbox" name="searchbox" size="20" maxlength="20"
+                                        placeholder="Enter job title" />
+                                    <input type="text" id="zips" name="zips" size="5" maxlength="10"
+                                        placeholder="City/Zip Code" />
+                                    <input type="hidden" id="sortby" name="sortby" value=""/>
+                                    <input type="submit" id="submit" value="Search Jobs" />
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="queryboxeswrapper">
+                            <div class="queryboxes">
+                                <script>
+                                    function queryRickroll() {
+                                        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+                                    }
+                                </script>
+                                <button class="querybox" id="latestbutton">Latest</button>
+                                <button class="querybox" id="popularbutton">
+                                    Most Popular
+                                </button>
+                                <button class="querybox" , onclick="queryRickroll()">For You</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="postjobs inactiveHeaderBox" id="postjobs">
+                    <div class="highlighted_area">
+                        <div class="inputwrapper">
+                            <div class="inputform">
+                                <form action="/postpopup" method="post" id="postform">
+                                    <input id="postlisting" type="text" name="title" size="40" maxlength="40"
+                                        placeholder="Listing title" />
+                                    <input id="postjob" type="button" value="Post job" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#postModal" style="padding: 0" />
+                                    <br>
+                                    <div class="queryboxwrapper">
+                                        <div class="queryboxes">
+                                            <select name="category" id="category">
+                                                <option value="Web developer" selected>
+                                                    Web developer
+                                                </option>
+                                                <option value="Software engineer">
+                                                    Software engineer
+                                                </option>
+                                                <option value="DevOps engineer">DevOps engineer</option>
+                                                <option value="Cybersecurity engineer">
+                                                    Cybersecurity engineer
+                                                </option>
+                                                <option value="System Administrator">
+                                                    System Administrator
+                                                </option>
+                                            </select>
+                                            <select name="onsite" id="onsite">
+                                                <option value="On-site" selected>
+                                                    On-site
+                                                </option>
+                                                <option value="Hybrid">Hybrid</option>
+                                                <option value="Remote">Remote</option>
+                                            </select>
+                                            <select name="hours" id="hours">
+                                                <option value="Full time" selected>
+                                                    Full time
+                                                </option>
+                                                <option value="Part time">Part time</option>
+                                                <option value="Flexible">Flexible</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <br>
+    <div name="modals">
+        <!--*************Bootstrap modals**************-->
+        <!-- CV submit Modal -->
+        <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="margin-top: 200px">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cvModalLabel">Upload your CV</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="height: 200px;">
+                        <form action="/submitListing" method="post" style="height: 180px;">
+                            <input type="file" id="myFile" name="filename" style="margin-top: 25%;">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="cvapplyButton"
+                            data-bs-dismiss="modal">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Filters modal-->
+        <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="filtersModalLabel">Filters</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{!-- Reload the database searches with specific filters --}}
+                        {{!-- How tf does one only reload a specific part of the page and not the entire thing? --}}
+
+                        <form action="" method="post">
+                            <div class="flexwrapper">
+                                <div class="flexwrapper2">
+
+                                    <div id="filters_categories" class="filters_categories filters_content">
+                                        <p>Category</p>
+                                        <div class="label-input-wrapper">
+                                            <input type="checkbox" id="categories_option1" name="categories_option1"
+                                                value="Tech">
+                                            <label for="categories_option1"> Tech</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+
+                                            <input type="checkbox" id="categories_option2" name="categories_option2"
+                                                value="Managment">
+                                            <label for="categories_option2"> Managment</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+
+                                            <input type="checkbox" id="categories_option3" name="categories_option3"
+                                                value="Finances">
+                                            <label for="categories_option3"> Finances</label>
+                                        </div>
+                                    </div>
+                                    <div id="filters_type" class="filters_type filters_content">
+                                        <p>Job type</p>
+                                        <div class="label-input-wrapper">
+
+                                            <input type="checkbox" id="type_option1" name="type_option1"
+                                                value="Full-time">
+                                            <label for="type_option1"> Full-time</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+                                            <input type="checkbox" id="type_option2" name="type_option2"
+                                                value="Part-time">
+                                            <label for="type_option2"> Part-time</label>
+                                        </div>
+                                        <div class="label-input-wrapper">
+                                            <input type="checkbox" id="type_option3" name="type_option3"
+                                                value="Flexible">
+                                            <label for="type_option3"> Flexible</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="filters_onsite" class="filters_onsite filters_content">
+                                    <p>On-site/Remote</p>
+                                    <div class="label-input-wrapper">
+                                        <input type="checkbox" id="onsite_option1" name="onsite_option1"
+                                            value="On-site">
+                                        <label for="onsite_option1"> On-site</label>
+                                    </div>
+                                    <div class="label-input-wrapper">
+                                        <input type="checkbox" id="onsite_option2" name="onsite_option2" value="Remote">
+                                        <label for="onsite_option2"> Remote</label>
+                                    </div>
+                                    <div class="label-input-wrapper">
+                                        <input type="checkbox" id="onsite_option3" name="onsite_option3" value="Hybrid">
+                                        <label for="onsite_option3"> Hybrid</label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div id="filters_salary" class="filters_salary">
+                                    {{!-- Minimum salary. Range is [min,inf) --}}
+                                    <input id="salaryRange" type="range" min="500" max="3000" value="700"><br>
+                                    <div id="filters_text">
+                                        <label for="filters_salary">Starting salary:&nbsp;</label>
+                                        <span id="sliderval">700 euros</span>
+                                        <script>
+                                            var rangeslider = document.getElementById("salaryRange");
+                                            var output = document.getElementById("sliderval");
+                                            output.innerHTML = rangeslider.value + " euros";
+
+                                            rangeslider.oninput = function () {
+                                                output.innerHTML = this.value + " euros";
+                                            }
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Refresh search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post Modal -->
+        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="postModalLabel">
+                            <p id="postlistingtitle">Listing Title</p>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrapper postWrapper">
+                            <div class="firstcol">
+                                <p>Description</p>
+                                <div class="textarea">
+                                    <textarea name="longdescription" id="longdescription" rows="12"
+                                        cols="50"></textarea>
+                                </div>
+                                <div class="contactinfo">
+                                    <p>Contact Information</p>
+                                    <span>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email"
+                                            class="contactinputs"></span><br>
+                                    <span>Tel: +30&nbsp;&nbsp;<input type="text" id="telephone"
+                                            class="contactinputs"></span><br>
+                                    <span>Website:<input type="text" id="website" class="contactinputs"></span>
+                                </div>
+                            </div>
+                            <div class="secondcol"></div>
+                            <div class="thirdcol">
+                                <div class="category">
+                                    <p>Category</p>
+                                    <select name="category" id="popupcategory">
+                                        <option value="Web developer" selected>
+                                            Web developer
+                                        </option>
+                                        <option value="Software engineer">
+                                            Software engineer
+                                        </option>
+                                        <option value="DevOps engineer">DevOps engineer</option>
+                                        <option value="Cybersecurity engineer">
+                                            Cybersecurity engineer
+                                        </option>
+                                        <option value="System Administrator">
+                                            System Administrator
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="type">
+                                    <p>Type</p>
+                                    <select name="hours" id="popuptype">
+                                        <option value="Full time" selected>
+                                            Full time
+                                        </option>
+                                        <option value="Part time">Part time</option>
+                                        <option value="Flexible">Flexible</option>
+                                    </select>
+                                </div>
+                                <div class="Location">
+                                    <p>Location</p>
+                                    <input type="text" class="locationbox" id="popuplocation">
+                                </div>
+                                <div class="onsite">
+                                    <p>On-site/Remote</p>
+                                    <select name="onsite" id="popuponsite">
+                                        <option value="On-site" selected>On-site</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                        <option value="Remote">Remote</option>
+                                    </select>
+                                </div>
+                                <div class="salary">
+                                    <p>Salary (range):</p>
+                                    <input type="text" class="salarybox" id="popupsalary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="listingButton" data-bs-dismiss="modal" class="btn btn-primary">Create Listing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listing Modal -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="empty"></div>
+                        <h5 class="modal-title" id="searchModal">
+                            <p id="searchpopuplistingtitle">Listing Title</p>
+                            <p id="searchpopupcompanyname">Company Name</p><img alt="Qries" src="./images/facebook"
+                                width="40" height="40" />
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="searchwrapper">
+                            <div class="firstcol">
+                                <h1>Description</h1>
+                                <p id="searchpopupdescription">
+                                </p>
+                            </div>
+                            <div class="secondcol"></div>
+                            <div class="thirdcolsearch">
+                                <div class="category">
+                                    <span class="infofield">
+                                        <p>Category:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopupcategory">Web developer</p>
+                                    </span>
+                                </div>
+                                <div class="type">
+                                    <span class="infofield">
+                                        <p>Type:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuphours">Full-time</p>
+                                    </span>
+                                </div>
+                                <div class="location">
+                                    <span class="infofield">
+                                        <p>Location:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuplocation">University of Patras</p>
+                                    </span>
+                                </div>
+                                <div class="onsite">
+                                    <span class="infofield">
+                                        <p>On-site/Remote:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuponsite">Remote</p>
+                                    </span>
+                                </div>
+                                <div class="postdate">
+                                    <span class="infofield">
+                                        <p>Posted at:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopuppostdate">20/01/2022</p>
+                                    </span>
+                                </div>
+                                <div class="salary">
+                                    <span class="infofield">
+                                        <p>Salary range:</p>
+                                    </span>
+                                    <span class="contentfield">
+                                        <p id="searchpopupsalary">100-200$/month</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" id="modalfooter">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="applicationButton" data-bs-dismiss="modal"
+                            class="btn btn-primary">Apply Now</button>
+                        <button type="button" id="applicationButtonhidden" data-bs-dismiss="modal"
+                            data-bs-toggle="modal" data-bs-target="#cvModal" class="btn btn-primary"
+                            style="display: none;"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign-Up Modal -->
+        <div class="signupModalsChain">
+            <div class="modal fade" id="signupModal" aria-hidden="true" aria-labelledby="signupModalLabel"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel">Welcome!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Sign up</h1>
+                            <div class="inputField">
+                                <label for="username">Username:</label><br>
+                                <input type="text" name="username" id="signupusername">
+                            </div>
+                            <div class="inputField">
+                                <label for="email">E-mail:</label><br>
+                                <input type="text" name="email" id="signupemail">
+                            </div>
+                            <button id="signupButton1" class="btn btn-primary" data-bs-target="#signupModal2"
+                                data-bs-toggle="modal" data-bs-dismiss="modal"
+                                style="font-weight: 700;">Continue</button>
+                            <div>
+                                <p id="signupOr">or</p>
+                            </div>
+                            <div class="signupExternals">
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/facebookbtn.svg" alt="facebooklogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/googlebtn.svg" alt="googlelogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/applebtn.svg" alt="applelogin" srcset=""></a>
+                            </div>
+                            <div class="signupLogin">
+                                <p class="blueBold">Already have an account?</p>
+                                <p id="alreadyhaveaccount" class="orangeUnderlined">Log in!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="signupModal2" aria-hidden="true" aria-labelledby="signupModalLabel2"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">Please enter your password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Sign up</h1>
+                            <div class="inputField">
+                                <label for="signupPassword">Password:</label><br>
+                                <input type="password" name="password" id="signupPassword">
+                            </div>
+                            <div class="inputField">
+                                <label for="signupPasswordConfirm">Confirm Password:</label><br>
+                                <input type="password" name="confirmpassword" id="signupPasswordConfirm">
+                            </div>
+                            <div id="passwordStrength">
+                                Null...
+                            </div>
+                            <button id="signupButton2" class="btn btn-primary" data-bs-target="#signupModal3"
+                                data-bs-toggle="modal" data-bs-dismiss="modal"
+                                style="font-weight: 700;">Continue</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="signupModal3" aria-hidden="true" aria-labelledby="signupModalLabel3"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">Are you an employee, or an employer?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>I want to...</h1>
+                            <button id="signupButton3" class="btn btn-primary" data-bs-target="#signupModal4"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Find Jobs</button>
+                            <button id="signupButton10" class="btn btn-primary" data-bs-target="#signupModal5"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Post Jobs</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal2"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="signupModal4" aria-hidden="true" aria-labelledby="signupModalLabel4"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">What kinds of jobs are you looking for?
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Interests</h1>
+                            <div class="signupFlexwrapper">
+                                <div class="signupcollumn1">
+                                    <input type="checkbox" name="tech" id="techboxsearcher"><label
+                                        for="techbox">Tech</label>
+                                    <input type="checkbox" name="security" id="securityboxsearcher"><label
+                                        for="securitybox">Security</label>
+                                    <input type="checkbox" name="systems" id="systemsboxsearcher"><label
+                                        for="systemsbox">Systems</label>
+                                    <input type="checkbox" name="webdev" id="webdevboxsearcher"><label
+                                        for="webdevbox">Webdev</label>
+
+                                </div>
+                                <div class="signupcollumn2">
+                                    <input type="checkbox" name="data" id="databoxsearcher"><label
+                                        for="databox">Data</label>
+                                    <input type="checkbox" name="quality" id="qualityboxsearcher"><label
+                                        for="qualitybox">Quality</label>
+                                    <input type="checkbox" name="management" id="managementboxsearcher"><label
+                                        for="managementbox">Management</label>
+                                    <input type="checkbox" name="finances" id="financesboxsearcher"><label
+                                        for="financesbox">Finances</label>
+                                </div>
+
+                            </div>
+                            <button type="submit" id="signupButton4" data-bs-dismiss="modal" class="btn btn-primary"
+                                style="font-weight: 700;"> Continue</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="signupModal5" aria-hidden="true" aria-labelledby="signupModalLabel5"
+                tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signupModalLabel2">What jobs are you posting?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>I am looking for</h1>
+                            <div class="signupFlexwrapper">
+                                <div class="signupcollumn1">
+                                    <input type="checkbox" name="tech" id="techboxposter"><label
+                                        for="techbox">Tech</label>
+                                    <input type="checkbox" name="security" id="securityboxposter"><label
+                                        for="securitybox">Security</label>
+                                    <input type="checkbox" name="systems" id="systemsboxposter"><label
+                                        for="systemsbox">Systems</label>
+                                    <input type="checkbox" name="webdev" id="webdevboxposter"><label
+                                        for="webdevbox">Webdev</label>
+
+                                </div>
+                                <div class="signupcollumn2">
+                                    <input type="checkbox" name="data" id="databoxposter"><label
+                                        for="databox">Data</label>
+                                    <input type="checkbox" name="quality" id="qualityboxposter"><label
+                                        for="qualitybox">Quality</label>
+                                    <input type="checkbox" name="management" id="managementboxposter"><label
+                                        for="managementbox">Management</label>
+                                    <input type="checkbox" name="finances" id="financesboxposter"><label
+                                        for="financesbox">Finances</label>
+                                </div>
+
+                            </div>
+                            <button type="submit" id="signupButton5" data-bs-dismiss="modal" class="btn btn-primary">
+                                Continue</button>
+                            <button class="btn btn-primary btn-back" data-bs-target="#signupModal3"
+                                data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Log-in Modal -->
+        <div class="signupModalsChain">
+            <div class="modal fade" id="loginModal" aria-hidden="true" aria-labelledby="signupModalLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">Welcome!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Log in</h1>
+                            <div class="inputField alert-danger" id="loginerrorbox" role="alert" style="display: none;">
+                            </div>
+                            <div class="inputField">
+                                <label for="username">Username:</label><br>
+                                <input type="text" name="username" id="loginusername">
+                            </div>
+                            <div class="inputField">
+                                <label for="password">Password:</label><br>
+                                <input type="password" name="password" id="loginpassword">
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="blueBold"
+                                style="text-decoration: underline; margin-top: 5px;">Forgot your
+                                password?</a><br>
+                            <button id="loginButton" class="btn btn-primary" data-bs-dismiss="modal"
+                                style="font-weight: 700;">Log in</button>
+                            <div>
+                                <p id="signupOr">or</p>
+                            </div>
+                            <div class="signupExternals">
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/facebookbtn.svg" alt="facebooklogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/googlebtn.svg" alt="googlelogin" srcset=""></a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"><img
+                                        src="./images/applebtn.svg" alt="applelogin" srcset=""></a>
+                            </div>
+                            <div class="signupLogin">
+                                <p class="blueBold">Don't have an account?</p>
+                                <p id="nothaveaccount" class="orangeUnderlined">Sign up!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <main>
+        <div class="filters">
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+
+            <h4 id="mainscreenInfo"> Hot searches near you</h4>
+            <div class="dummycol"></div>
+            <button id="filtersbutton" type="button" class=" btn btn-primary whitetext disabled" data-bs-toggle="modal"
+                data-bs-target="#filtersModal" style="opacity: 0;">filters
+            </button>
+
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+            <div class="dummycol"></div>
+
+        </div>
+        <br>
+        <article>
+            <div class="articles">
+                {{#each data.mainpagelistings}}
+                <div class="listing">
+                    <div class="wrapper">
+                        <div class="info">
+                            <h3 class="title" id="mainlistingtitle{{this.id}}">{{this.title}}</h3>
+                            <h5 class="workhours" id="mainlistinghours{{this.id}}">{{this.hours}} - {{this.onsite}}</h5>
+                        </div>
+                        <div class="totheleft">
+                            <div class="logo"></div>
+                            <div class="companyname">
+                                <p id="mainlistingcompname{{this.id}}">{{this.company}}</p>
+                            </div>
+                            <div class="location">
+                                <p id="mainlistinglocation{{this.id}}">{{this.location}}</p>
+                            </div>
+                        </div>
+                        <p class="content" id="mainlistingdescription{{this.id}}">
+                            {{this.description}}
+                        </p>
+                        <div class="hidden" style="display: none;">
+                            <p id="mainlistingbigdescription{{this.id}}">{{this.bigdescription}}</p>
+                            <p id="mainlistingcategory{{this.id}}">{{this.category}}</p>
+                            <p id="mainlistingonsite{{this.id}}">{{this.onsite}}</p>
+                            <p id="mainlistingsalary{{this.id}}">{{this.salary}}</p>
+                        </div>
+                        <p class="postedat" id="mainlistingpostdate{{this.id}}">{{this.postdate}}</p>
+                        <input type="button" id="{{this.id}}" value="Test" class="btn btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#searchModal" style="display: none;">
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+        </article>
+
+        <br>
+        <br>
+        <br>
+        <div id="lemao">
+            <div class="flexwrapper">
+                <div class="sponsors">
+                    <p>Our top sponsors:</p>
+                </div>
+            </div>
+            <!-- Carousel wrapper -->
+            <div class="flexwrapper">
+                <div id="sponsorsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {{#each sponsors}}
+                        {{#if this.top}}
+                        <div class="carousel-item active" data-bs-interval="5000">
+                            <div class="carouselimage">
+                                <img src="{{this.src}}" class="d-block w-100 carouselimage" alt="{{this.alt}}">
+                            </div>
+                        </div>
+                        {{^}}
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <div class="carouselimage">
+                                <img src="{{this.src}}" class="d-block w-100 carouselimage" alt="{{this.alt}}">
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <br />
+
+    <footer>
+        <div class="mainarea">
+            <div class="dummycol" style="flex-basis:12.5%;"></div>
+            <div class="firstcol">
+                <ul>
+                    <li><a class="whitetext" href="">About</a></li>
+                    <li><a class="whitetext" href="">Help Center</a></li>
+                    <li><a class="whitetext" href="">Support</a></li>
+                    <li><a class="whitetext" href="">Contact</a></li>
+                </ul>
+            </div>
+            <div class="secondcol">
+                <ul>
+                    <li><a class="whitetext" href="">We 're hiring!</a></li>
+                    <li><a class="whitetext" href="">Blog</a></li>
+                </ul>
+            </div>
+            <div class="thirdcol">
+
+            </div>
+            <div class="socials">
+                <span class="whitetext">Find us on social media!</span>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
+                            <img alt="Qries" src="./images/facebook" width="40" height="40" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
+                            <img alt="Qries" src="./images/instagram" width="40" height="40" />
+                        </a>
+
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
+                            <img alt="Qries" src="./images/twitter" width="40" height="40" />
+                        </a>
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
+                            <img alt="Qries" src="./images/linkedin" width="40" height="40" />
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="legalstuff">
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Cookies</a></li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Terms and conditions</a>
+                </li>
+                <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Privacy Policy</a></li>
+                <li>
+                    <p>All rights reserved ©2022</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    </div>
+</body>
+
+</html>

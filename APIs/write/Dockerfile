@@ -18,7 +18,7 @@ ADD wait-for-it.sh .
 # make it execuatable 
 RUN chmod +x wait-for-it.sh
 # our app is running on port 5000 within the container, so need to expose it
-EXPOSE 5000
+EXPOSE 6000
 
 # the command that starts our app
 # CMD ["node", "index.js"]
