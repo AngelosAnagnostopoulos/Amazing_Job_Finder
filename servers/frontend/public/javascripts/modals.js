@@ -131,9 +131,11 @@ applicationBtn.addEventListener("click", showCVmodal);
 submitListingBtn.addEventListener("click", submitJobListing);
 cvSendApplyBtn.addEventListener("click", applyToJob);
 
+let selectedJobId = 2;
 
 function showCVmodal(e) {
     if (promptLoginSearcher()) {
+        // selectedJobId.e.
         cvModalBtn.click();
     } else {
         searcherError();
@@ -143,7 +145,7 @@ function showCVmodal(e) {
 function applyToJob() {
     let file = document.getElementById("myFile");
     let url = "/apply";
-    makePostRequest(url, file, console.log);
+    makePostRequest(url, {job_listing_id: selectedJobId, application_text: file.filename || "test application"}, console.log);
 }
 
 function submitJobListing(e) {

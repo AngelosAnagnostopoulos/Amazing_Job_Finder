@@ -40,11 +40,6 @@ function mustBeLoggedIn(req, res, next) {
     res.redirect("/");
 }
 
-router.post("/apply", mustBeLoggedIn, async function (req, res){
-    console.log("POST /apply");
-    res.send({status: "success"}); 
-});
-
 router.get('/', async (req, res) => {
     //By default, show 3 random jobs by making a call to the readAPI
     //every day or so, also update the sponsors and serve the data.
@@ -85,9 +80,16 @@ router.post('/apply', mustBeLoggedIn, (req, res, next) => {
     
     fetch("http://write_api:6000/applytojob", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+            userID: req.session.userID,
+            job_listing_id: req.body.job_listing_id,
+            application_text: req.body.application_text
+        }),
         headers: {'Content-Type': 'application/json'}
-    });
+    })
+    .then(api_res => api_res.json())
+        .then(api_res_json => res.send(api_res_json))
+        .catch(err => res.send({status: "error"}));
 
 });
 
