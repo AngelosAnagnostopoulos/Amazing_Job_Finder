@@ -89,10 +89,6 @@ header .tags .active,
   border: none;
 }
 
-.greeting {
-  /* display: none; */
-}
-
 .inactivetag {
   font-family: 'Arial';
   font-style: normal;

@@ -23,7 +23,6 @@ searchJobsBtn.addEventListener("click", displaySearchResults);
 const sortbyfield = document.getElementById("sortby");
 
 function sortByButtonAction(sortby) {
-
     return function(e) {
         console.log("sortByButtonAction closure, sortby=", sortby);
         sortbyfield.value = sortby; 
@@ -133,6 +132,7 @@ function displaySearch() {
 
 
 function displaySearchResults(e) {
+
     const mainInfo = document.getElementById("mainscreenInfo");
     const sponsors = document.getElementById("lemao");
     const filtersBtn = document.getElementById("filtersbutton");
@@ -155,4 +155,3 @@ function scrollToTarget(element) {
         behavior: "smooth"
     });
 }
-
