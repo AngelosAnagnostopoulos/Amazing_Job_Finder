@@ -1,10 +1,3 @@
-//Get these from cookie/userinfo from server
-/*
-const isConnected = true;
-const isSearcher = true;
-const isPoster = true;
-*/
-
 //Job listing modal functionality
 //Carry over values from main page to popup and add a route
 const postjobbutton = document.getElementById("postjob");
@@ -38,9 +31,6 @@ function setupPopup(e) {
     postpopup.hours.value = postheader.hours.value;
 }
 
-const createListingButton = document.getElementById("listingButton");
-createListingButton.addEventListener("click", createListing);
-
 function createListing(e) {
 
     const listingData = {
@@ -57,10 +47,8 @@ function createListing(e) {
         // companyname: User should be connected so just use their name
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/postpopup", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(listingData));
+    var data = JSON.stringify(listingData);
+    makePostRequest("/postpopup", data);
 }
 
 const listingsbox = document.getElementsByClassName("listing");
@@ -151,7 +139,7 @@ function applyToJob() {
 
 function submitJobListing(e) {
     if (promptLoginPoster()) {
-        //Send listing through with writeAPI
+        createListing();
         listingSubmitSuccess();
     } else {
         posterError();

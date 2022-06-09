@@ -61,7 +61,13 @@ CREATE TABLE IF NOT EXISTS job_application (
 );
 
 INSERT INTO company VALUES 
-(1,'CosmoteTELECOM','Communications and Networking','https://www.cosmote.gr/hub/','This is a test description for CosmoteTELECOM',10, NULL);
+(1,'Cosmote TELECOM','Communications and Networking','https://www.cosmote.gr/hub/','This is a test description for CosmoteTELECOM',10, NULL);
+INSERT INTO company VALUES 
+(2,'Stack Overflow','Online coding forum','https://stackoverflow.design/','This is a test description for StackOverflow',9, NULL);
+INSERT INTO company VALUES 
+(3,'Pizza Fan','Fast-food resturant','https://www.pizzafan.gr/el','This is a test description for Pizza Fan',8, NULL);
+INSERT INTO company VALUES 
+(4,'Starbucks','Coffe place','https://www.starbucks.com/','This is a test description for Starbucks',7, NULL);
 
 INSERT INTO job_position VALUES (1, 'Software Engineer', 'Develop Software lmao', 69420);
 

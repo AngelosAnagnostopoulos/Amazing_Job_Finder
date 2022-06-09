@@ -31,6 +31,7 @@
 
 <body>
     <nav>
+        <span class="greetingg">{{session.userName}}</span>
         <a href="/logout">
             <span class="login" id="navlogoutbox">
                 <p> Log out </p>
@@ -486,7 +487,7 @@
                             </div>
                             <div class="signupLogin">
                                 <p class="blueBold">Already have an account?</p>
-                                <p class="orangeUnderlined">Log in</p>
+                                <p id="alreadyhaveaccount" class="orangeUnderlined">Log in!</a>
                             </div>
                         </div>
                     </div>
@@ -667,8 +668,8 @@
                                         src="./images/applebtn.svg" alt="applelogin" srcset=""></a>
                             </div>
                             <div class="signupLogin">
-                                <p class="blueBold">Dont have an account?</p>
-                                <p class="orangeUnderlined">Sign up!</p>
+                                <p class="blueBold">Don't have an account?</p>
+                                <p id="nothaveaccount" class="orangeUnderlined">Sign up!</p>
                             </div>
                         </div>
                     </div>
@@ -749,14 +750,14 @@
                         {{#each sponsors}}
                         {{#if this.top}}
                         <div class="carousel-item active" data-bs-interval="5000">
-                            <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carouselimage">
+                                <img src="{{this.src}}" class="d-block w-100 carouselimage" alt="{{this.alt}}">
                             </div>
                         </div>
                         {{^}}
                         <div class="carousel-item" data-bs-interval="3000">
-                            <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carouselimage">
+                                <img src="{{this.src}}" class="d-block w-100 carouselimage" alt="{{this.alt}}">
                             </div>
                         </div>
                         {{/if}}

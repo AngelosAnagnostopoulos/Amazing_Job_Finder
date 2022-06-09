@@ -75,6 +75,14 @@ header .tags .active,
   border-radius: 10px 10px 0px 0px;
 }
 
+.carouselimage {
+  max-width: 700px;
+  min-width: 700px;
+  max-height: 450px;
+  min-height: 450px;
+  vertical-align: middle;
+}
+
 .activetag {
   font-family: 'Arial';
   font-style: normal;

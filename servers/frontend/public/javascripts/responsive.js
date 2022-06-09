@@ -18,14 +18,14 @@ postBtn.daddy = postdaddy;
 //Listeners
 postBtn.addEventListener("click", displayPost);
 searchBtn.addEventListener("click", displaySearch);
-searchJobsBtn.addEventListener("click", displaySearchResults);
+searchJobsBtn.addEventListener("click", reloadP);
 
 const sortbyfield = document.getElementById("sortby");
 
 function sortByButtonAction(sortby) {
-    return function(e) {
+    return function (e) {
         console.log("sortByButtonAction closure, sortby=", sortby);
-        sortbyfield.value = sortby; 
+        sortbyfield.value = sortby;
         searchJobsBtn.click();
     };
 }
@@ -95,7 +95,6 @@ function displaySearch() {
 
     signupbox.addEventListener('mouseover', signuphoveredIn);
     signupbox.addEventListener('mouseout', signuphoveredOut);
-
 })();
 
 ; (function () {
@@ -111,7 +110,6 @@ function displaySearch() {
 
     loginbox.addEventListener('mouseover', loginhoveredIn);
     loginbox.addEventListener('mouseout', loginhoveredOut);
-
 })();
 
 ; (function () {
@@ -127,24 +125,35 @@ function displaySearch() {
 
     logoutbox.addEventListener('mouseover', logouthoveredIn);
     logoutbox.addEventListener('mouseout', logouthoveredOut);
-
 })();
 
 
-function displaySearchResults(e) {
 
+function reloadP() {
+    sessionStorage.setItem("reloading", "true");
+    document.location.reload();
+}
+
+window.onload = function () {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        displaySearchResultsHelper();
+    }
+}
+
+function displaySearchResultsHelper() {
     const mainInfo = document.getElementById("mainscreenInfo");
     const sponsors = document.getElementById("lemao");
     const filtersBtn = document.getElementById("filtersbutton");
     const firstListing = document.getElementsByClassName("listing");
 
-    filtersBtn.classList.add("filtersFadein")
-    filtersBtn.classList.remove("disabled")
+    filtersBtn.classList.add("filtersFadein");
+    filtersBtn.classList.remove("disabled");
     sponsors.style.display = "none";
     mainInfo.innerHTML = "Your search results";
     scrollToTarget(filtersBtn);
 }
-
 
 function scrollToTarget(element) {
     var offset = 50;
@@ -155,3 +164,19 @@ function scrollToTarget(element) {
         behavior: "smooth"
     });
 }
+
+// const loginredirect = document.getElementById("aldearyhaveaccount");
+// const signupredirect = document.getElementById("nothaveaccount");
+
+// loginredirect.addEventListener("click", redirectLogin)
+// signupredirect.addEventListener("click", redirectSignup)
+
+// function redirectLogin() {
+//     let loginbox = document.getElementById('navloginbox');
+//     loginbox.click();
+// }
+
+// function redirectSignup() {
+//     let signupbox = document.getElementById('navsignupbox');
+//     signupbox.click();
+// }

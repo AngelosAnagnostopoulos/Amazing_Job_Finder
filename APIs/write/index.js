@@ -42,7 +42,7 @@ app.post("/createjoblisting", (req, res) => {
 	const query = {
 		text: "INSERT INTO job_listing (title, jtype, jlocation, det_desc, salary, position_id, poster_id, company_id) VALUES " +
 			  "($1, $2, $3, $4, $5, $6, $7, $8);",
-		values: [data.title, data.onsite, data.location, data.longdescription, data.salary, 1 /* get pos id*/, data.userID, 1]
+		values: [data.title, data.onsite, data.location, data.longdescription, data.salary, 1 /* get pos id*/, data.userID, Math.floor(Math.random() * 3)+1/*Should query the slaveDB and ask for entries count*/]
 	};
 
 		
