@@ -88,5 +88,19 @@ app.post("/createuser", (req, res) => {
 		.catch(err => res.json({status: "error"}));
 
 });
+
+app.post("/applytojob", (req, res) => {
+	console.log("/applytojob");
+	console.log(req.body);
+
+	const query = {
+		text: "INSERT INTO job_application(job_listing_id, searcher_id, application_text) VALUES ($1, $2, $3);",
+		values: [req.body.job_listing_id, req.body.userID, req.body.application_text]
+	};
+
+	client.query(query)
+		.then(data => res.json({status: "success"}))
+		.catch(err => res.json({status: "error"}));	
+});
 // run dev server
 app.listen(SERVE_PORT, () => console.log("Write api listening"));

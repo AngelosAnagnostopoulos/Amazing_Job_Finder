@@ -20,6 +20,20 @@ postBtn.addEventListener("click", displayPost);
 searchBtn.addEventListener("click", displaySearch);
 searchJobsBtn.addEventListener("click", displaySearchResults);
 
+const sortbyfield = document.getElementById("sortby");
+
+function sortByButtonAction(sortby) {
+
+    return function(e) {
+        console.log("sortByButtonAction closure, sortby=", sortby);
+        sortbyfield.value = sortby; 
+        searchJobsBtn.click();
+    };
+}
+
+document.getElementById("latestbutton").addEventListener("click", sortByButtonAction("latest"));
+document.getElementById("popularbutton").addEventListener("click", sortByButtonAction("popular"));
+
 function displayPost() {
     if (postBtn.state == 0) {
         postBtn.state = 1;

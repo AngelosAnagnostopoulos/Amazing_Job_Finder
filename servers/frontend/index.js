@@ -6,6 +6,9 @@ const redis = require("redis");
 const cookieParser = require("cookie-parser");
 const connectRedis = require("connect-redis");
 
+const templates = require('./public/javascripts/handlebarsTemplates');
+var sponsors = templates.sponsors;
+var mainpagelistings = templates.mainpagelistings;
 
 var app = new express();
 var port = 3000;
@@ -53,6 +56,13 @@ app.use(session({
         maxAge: 1000*60*60 // 1 hour (ms)
     }
 }));
+
+// make session available in every handlebars render
+app.use(function (req, res, next) {
+    res.locals.session = req.session;
+    res.locals.sponsors = sponsors;
+    next();
+});
 
 app.use('/', route);
 

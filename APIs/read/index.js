@@ -28,11 +28,23 @@ client.connect()
 	});
 
 
-app.get("/listings", (req, res) => {
+function getSortBy(sortby) {
+	switch(sortby) {	
+		case "latest":
+			return "postdate DESC";
+		case "popular":
+			return "(SELECT COUNT(*) FROM job_application WHERE job_listing_id = id)";
+		default:
+			return "id";
+	}
+}
 
-	console.log([req.params.title || "", req.params.limit, req.params.offset]);
+app.get("/listings", (req, res) => {
+	
+	console.log("sortby: ", getSortBy(req.query.sortby));
+	console.log([req.query.title || "", req.query.limit, req.query.offset]);
 	const query = {
-		text: "SELECT * FROM all_jobs_detailed_listing_view WHERE title LIKE $1 LIMIT $2 OFFSET $3;",
+		text: `SELECT * FROM all_jobs_detailed_listing_view WHERE title LIKE $1 ORDER BY ${getSortBy(req.query.sortby)} LIMIT $2 OFFSET $3;`,
 		values: [`%${req.query.title || ""}%`, req.query.limit, req.query.offset]
 	};
 
@@ -41,6 +53,10 @@ app.get("/listings", (req, res) => {
 		.then(data => {
 			console.log(data.rows);
 			res.send(data.rows);
+		})
+		.catch(err => {
+			console.log("/listings error", err);
+			res.send([]);
 		});
 });
 

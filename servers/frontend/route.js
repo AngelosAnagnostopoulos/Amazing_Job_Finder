@@ -23,6 +23,9 @@ async function searchJobs(serachParams, count=10, offset=0) {
     if(serachParams?.zips) 
         parameters["zipcode"] = serachParams.zips;
 
+    if(serachParams?.sortby) 
+        parameters["sortby"] = serachParams.sortby;
+
     URI += "?" + Object.entries(parameters).map(elem => `${elem[0]}=${elem[1]}`).join('&');
     console.log("search jobs: ", URI);
 
@@ -46,6 +49,8 @@ function mustBeLoggedIn(req, res, next) {
     res.redirect("/");
 }
 
+async function applyToJob(jobID, personID, data){
+};
 
 router.get('/', async (req, res) => {
     //By default, show 3 random jobs by making a call to the readAPI
@@ -75,11 +80,22 @@ router.get('/searchjobs', async (req, res, next) => {
 
 });
 
-router.get('/postpopup', mustBeLoggedIn, (req, res, next) => {
+router.post('/apply', mustBeLoggedIn, (req, res, next) => {
     //Basically show the popup that is now done through the index.hbs file
-    console.log("GET /postpopup");
+    console.log("POST /apply");
 
-    next();
+    console.log("User type:", req.session.user_type); 
+
+    if(req.session.user_type != "searcher") {
+        return res.status(403).send("Only searchers can apply!");
+    }
+    
+    fetch("http://write_api:6000/applytojob", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {'Content-Type': 'application/json'}
+    });
+
 });
 
 router.post('/postpopup', mustBeLoggedIn, (req, res, next) => { 
@@ -137,8 +153,8 @@ router.post('/login', async (req, res, next) => {
     console.log(response);
 
     if(!response || response["status"] == "error"){
-            console.log("Error authorize:", response["description"]);
-            return res.render("login", {"error": response["description"]});
+        console.log("Error authorize:", response["description"]);
+        return res.json(response);
     }
     
     const data_res = await fetch("http://read_api:5000/authidtodata/" + response["authUserID"]); 
@@ -148,7 +164,7 @@ router.post('/login', async (req, res, next) => {
     
     if(!user_res || user_res["status"] == "error") {
        console.log("Errot getting user data!");
-        return res.send(503);
+        return res.json(user_res);
     }
 
     const sess = req.session;
@@ -160,11 +176,7 @@ router.post('/login', async (req, res, next) => {
 
     console.log("Session created!", req.session);
 
-    res.end();
-});
-
-router.get('/signup', (req, res, next) => {
-    console.log("/signup");
+    res.send(user_res);
 });
 
 router.post('/signup', async (req, res, next) => {

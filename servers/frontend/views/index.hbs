@@ -26,23 +26,27 @@
 
 <body>
     <nav>
-        <a data-bs-toggle="modal" href="#loginModal" role="button">
-            <span class="login" id="navloginbox">
-                Log in
-            </span>
-        </a>
-        <div class="whitetext">
-            <a data-bs-toggle="modal" href="#signupModal" role="button">
-                <span class="signupbox" id="navsignupbox">
-                    <p> Sign up </p>
+        {{#if session.userID includeZero=true}}
+            <span class="login">Hi <strong>{{session.username}}</strong></span>
+            <a href="/logout">
+                <span class="login" id="navlogoutbox">
+                    <p> Log out </p>
                 </span>
             </a>
-        </div>
-        <a href="/logout">
-            <span class="login" id="navlogoutbox">
-                <p> Log out </p>
-            </span>
-        </a>
+        {{else}}
+            <a data-bs-toggle="modal" href="#loginModal" role="button">
+                <span class="login" id="navloginbox">
+                    Log in
+                </span>
+            </a>
+            <div class="whitetext">
+                <a data-bs-toggle="modal" href="#signupModal" role="button">
+                    <span class="signupbox" id="navsignupbox">
+                        <p> Sign up </p>
+                    </span>
+                </a>
+            </div>
+        {{/if}}
     </nav>
     <header>
         <h1>If you can dream it, you can do it.</h1>
@@ -67,11 +71,12 @@
                     <div class="highlighted_area">
                         <div class="inputwrapper">
                             <div class="inputform">
-                                <form action="/searchjobs" , method="get">
+                                <form action="/searchjobs" , method="get" id="searchform">
                                     <input type="text" id="searchbox" name="searchbox" size="20" maxlength="20"
                                         placeholder="Enter job title" />
                                     <input type="text" id="zips" name="zips" size="5" maxlength="10"
                                         placeholder="City/Zip Code" />
+                                    <input type="hidden" id="sortby" name="sortby" value=""/>
                                     <input type="submit" id="submit" value="Search Jobs" />
                                 </form>
                             </div>
@@ -84,8 +89,8 @@
                                         window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
                                     }
                                 </script>
-                                <button class="querybox" , onclick="queryRickroll()">Latest</button>
-                                <button class="querybox" , onclick="queryRickroll()">
+                                <button class="querybox" id="latestbutton">Latest</button>
+                                <button class="querybox" id="popularbutton">
                                     Most Popular
                                 </button>
                                 <button class="querybox" , onclick="queryRickroll()">For You</button>
@@ -635,6 +640,8 @@
                         </div>
                         <div class="modal-body">
                             <h1>Log in</h1>
+                            <div class="inputField alert-danger" id="loginerrorbox" role="alert" style="display: none;">
+                            </div>
                             <div class="inputField">
                                 <label for="username">Username:</label><br>
                                 <input type="text" name="username" id="loginusername">
@@ -739,7 +746,7 @@
             <div class="flexwrapper">
                 <div id="sponsorsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        {{#each data.sponsors}}
+                        {{#each sponsors}}
                         {{#if this.top}}
                         <div class="carousel-item active" data-bs-interval="5000">
                             <img src="{{this.src}}" class="d-block w-100" alt="{{this.alt}}">

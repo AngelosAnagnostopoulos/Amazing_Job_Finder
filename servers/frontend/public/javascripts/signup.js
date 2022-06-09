@@ -12,7 +12,21 @@ function sendLoginInfo(e) {
     };
     let url = "/login";
 
-    makePostRequest(url, userData);
+    makePostRequest(url, userData, (request) => {
+        const res_json = JSON.parse(request.responseText);
+        console.log("XHR response:", res_json);
+
+        if(res_json["status"] == "success") {
+            location.reload();
+            return;
+        }
+
+        const errorbox = document.getElementById("loginerrorbox");
+        errorbox.innerText = res_json["description"];
+        errorbox.style.display = "block";
+
+        setTimeout(() => document.getElementById("navloginbox").click(), 300);
+    });
 }
 
 // Create signup pos t request with info from modals
@@ -71,7 +85,20 @@ function sendSignupSearcher() {
         }
     }
 
-    makePostRequest(url, data);
+    makePostRequest(url, data, (request) => {
+        const res_json = JSON.parse(request.responseText);
+        console.log("XHR response:", res_json);
+
+        if(res_json["status"] == "success") {
+            location.reload();
+            return;
+        }
+
+        //alert("Error on response:", res_json["description"]);
+        //const errorbox = document.getElementById("loginerrorbox");
+        //errorbox.innerText = res_json["description"];
+        //errorbox.style.display = "block";
+    });
 }
 
 // Submit interests from checkboxes to user profile 
@@ -96,10 +123,10 @@ function sendSignupPoster() {
         }
     }
 
-    makePostRequest(url, data);
+    makePostRequest(url, data, console.log);
 }
 
-function makePostRequest(url, data) {
+function makePostRequest(url, data, callback) {
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -107,7 +134,7 @@ function makePostRequest(url, data) {
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    xhr.onload = () => console.log(xhr.responseText);
+    xhr.onload = () => callback(xhr);
     
     console.log(data);
     xhr.send(JSON.stringify(data));
