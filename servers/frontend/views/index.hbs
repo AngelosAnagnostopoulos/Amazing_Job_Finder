@@ -24,9 +24,6 @@
         const isConnected = {{#if session.userID }} true {{else}} false {{/if}};
         const isPoster = "{{session.user_type}}" == "poster";
         const isSearcher = "{{session.user_type}}" == "searcher";
-
-        console.log(isConnected, isPoster, isSearcher);
-        console.log("{{session}}", {{session.userID}});
     </script>
 
     <title>Amazing_Job_Finder</title>
@@ -34,27 +31,24 @@
 
 <body>
     <nav>
-        {{#if session.userID includeZero=true}}
-            <span class="login">Hi <strong>{{session.username}}</strong></span>
-            <a href="/logout">
-                <span class="login" id="navlogoutbox">
-                    <p> Log out </p>
+        {{!-- {{#if session.userID }} <span class="greeting">Hi <strong>{{session.username}}</strong></span>{{/if}} --}}
+        <a href="/logout">
+            <span class="login" id="navlogoutbox">
+                <p> Log out </p>
+            </span>
+        </a>
+        <a data-bs-toggle="modal" href="#loginModal" role="button">
+            <span class="login" id="navloginbox">
+                Log in
+            </span>
+        </a>
+        <div class="whitetext">
+            <a data-bs-toggle="modal" href="#signupModal" role="button">
+                <span class="signupbox" id="navsignupbox">
+                    <p> Sign up </p>
                 </span>
             </a>
-        {{else}}
-            <a data-bs-toggle="modal" href="#loginModal" role="button">
-                <span class="login" id="navloginbox">
-                    Log in
-                </span>
-            </a>
-            <div class="whitetext">
-                <a data-bs-toggle="modal" href="#signupModal" role="button">
-                    <span class="signupbox" id="navsignupbox">
-                        <p> Sign up </p>
-                    </span>
-                </a>
-            </div>
-        {{/if}}
+        </div>
     </nav>
     <header>
         <h1>If you can dream it, you can do it.</h1>
@@ -366,7 +360,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="listingButton" class="btn btn-primary">Create Listing</button>
+                        <button type="button" id="listingButton" data-bs-dismiss="modal" class="btn btn-primary">Create Listing</button>
                     </div>
                 </div>
             </div>

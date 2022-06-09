@@ -68,12 +68,15 @@ for (let index = 0; index < listingsbox.length; index++) {
     listingsbox[index].addEventListener("click", jobPopup);
 }
 
+var currentlistingId;
+
 function jobPopup(e) {
     const listing = e.currentTarget;
     const button = listing.firstChild.nextElementSibling.lastChild.previousElementSibling;
     const id = button.id;
     button.click();
 
+    currentlistingId = id;
     // Call the readAPI for the data
 
     let listingData = {
@@ -119,6 +122,7 @@ function jobPopup(e) {
     popupData.onsite.innerHTML = listingData.onsite.innerHTML;
     popupData.salary.innerHTML = listingData.salary.innerHTML;
 
+    
 }
 
 
@@ -131,11 +135,8 @@ applicationBtn.addEventListener("click", showCVmodal);
 submitListingBtn.addEventListener("click", submitJobListing);
 cvSendApplyBtn.addEventListener("click", applyToJob);
 
-let selectedJobId = 2;
-
 function showCVmodal(e) {
     if (promptLoginSearcher()) {
-        // selectedJobId.e.
         cvModalBtn.click();
     } else {
         searcherError();
@@ -145,7 +146,7 @@ function showCVmodal(e) {
 function applyToJob() {
     let file = document.getElementById("myFile");
     let url = "/apply";
-    makePostRequest(url, {job_listing_id: selectedJobId, application_text: file.filename || "test application"}, console.log);
+    makePostRequest(url, {job_listing_id: currentlistingId, application_text: file.filename || "test application"}, console.log);
 }
 
 function submitJobListing(e) {
