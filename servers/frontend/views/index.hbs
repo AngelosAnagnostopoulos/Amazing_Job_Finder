@@ -21,11 +21,12 @@
     <script type="text/javascript" src="./javascripts/modals.js" defer></script>
     <script type="text/javascript" src="./javascripts/signup.js" defer></script>
     <script type="text/javascript" >
-        const isConnected = {{#if session}}true{{else}}false{{/if}};
+        const isConnected = {{#if session.userID }} true {{else}} false {{/if}};
         const isPoster = "{{session.user_type}}" == "poster";
         const isSearcher = "{{session.user_type}}" == "searcher";
 
-        //console.log(isConnected, isPoster, isSearcher);
+        console.log(isConnected, isPoster, isSearcher);
+        console.log("{{session}}", {{session.userID}});
     </script>
 
     <title>Amazing_Job_Finder</title>
