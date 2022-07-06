@@ -131,7 +131,7 @@ function displaySearch() {
 
 function reloadP() {
     sessionStorage.setItem("reloading", "true");
-    document.location.reload();
+    //document.location.reload();
 }
 
 window.onload = function () {

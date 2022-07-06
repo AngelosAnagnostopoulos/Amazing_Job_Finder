@@ -15,7 +15,15 @@ jobs:
       run: docker-compose build
 
     - name: Run Docker Compose
-      run: docker-compose up
+      run: docker-compose up -d
+
+    - name: Wait containers to spin up (30s)
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '30s'
+
+    - name: Show running containers
+      run: docker ps
 
     - name: Shut down containers
       run: docker-compose down

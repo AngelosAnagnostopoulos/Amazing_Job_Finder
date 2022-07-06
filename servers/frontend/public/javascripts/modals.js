@@ -47,8 +47,7 @@ function createListing(e) {
         // companyname: User should be connected so just use their name
     }
 
-    var data = JSON.stringify(listingData);
-    makePostRequest("/postpopup", data);
+    makePostRequest("/postpopup", listingData);
 }
 
 const listingsbox = document.getElementsByClassName("listing");
