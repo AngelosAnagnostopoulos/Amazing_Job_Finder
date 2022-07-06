@@ -1,0 +1,22 @@
+name: Docker Compose Test Build
+
+on: push
+      
+jobs:  
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v3
+
+    - name: Build with docker-compose
+      run: docker-compose build
+
+    - name: Run Docker Compose
+      run: docker-compose up
+
+    - name: Shut down containers
+      run: docker-compose down
+
